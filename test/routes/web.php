@@ -13,30 +13,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $books = [
-        'laravel',
-        'php'
-    ];
 
-    // return view('welcome')->withbooks($books);
-    // return view('welcome')->with([
-    //     'books' => $books
-    // ]);
-    return view('welcome', [
-        'books' => $books
-    ]);
-});
+// Route::get('/', function () {
+//     $books = [
+//         'laravel',
+//         'php'
+//     ];
 
-Route::get('/laravel', function () {
-    return view('laravel');
-});
+//     // return view('welcome')->withbooks($books);
+//     // return view('welcome')->with([
+//     //     'books' => $books
+//     // ]);
+//     return view('welcome', [
+//         'books' => $books
+//     ]);
+// });
 
-Route::get('/ruby_on_rails', function () {
-    return view('ruby_on_rails');
-});
+// Route::get('/', 'HomeController@index');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/django', function () {
-    return view('django');
-});
+// Route::get('/laravel', function () {
+//     return view('laravel');
+// });
+Route::get('/laravel', [App\Http\Controllers\HomeController::class, 'laravel']);
 
+
+// Route::get('/ruby_on_rails', function () {
+//     return view('ruby_on_rails');
+// });
+
+Route::get('/ruby_on_rails', [App\Http\Controllers\HomeController::class, 'ruby_on_rails']);
+
+// Route::get('/django', function () {
+//     return view('django');
+// });
+
+Route::get('/django', [App\Http\Controllers\HomeController::class, 'django']);
