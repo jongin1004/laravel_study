@@ -7,7 +7,10 @@
 @section('content')
   welcome mypage~!
   @foreach($books as $book)
-    <li>{{$book}}</li>
+    <li>{{$book}}</li>    
   @endforeach
+
+  
 @endsection
+
 
