@@ -14,7 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $books = [
+        'laravel',
+        'php'
+    ];
+
+    // return view('welcome')->withbooks($books);
+    // return view('welcome')->with([
+    //     'books' => $books
+    // ]);
+    return view('welcome', [
+        'books' => $books
+    ]);
 });
 
 Route::get('/laravel', function () {
