@@ -7,12 +7,14 @@
   <link rel="stylesheet" href="{{ mix('css/tailwind.css') }}">
 </head>
 <body>
-  <ul>
+  <!-- <ul>
     <li><a href="/laravel">laravel</a></li>
     <li><a href="/ruby_on_rails">ruby on rails</a></li>
     <li><a href="/django">django</a></li>
-  </ul>
-  <div class="bg-red-800">hello</div>
-  @yield('content')
+  </ul> -->
+  <!-- <div class="bg-red-800">hello</div> -->
+  <div class="container mx-auto">
+    @yield('content')
+  </div>
 </body>
 </html>

@@ -51,3 +51,7 @@ Route::get('/ruby_on_rails', [App\Http\Controllers\HomeController::class, 'ruby_
 Route::get('/django', [App\Http\Controllers\HomeController::class, 'django']);
 
 Route::get('/project', [App\Http\Controllers\ProjectController::class, 'index']);
+
+Route::get('/tasks', [App\Http\Controllers\TaskController::class, 'index']);
+
+Route::get('/tasks/create', [App\Http\Controllers\TaskController::class, 'create']);
