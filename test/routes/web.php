@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+// use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,3 +55,13 @@ Route::get('/project', [App\Http\Controllers\ProjectController::class, 'index'])
 Route::get('/tasks', [App\Http\Controllers\TaskController::class, 'index']);
 
 Route::get('/tasks/create', [App\Http\Controllers\TaskController::class, 'create']);
+// Tasks를 하나 만들어달라
+Route::post('/tasks', [App\Http\Controllers\TaskController::class, 'store']); 
+
+// Route::get('/token', function (Request $request) {
+//   $token = $request->session()->token();
+
+//   $token = csrf_token();
+
+//   // ...
+// });
