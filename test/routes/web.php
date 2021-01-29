@@ -58,6 +58,12 @@ Route::get('/tasks/create', [App\Http\Controllers\TaskController::class, 'create
 // Tasks를 하나 만들어달라
 Route::post('/tasks', [App\Http\Controllers\TaskController::class, 'store']); 
 
+Route::get('/tasks/{task}', [App\Http\Controllers\TaskController::class, 'show']); 
+
+Route::get('/tasks/{task}/edit', [App\Http\Controllers\TaskController::class, 'edit']); 
+
+Route::put('/tasks/{task}', [App\Http\Controllers\TaskController::class, 'update']); 
+
 // Route::get('/token', function (Request $request) {
 //   $token = $request->session()->token();
 
