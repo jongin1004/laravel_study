@@ -6,8 +6,14 @@
 
 
 @section('content')
-<div class="px-64">
-  <h1 class="font-bold text-3xl">Task list</h1>
+<div class="px-64 mt-4">
+  <div class="flex">
+    <h1 class="font-bold text-3xl flex-1">Task list</h1>
+    <a href="/tasks/create">
+      <button class="bg-blue-400 px-4 py-2 text-white hover:bg-blue-600 flex-initial">Create</button>
+    </a>
+  </div>
+
   <ul>
     @foreach($Tasks as $Task)
     <a href="/tasks/{{ $Task -> id }}">

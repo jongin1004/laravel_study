@@ -64,6 +64,8 @@ Route::get('/tasks/{task}/edit', [App\Http\Controllers\TaskController::class, 'e
 
 Route::put('/tasks/{task}', [App\Http\Controllers\TaskController::class, 'update']); 
 
+Route::delete('/tasks/{task}', [App\Http\Controllers\TaskController::class, 'destroy']); 
+
 // Route::get('/token', function (Request $request) {
 //   $token = $request->session()->token();
 
