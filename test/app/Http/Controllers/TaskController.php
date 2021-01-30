@@ -11,7 +11,7 @@ class TaskController extends Controller
     public function index()
     {   
         // $Tasks = DB::table('tasks')->get();
-        $Tasks = Task::latest() -> get();
+        $Tasks = Task::latest() ->where('user_id', auth()->id())-> get();
 
         return view('tasks.index', [
             'Tasks' => $Tasks
@@ -34,8 +34,11 @@ class TaskController extends Controller
             'title' => 'required',
             'body'  => 'required'
         ]);
+        
+        $values = request(['title', 'body']);
+        $values['user_id'] = auth()->id();  //현제 로그인 사람의 id값도 같이 저장한다. 
 
-        $task = Task::create(request(['title', 'body']));
+        $task = Task::create($values);
 
         // required기능 
         // request() -> validate([
