@@ -1,29 +1,23 @@
 @extends('layout')
 
-@section('title', 'Create Task')
-
-
 @section('content')
-<div class="px-64">
-  <h1 class="font-bold text-3xl">Edit Task</h1>
-  <form action="/tasks/{{ $task -> id }}" method="POST">
-    @method('PUT')
-    @csrf
-    <label class="block" for="title">title</label>  <!-- for="title" => id="title"인 input의 레이블 -->
-    <input class="border-2 border-gray-800 w-full @error('title') border-blue-800 @enderror" value="{{ old('title') ? old('title') : $task->title}}"
-     type="text" name="title" id="title" required><br>
-    @error('title')
-      <small class="text-red-700">{{ $message }}</small>
-    @enderror
+<div class="px-64 mt-5">
+    <h1 class="text-3xl font-bold">Task edit</h1>
+    <form action="/tasks/{{$task->id}}" method="POST">
+        @method('PUT')
+        @csrf
+        <label for="title">Title</label><br>
+        <input class="w-full @error('title') border-4 border-blue-500 @enderror" type="text" name="title" id="title" value="{{ old('title') ? old('title') :$task -> title }}"><br>
+        @error('title')
+            <small class="text-red-500">{{ $message }}</small><br>
+        @enderror
 
-    <label class="block" for="body">body</label>
-    <textarea class="border-2 border-gray-800 w-full @error('title') border-blue-800 @enderror" name="body" id="body" cols="30" rows="10" required>
-    {{ old('body') ? old('body') : $task->body}}</textarea><br>
-    @error('body')
-      <small class="text-red-700">{{ $message }}</small>
-    @enderror
-
-    <button class="bg-blue-400 text-white px-2 py-2 float-right">Submit</button>
-  </form>
+        <label for="body">body</label><br>
+        <textarea class="w-full @error('body') border-4 border-blue-500 @enderror" name="body" id="body" cols="30" rows="10">{{ old('body') ? old('body') :$task -> body }}</textarea>
+        @error('body')
+            <small class="text-red-500">{{ $message }}</small>
+        @enderror
+        <button class="bg-blue-400 px-4 py-2 hover:bg-blue-600 float-right">edit</button>
+    </form>
 </div>
 @endsection
