@@ -30,21 +30,21 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::prefix('tasks')->middleware('auth')->group(function () {
-    Route::get('/', [TaskController::class, 'index'])->middleware(['auth']);
+// Route::prefix('tasks')->middleware('auth')->group(function () {
+//     Route::get('/', [TaskController::class, 'index'])->middleware(['auth']);
 
-    Route::get('/create', [TaskController::class, 'create']);
+//     Route::get('/create', [TaskController::class, 'create']);
 
-    Route::post('/', [TaskController::class, 'store']);
+//     Route::post('/', [TaskController::class, 'store']);
 
-    Route::get('/{task}', [TaskController::class, 'show']);
+//     Route::get('/{task}', [TaskController::class, 'show']);
 
-    Route::get('/{task}/edit', [TaskController::class, 'edit']);
+//     Route::get('/{task}/edit', [TaskController::class, 'edit']);
 
-    Route::put('/{task}', [TaskController::class, 'update']);
+//     Route::put('/{task}', [TaskController::class, 'update']);
 
-    Route::delete('/{task}', [App\Http\Controllers\TaskController::class, 'destroy']); 
+//     Route::delete('/{task}', [App\Http\Controllers\TaskController::class, 'destroy']); 
             
-});
+// });
 
-
+Route::resource('tasks', TaskController::class)->middleware('auth');
