@@ -52,7 +52,16 @@ class TaskController extends Controller
     }
 
     public function show(Task $task)
-    {
+    {   
+        // if(auth() -> id() != $task->user_id){
+        //     abort(403); // 403에러를 보여주면서 막아라 
+        // }
+
+        // abort_if(auth() -> id() != $task->user_id, 403);
+
+        // abort_if(!auth()->user()->owns($task), 403);  //로그인한 유저의 유저정보를 보여준다. 그 유저가 task를 소유하고 있지않으면 403에러를 보여줘라 
+        abort_unless(auth()->user()->owns($task), 403);
+
         return view('tasks.show', [
             'task' => $task
         ]);
@@ -60,6 +69,8 @@ class TaskController extends Controller
 
     public function edit(Task $task)
     {                            
+        abort_unless(auth()->user()->owns($task), 403);
+
         return view('tasks.edit', [
             'task' => $task
         ]);
