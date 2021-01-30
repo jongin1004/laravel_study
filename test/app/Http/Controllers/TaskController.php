@@ -11,7 +11,8 @@ class TaskController extends Controller
     public function index()
     {   
         // $Tasks = DB::table('tasks')->get();
-        $Tasks = Task::latest() ->where('user_id', auth()->id())-> get();
+        // $Tasks = Task::latest() ->where('user_id', auth()->id())-> get();
+        $Tasks = auth() -> user() -> tasks()->latest()->get(); #로그인한 유저가 가진 tasks를 알려줘  최신순서로 그리고 그 값을 get으로 가져와 
 
         return view('tasks.index', [
             'Tasks' => $Tasks
