@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use Illuminate\Http\Request;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\QnaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,64 +17,54 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// Route::get('/', function () {
-//     $books = [
-//         'laravel',
-//         'php'
-//     ];
+Route::get('/framework', [HomeController::class, 'index']);
 
-//     // return view('welcome')->withbooks($books);
-//     // return view('welcome')->with([
-//     //     'books' => $books
-//     // ]);
-//     return view('welcome', [
-//         'books' => $books
-//     ]);
+Route::get('/projects', [ProjectController::class, 'index']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+// Route::prefix('tasks')->middleware('auth')->group(function () {
+//     Route::get('/', [TaskController::class, 'index'])->middleware(['auth']);
+
+//     Route::get('/create', [TaskController::class, 'create']);
+
+//     Route::post('/', [TaskController::class, 'store']);
+
+//     Route::get('/{task}', [TaskController::class, 'show']);
+
+//     Route::get('/{task}/edit', [TaskController::class, 'edit']);
+
+//     Route::put('/{task}', [TaskController::class, 'update']);
+
+//     Route::delete('/{task}', [App\Http\Controllers\TaskController::class, 'destroy']); 
+            
 // });
 
-// Route::get('/', 'HomeController@index');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::resource('tasks', TaskController::class)->middleware('auth');
 
-// Route::get('/laravel', function () {
-//     return view('laravel');
-// });
-Route::get('/laravel', [App\Http\Controllers\HomeController::class, 'laravel']);
+Route::resource('qna', QnaController::class)->middleware('auth');
 
+// Route::get('/qna', [QnaController::class, 'index']);
 
-// Route::get('/ruby_on_rails', function () {
-//     return view('ruby_on_rails');
-// });
+// Route::get('/qna/{qna}', [QnaController::class, 'show']);
 
-Route::get('/ruby_on_rails', [App\Http\Controllers\HomeController::class, 'ruby_on_rails']);
+// // Route::get('/qna/create', [QnaController::class, 'create']);
 
-// Route::get('/django', function () {
-//     return view('django');
-// });
+// Route::get('/qna/create', [QnaController::class, 'create']);
 
-Route::get('/django', [App\Http\Controllers\HomeController::class, 'django']);
+// Route::post('/qna', [QnaController::class, 'store']);    
 
-Route::get('/project', [App\Http\Controllers\ProjectController::class, 'index']);
+// Route::get('/qna/{qna}/edit', [QnaController::class, 'edit']);
 
-Route::get('/tasks', [App\Http\Controllers\TaskController::class, 'index']);
-
-Route::get('/tasks/create', [App\Http\Controllers\TaskController::class, 'create']);
-// Tasks를 하나 만들어달라
-Route::post('/tasks', [App\Http\Controllers\TaskController::class, 'store']); 
-
-Route::get('/tasks/{task}', [App\Http\Controllers\TaskController::class, 'show']); 
-
-Route::get('/tasks/{task}/edit', [App\Http\Controllers\TaskController::class, 'edit']); 
-
-Route::put('/tasks/{task}', [App\Http\Controllers\TaskController::class, 'update']); 
-
-Route::delete('/tasks/{task}', [App\Http\Controllers\TaskController::class, 'destroy']); 
+// Route::put('/qna/{qna}', [QnaController::class, 'update']);
 
 
-// Route::get('/token', function (Request $request) {
-//   $token = $request->session()->token();
-
-//   $token = csrf_token();
-
-//   // ...
-// });
+// Route::get('/qna/{qna}', [QnaController::class, 'create']);
