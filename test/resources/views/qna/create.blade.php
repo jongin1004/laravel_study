@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="px-64 mt-5">
-    <h1 class="text-3xl font-bold">Task Create</h1>
-    <form action="/tasks" method="POST">
+    <h1 class="text-3xl font-bold">QnA Create</h1>
+    <form action="/qna" method="POST">
         @csrf
         <label for="title">Title</label><br>
         <input class="w-full @error('title') border-4 border-blue-500 @enderror" type="text" name="title" id="title" value="{{ old('title') }}"><br>
