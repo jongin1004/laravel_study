@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Qna;
+use App\Models\Comment;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class QnaController extends Controller
 {
     public function index()
     {   
         $qnas = Qna::latest()->get();
+        $comments = Comment::get();
 
         return view('qna.index', [
-            'qnas' => $qnas
+            'qnas' => $qnas,
+            'comments' => $comments
         ]);
     }
 
@@ -39,7 +43,7 @@ class QnaController extends Controller
         $values['user_id'] = auth() -> id();
         $qna = Qna::create($values);
 
-        return redirect('/qna/'.$qna -> id);
+        return redirect('/qna');
     }
 
     public function edit(Qna $qna)

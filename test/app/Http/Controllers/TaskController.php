@@ -39,7 +39,7 @@ class TaskController extends Controller
             'body'  => 'required'
         ]);
         
-        $values = request(['title', 'body']);
+        $values = request(['title','body']);
         $values['user_id'] = auth()->id();  //현제 로그인 사람의 id값도 같이 저장한다. 
 
         $task = Task::create($values);

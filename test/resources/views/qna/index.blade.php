@@ -22,12 +22,24 @@ function myFunction(num) {
     <ul>
         @foreach($qnas as $qna)
             <a onclick="myFunction({{ $qna -> id }})">
-                <li class="border-4 px-2 py-2 mt-4">Title : {{ $qna-> title }} <small class="float-right">created_at {{ $qna -> created_at}}</small></li>
+                <li class="border-4 px-2 py-2 mt-4">Title : {{ $qna-> title }} <small class="float-right">created_at {{ $qna -> created_at}}</small><br>
+                내용 : {{ $qna -> body }} </li>
+                
             </a>
+            <div class="">
+                @foreach($comments as $comment)
+                    @if($comment -> qna_id == $qna -> id)
+                        댓글 : {{ $comment-> body}}<br>
+                    @endif
+                @endforeach
+            </div>
+            
             <div class="mt-5" id="textarea{{ $qna->id }}" style="display:none">
-                <form action="#">
-                    <textarea class="w-fill border-red-500" name="comment" id="comment"></textarea>
+                <form action="/comment" method="POST">
+                    @csrf
+                    <textarea class="w-fill border-red-500" name="body" id="body"></textarea>
                     <button class="bg-blue-400 px-4 py-2 hover:bg-blue-600 float-right">Submit</button>
+                    <input type="hidden" id="qna_id" name="qna_id" value="{{ $qna->id }}">
                 </form>
             </div>
         @endforeach

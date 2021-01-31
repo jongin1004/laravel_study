@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\QnaController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,12 @@ require __DIR__.'/auth.php';
 Route::resource('tasks', TaskController::class)->middleware('auth');
 
 Route::resource('qna', QnaController::class)->middleware('auth');
+
+// Route::resource('comment', CommentController::class)->middleware('auth');
+
+// Route::post('/comment/{comment}', [CommentController::class,'store']);
+
+Route::resource('comment', CommentController::class)->middleware('auth');
 
 // Route::get('/qna', [QnaController::class, 'index']);
 
