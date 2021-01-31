@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
-    public function index()
-    {
-        
-        // $projects = \App\Models\Project::all();
-        $projects = DB::table('projects')->get();
+    //
+    public function index(){
 
-        return view('project' ,[
+        $projects = \App\Models\Project::all();
+
+        return view('project.index', [
             'projects' => $projects
         ]);
     }
