@@ -6,6 +6,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\QnaController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UploadFileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +76,8 @@ Route::resource('comment', CommentController::class)->middleware('auth');
 
 
 // Route::get('/qna/{qna}', [QnaController::class, 'create']);
+
+Route::get('/upload', [UploadFileController::class, 'index']);
+
+Route::post('/upload', [UploadFileController::class, 'store']);
+

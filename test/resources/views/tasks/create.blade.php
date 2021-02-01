@@ -19,5 +19,21 @@
         <button class="bg-blue-400 px-4 py-2 hover:bg-blue-600 float-right">Submit</button>
     </form>
 
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="photo">
+        <input type="submit" value="upload">
+    </form>
+
+    <div>
+        @php
+            $photos = App\Models\Photo::all();
+        @endphp
+
+        @foreach($photos as $photo)
+            <img src="{{ $photo -> url }}" class="img-fluid">
+        @endforeach
+    </div>
+
 </div>
 @endsection
