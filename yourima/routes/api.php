@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//로그인한 유저만 api를 보낼 수 있게
+Route::prefix('messages')->group(function(){
+    Route::post('/', [MessageController::class], 'store');
+});
+
+Route::get('/users', [UserController::class, 'index']);
