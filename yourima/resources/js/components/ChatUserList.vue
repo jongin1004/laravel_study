@@ -3,7 +3,8 @@
         <div 
             v-for="user in usersWithoutSignedInUser"
             :key="user.id"
-            class="p-2 border border-blue-600 hover:bg-gray-300"
+            class="p-2 border border-gray-600 hover:bg-gray-300 cursor-pointer"
+            @click="updateChatWith(user.id)"
         >
             {{ user.name }}
         </div>
@@ -24,7 +25,7 @@
                 users: []
             }
         },
-        /**데이터가 바뀌면, 바뀐 데이터까지 계산 */
+    
         computed: {
             usersWithoutSignedInUser(){
                 return this.users.filter(user => user.id !== this.currentUser);
@@ -39,8 +40,13 @@
             }).catch(error => {
                 console.log(error)
             });
+        },
+
+        methods: {
+            updateChatWith(userId) {
+                this.$emit('updatedChatWith', userId);
+            }
         }
     }
 </script>
 
-<style></style>

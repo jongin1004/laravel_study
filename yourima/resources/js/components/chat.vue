@@ -1,12 +1,19 @@
 <template>
     <div class="flex h-full">
-        <ChatUserList :current-user="currentUser"></ChatUserList>        
+        <ChatUserList 
+            :current-user="currentUser"
+            @updatedChatWith="updateChatWith"
+        ></ChatUserList>        
         <div v-if="chatWith" class="w-4/5 flex flex-col">
-            <ChatArea></ChatArea>
+            <ChatArea
+                :chat-id="chatWith"
+            ></ChatArea>
             <div class="flex-initial p-2">
                 <input
                     class="border-r-2 border-solid rounded border-gray-600 w-full p-3"
                     type="text"
+                    v-model="text"
+                    @keyup.enter="submit"                    
                 />
             </div>
         </div>
@@ -33,17 +40,33 @@ export default {
         ChatArea
     },
 
-    /** component에서 쓸 data가 들어간다.*/
     data() {
         return {
-            chatWith:null
+            chatWith:null,
+            text:''            
         }
     },
 
     mounted() {
         console.log("Component mounted.");
+    },
+
+    methods: {
+        updateChatWith(value) {
+            this.chatWith = value;
+        },
+
+        submit() {
+            if(this.text) {
+                axios.post('/api/messages', {
+                    text: this.text,
+                    to: this.chatWith,
+                    from: this.currentUser
+                });
+            }
+        }
     }
-};
+}
 </script>
 
 <style></style>

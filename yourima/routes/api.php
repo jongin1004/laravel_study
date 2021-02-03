@@ -20,8 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //로그인한 유저만 api를 보낼 수 있게
-Route::prefix('messages')->group(function(){
-    Route::post('/', [MessageController::class], 'store');
-});
+// Route::prefix('messages')->group(function(){
+//     Route::post('/', [MessageController::class], 'store');
+// });
+
+
+Route::resource('messages', MessageController::class);
 
 Route::get('/users', [UserController::class, 'index']);
