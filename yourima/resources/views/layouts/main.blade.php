@@ -12,6 +12,8 @@
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <!-- Fomtatwesome -->
     <link rel="stylesheet" href="/css/app.css">
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
 <body class="font-sans bg-gray-100">
@@ -76,9 +78,8 @@
                 </ul>
             </div>
     </nav>
-
-    @yield('content')
-
+    @yield('content')    
+    
     @include('layouts.footer')
 </body>
 

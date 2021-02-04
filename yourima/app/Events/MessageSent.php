@@ -15,6 +15,7 @@ class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    //public에 있는 정보를 pusher로 보내주게 된다. 
     public $message;
     /**
      * Create a new event instance.
@@ -24,6 +25,7 @@ class MessageSent implements ShouldBroadcast
     public function __construct(Message $message)
     {
         $this->message = $message;
+        //현제 로그인중인 유저에게는 보내지 말라
         $this->dontBroadcastToCurrentUser();
     }
 
