@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Message;
+use App\Events\MessageSent;
 
 class MessageController extends Controller
 {   
@@ -37,8 +38,10 @@ class MessageController extends Controller
 
         $message = Message::create($validated);
 
+        MessageSent::dispatch($message);
+
         return response()->json([
-            'message' =>$message
+            'message' =>$message->load('from')
         ], 201);
     }
 }

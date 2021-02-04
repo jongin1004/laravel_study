@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+//컨디션을 작성해준다. 
+Broadcast::channel('chats', function ($user) {
+    return auth()->check();
+});
+
+    
+
+

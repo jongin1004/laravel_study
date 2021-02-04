@@ -1,8 +1,9 @@
 <template>
-    <div class="flex h-full">
+    <div class="flex h-64">
         <ChatUserList 
             :current-user="currentUser"
-            @updatedChatWith="updateChatWith"
+            :chat-with="chatWith"
+            @updatedChatWith="updateChatWith"            
         ></ChatUserList>        
         <div v-if="chatWith" class="w-4/5 flex flex-col">
             <ChatArea
@@ -49,8 +50,12 @@ export default {
         }
     },
 
-    mounted() {
-        console.log("Component mounted.");
+    created() {
+        window.Echo.private('chats').listen('MessageSent', e => {
+            if(e.message.to === this.currentUser && e.message.from === this.chatWith){
+                this.messages.push(e.message);
+            }                        
+        });
     },
 
     methods: {

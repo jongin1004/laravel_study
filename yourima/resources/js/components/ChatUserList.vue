@@ -1,9 +1,10 @@
 <template>
     <div class="w-1/5 border-r-2 border-solid borde-gray-600">
-        <div 
+        <div             
             v-for="user in usersWithoutSignedInUser"
             :key="user.id"
             class="p-2 border border-gray-600 hover:bg-gray-300 cursor-pointer"
+            :class="{'text-pink-500': chatWith === user.id }"
             @click="updateChatWith(user.id)"
         >
             {{ user.name }}
@@ -17,6 +18,11 @@
             currentUser: {
                 type:Number,
                 required:true
+            },
+
+            chatWith: {
+                type:Number,
+                required:false
             }
         },
 
