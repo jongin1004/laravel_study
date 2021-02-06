@@ -17,25 +17,4 @@ class ChatController extends Controller
         ]);
     }
 
-    // public function test()
-    // {
-    //     // $users = DB::table('users')                
-    //     //         ->groupBy('name')                
-    //     //         ->get();
-        
-    //     $messages = DB::table('messages')
-    //                 -> groupBy('from')                    
-    //                 ->get();
-
-
-    //     // $users = User::all()->groupby('name')
-    //     // $users = DB::table('messages')           
-    //     //    ->get();
-
-
-    //     return view('test/index', [
-    //         // 'users' => $users
-    //         'messages' => $messages
-    //     ]);
-    // }
 }

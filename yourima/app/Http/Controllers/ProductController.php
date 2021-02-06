@@ -54,7 +54,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $user = User::find($product->user_seq);
-        $photos = Photo::all();
+        $photos = Photo::where('pro_seq', $product->id)->first();
 
         return view('products/show' , [
             'product' => $product,

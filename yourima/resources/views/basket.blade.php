@@ -8,9 +8,8 @@
             </div>
 
             <div class="p-6 mt-3 text-lg">
-                    (user)様の購入カート
+                    {{ $user ->name}}様の購入カート
             </div>
-
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 border-b border-t border-gray-600 text-gray-700 p-2">
                 <div class="ml-8">
@@ -30,60 +29,41 @@
                 </div>
             </div>
             <!-- 商品のカート -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 border-b border-gray-600">
-                <div class="p-4 place-self-center">
-                    <input type="checkbox">
-                </div>
-                <div class="p-4 col-start-2 col-end-4">
-                   <a href="./next.php">
-                       <img src="/img/ex/ex1.png" height="100" alt="parasite" class="hover:opacity-75 transition ease-in-out duration-150">
-                    </a>
-                </div>
-                <div class="col-start-5 col-end-8 inline-block align-middle mt-12">
-                    <a href="#" class="text-lg mt-2 hover:text-gray:300">Seoul</a>
-                    <div class="flex items-center text-sm mt-1">
-                        <span class="ml-1">(上/中/下)</span>
-                        <span class="mx-2">|</span>
-                        <span>Jan 20, 1752</span>
+
+            @for($i=0; $i<count($product_info_in_carts); $i++)                
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 border-b border-gray-600">
+                    <div class="p-4 place-self-center">
+                        <input type="checkbox">
+                    </div>
+                    <div class="p-4 col-start-2 col-end-4">
+                    <a href="./next.php">
+                        <img src="{{ $photo_url_in_carts[$i] -> url }}" height="100" alt="parasite" class="hover:opacity-75 transition ease-in-out duration-150">
+                        </a>
+                    </div>
+                    <div class="col-start-5 col-end-8 inline-block align-middle mt-12">
+                        <a href="#" class="text-lg mt-2 hover:text-gray:300">{{ $product_info_in_carts[$i] -> pro_title }}</a>
+                        <div class="flex items-center text-sm mt-1">
+                            <span class="ml-1">상태 : <strong>{{ $product_info_in_carts[$i] -> pro_state}}</strong></span>
+                            <span class="mx-2">|</span>
+                            <span><small>{{ $product_info_in_carts[$i] -> created_at }}</small></span>
+                        </div>
+                    </div>
+                    <div class="text-sm col-start-9 col-end-10 mt-12">
+                        {{ $product_info_in_carts[$i] -> pro_price }}
+                    </div>
+                    <div class="text-sm col-start-11 col-end-12 mt-12">
+                        2021/01/12
                     </div>
                 </div>
-                <div class="text-sm col-start-9 col-end-10 mt-12">
-                    1200円
-                </div>
-                <div class="text-sm col-start-11 col-end-12 mt-12">
-                    2021/01/12
-                </div>
-            </div>
-            <!-- 商品カート２ -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 border-b border-gray-600">
-                <div class="p-4 place-self-center">
-                    <input type="checkbox">
-                </div>
-                <div class="p-4 col-start-2 col-end-4">
-                   <a href="./next.php">
-                       <img src="/img/ex/ex7.png" height="100" alt="parasite" class="hover:opacity-75 transition ease-in-out duration-150">
-                    </a>
-                </div>
-                <div class="col-start-5 col-end-8 inline-block align-middle mt-12">
-                    <a href="#" class="text-lg mt-2 hover:text-gray:300">old book</a>
-                    <div class="flex items-center text-sm mt-1">
-                        <span class="ml-1">(上/中/下)</span>
-                        <span class="mx-2">|</span>
-                        <span>Jan 20, 1752</span>
-                    </div>
-                </div>
-                <div class="text-sm col-start-9 col-end-10 mt-12">
-                    1200円
-                </div>
-                <div class="text-sm col-start-11 col-end-12 mt-12">
-                    2021/09/02
-                </div>
-            </div>
+                <div class="invisible">{{ $total_price += $product_info_in_carts[$i] -> pro_price }}</div>                    
+            @endfor            
+
+            
 
             <!-- 商品の総価格 -->
             <div class="mt-10 mr-12">
-                <h2 class="text-right text-xl">商品の数：<span class="font-bold">2</span></h2>
-                <h2 class="text-right text-xl">商品の総価格：<span class="font-bold">2400円</span></h2>
+                <h2 class="text-right text-xl">商品の数：<span class="font-bold">{{ count($product_info_in_carts) }}</span></h2>
+                <h2 class="text-right text-xl">商品の総価格：<span class="font-bold">{{ $total_price }}</span></h2>
             </div>
 
             <!-- 購入 button -->

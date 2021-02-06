@@ -11,9 +11,14 @@
     <!--<link rel="stylesheet" href="/css/main.css">-->
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <!-- Fomtatwesome -->
-    <link rel="stylesheet" href="/css/app.css">
 
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @notifyJs
+    <x:notify-messages />
+
+    <link rel="stylesheet" href="/css/app.css">
+    {{-- @notifyCss --}}
+
 </head>
 
 <body class="font-sans bg-gray-100">
@@ -26,7 +31,7 @@
                         <a href="agree" class="hover:text-gray-500">item 1</a>
                     </li>
                     <li class="md:ml-10 mt-3 md:mt-0">
-                        <a href="basket" class="hover:text-gray-500">購入カート</a>
+                        <a href="/basket" class="hover:text-gray-500">購入カート</a>
                     </li>
                     <li class="md:ml-10 mt-3 md:mt-0">
                         <a href="inquiry" class="hover:text-gray-500">問い合わせ</a>
@@ -78,9 +83,14 @@
                 </ul>
             </div>
     </nav>
-    @yield('content')    
+    <div class="h-screen">        
+        @yield('content')    
+    </div>
+
+    <div>
+        @include('layouts.footer')
+    </div>
     
-    @include('layouts.footer')
 </body>
 
 </html>
