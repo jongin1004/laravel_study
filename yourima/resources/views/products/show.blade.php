@@ -34,5 +34,13 @@
     <div class="border p-3 my-3">{{ $product -> pro_price }}</div>
     内容
     <div class="border p-3 my-3">{{ $product -> pro_explan }}</div>
+    
+    @if( $user -> id != auth()->id() )
+        <form action="/chats" method="POST">
+            @csrf                
+            <input type="hidden" name="user_id" value="{{ $user -> id }}">        
+            <input class="bg-blue-300 px-2 py-1" type="submit" value="1第1チャット">
+        </form>
+    @endif
 </div>
 @endsection

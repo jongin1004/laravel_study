@@ -6,6 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UploadFileController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,7 @@ Route::resource('products', ProductController::class)->middleware('auth');
 Route::post('/upload', [UploadFileController::class, 'store']);
 
 Route::get('/test', [TestController::class, 'index']);
+
+Route::POST('/chats', [ChatController::class, 'send']);
+
+// Route::get('/test', [ChatController::class, 'test']);

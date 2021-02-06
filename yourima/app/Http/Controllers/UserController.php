@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::find(request('to'));
 
         return response()->json([
             'users' => $users
