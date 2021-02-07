@@ -1,5 +1,5 @@
 @extends('layouts.main')
 
 @section('content')    
-    안녕
+    {{ $request ->pro_seq[1] }}
 @endsection

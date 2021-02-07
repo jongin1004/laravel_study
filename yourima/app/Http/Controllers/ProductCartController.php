@@ -49,7 +49,7 @@ class ProductCartController extends Controller
 
         if(!isset($carts[0]))
         {
-            emotify('success', '카트에 저장되었습니다~! @^ㅡ^@');
+            emotify('success', 'カートに入れました！@^ㅡ^@');
 
             $itembaket = productCart::create($values);            
         }            
@@ -75,9 +75,15 @@ class ProductCartController extends Controller
                 
 
         return redirect()->back();
+    }
 
-        // return view('test', [
-        //     'carts' => $carts
-        // ]);
+    public function destroy(Request $request)
+    {
+        for($i=0; $i<count($request->pro_seq); $i++)
+        {
+            $product = productCart::where('pro_seq', $request->pro_seq[$i])->delete();
+        }
+        
+        return redirect()->back();        
     }
 }

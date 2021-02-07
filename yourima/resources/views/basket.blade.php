@@ -33,15 +33,18 @@
             @for($i=0; $i<count($product_info_in_carts); $i++)                
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 border-b border-gray-600">
                     <div class="p-4 place-self-center">
-                        <input type="checkbox">
+                        <form action="/basket/{{ $product_info_in_carts[$i] -> id }}" method="POST">
+                            @method('delete')
+                            @csrf
+                            <input type="checkbox" name="pro_seq[]" value="{{ $product_info_in_carts[$i] -> id }}">                                             
                     </div>
                     <div class="p-4 col-start-2 col-end-4">
-                    <a href="./next.php">
+                    <a href="/products/{{ $product_info_in_carts[$i] -> id }}">
                         <img src="{{ $photo_url_in_carts[$i] -> url }}" height="100" alt="parasite" class="hover:opacity-75 transition ease-in-out duration-150">
                         </a>
                     </div>
                     <div class="col-start-5 col-end-8 inline-block align-middle mt-12">
-                        <a href="#" class="text-lg mt-2 hover:text-gray:300">{{ $product_info_in_carts[$i] -> pro_title }}</a>
+                        <a href="/products/{{ $product_info_in_carts[$i] -> id }}" class="text-lg mt-2 hover:text-gray:300">{{ $product_info_in_carts[$i] -> pro_title }}</a>
                         <div class="flex items-center text-sm mt-1">
                             <span class="ml-1">상태 : <strong>{{ $product_info_in_carts[$i] -> pro_state}}</strong></span>
                             <span class="mx-2">|</span>
@@ -57,7 +60,9 @@
                 </div>
                 <div class="invisible">{{ $total_price += $product_info_in_carts[$i] -> pro_price }}</div>                    
             @endfor            
-
+                        <input type="submit" value="削除">                            
+                    </form>   
+                        
             
 
             <!-- 商品の総価格 -->
