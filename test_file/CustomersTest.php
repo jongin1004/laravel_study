@@ -29,5 +29,22 @@ class CustomersTest extends TestCase
             ->assertOk();
     }
     
+    /** @test */
+    public function a_customer_can_be_added_through_the_form()
+    {
+        //더 자세한 에러를 볼 수 있다.
+        $this->withoutExceptionHandling();
+
+        $user = User::factory()->create();
+        $response = $this->actingAs($user);
+
+        $response = $this -> post('/qna', [
+            'user_id' => $user->id,
+            'title' => "hi",
+            'body' => "hello"     
+        ]);
+
+        $this->assertCount(2, Qna::all());
+    }
 }
  
