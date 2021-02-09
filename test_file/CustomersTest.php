@@ -54,6 +54,18 @@ class CustomersTest extends TestCase
         $this->assertCount(0, Qna::all());
     }
 
+    /** @test */
+    public function a_name_is_at_least_3_characters()
+    {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user);
+
+        $response = $this -> post('/qna', array_merge($this->data(), ['title' => 'ss']));
+        
+        $response -> assertSessionHasErrors('title');
+        $this->assertCount(0, Qna::all());
+    }
+
 
     private function data()
     {
