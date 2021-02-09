@@ -18,5 +18,16 @@ class CustomersTest extends TestCase
             ->assertRedirect('/login');            
     }
 
+    /** @test */
+    public function authenticated_users_can_see_the_customers_lsit()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user);
+
+        $response = $this->get('/home')
+            ->assertOk();
+    }
+    
 }
  
