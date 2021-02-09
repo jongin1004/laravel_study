@@ -22,7 +22,7 @@ class CustomersTest extends TestCase
     /** @test */
     public function authenticated_users_can_see_the_customers_lsit()
     {
-        $this->actingAs
+        $this->actingAsUser();
 
         $response = $this->get('/home')
             ->assertOk();
@@ -34,8 +34,7 @@ class CustomersTest extends TestCase
         //더 자세한 에러를 볼 수 있다.
         $this->withoutExceptionHandling();
 
-        $user = User::factory()->create();
-        $response = $this->actingAs($user);
+        $this->actingAsUser();
 
         $response = $this -> post('/qna', $this->data());
 
@@ -45,8 +44,7 @@ class CustomersTest extends TestCase
     /** @test */
     public function a_name_is_required()
     {
-        $user = User::factory()->create();
-        $response = $this->actingAs($user);
+        $this->actingAsUser();
 
         $response = $this -> post('/qna', array_merge($this->data(), ['title' => '']));
         
@@ -57,8 +55,7 @@ class CustomersTest extends TestCase
     /** @test */
     public function a_name_is_at_least_3_characters()
     {
-        $user = User::factory()->create();
-        $response = $this->actingAs($user);
+        $this->actingAsUser();
 
         $response = $this -> post('/qna', array_merge($this->data(), ['title' => 'ss']));
         
@@ -75,6 +72,10 @@ class CustomersTest extends TestCase
         ];
     }
 
+    private function actingAsUser()
+    {
+        $this->actingAs(User::factory()->create());
+    }
     
 }
  
