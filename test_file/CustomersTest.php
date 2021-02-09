@@ -38,13 +38,18 @@ class CustomersTest extends TestCase
         $user = User::factory()->create();
         $response = $this->actingAs($user);
 
-        $response = $this -> post('/qna', [
-            'user_id' => $user->id,
-            'title' => "hi",
-            'body' => "hello"     
-        ]);
+        $response = $this -> post('/qna', $this->data());
 
-        $this->assertCount(2, Qna::all());
+        $this->assertCount(1, Qna::all());
     }
+
+    private function data()
+        {
+            return [                        
+                'title' => "aaa",
+                'body' => "hello",
+            ];
+        }
+		
 }
  
