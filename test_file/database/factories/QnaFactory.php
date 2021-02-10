@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Qna;
+use App\Models\User;
 
 class QnaFactory extends Factory
 {
@@ -22,7 +23,7 @@ class QnaFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => rand(1, 5),
+            'user_id' => User::factory()->create()->id,
             'title' => $this->faker->word,
             'body' => $this->faker->realText,
         ];
