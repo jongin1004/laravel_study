@@ -37,4 +37,16 @@ class PostControllerTest extends TestCase
         $response->assertSee($qna->title);            
     }
 
+    /** @test */
+    public function authenticated_users_can_create_a_new_task()
+    {
+        //Given we have an authenticated user
+        $this->actingAs(User::factory()->create());
+        //And a task object
+        $qna = Qna::factory()->create();
+        //When user submits post request to create task endpoint
+        $this->post('/qna/create',$qna->toArray());
+        //It gets stored in the database
+        $this->assertEquals(1, Qna::all()->count());
+    }
 }
