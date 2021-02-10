@@ -26,5 +26,15 @@ class PostControllerTest extends TestCase
         $response->assertSee($qna->title);
     }
 
-   
+    /** @test */
+    public function a_user_can_read_single_task()
+    {
+        //Given we have task in the database
+        $qna = Qna::factory()->create();
+        //When user visit the task's URI
+        $response = $this->get('/qna/'.$qna->id);
+        //He can see the task details
+        $response->assertSee($qna->title);            
+    }
+
 }
