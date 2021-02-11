@@ -24,6 +24,11 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+        'title' => 'required',
+        'description' => 'required'
+        ]);
+
         $values = request(['title', 'description']);
         $values['user_id'] = auth()->id();
 
@@ -36,5 +41,10 @@ class TaskController extends Controller
         // ]);
 
         return redirect('/tasks/'.$task->id);
+    }
+
+    public function create()
+    {
+        return view('tasks.create');
     }
 }

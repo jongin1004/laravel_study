@@ -46,7 +46,7 @@ class TasksTest extends TestCase
         //And a task object
         $task = Task::factory()->make();
         //When user submits post request to create task endpoint
-        $this->post('/tasks/create',$task->toArray());
+        $this->post('/tasks',$task->toArray());
         //It gets stored in the database
         $this->assertEquals(1,Task::all()->count());
     }
@@ -72,10 +72,30 @@ class TasksTest extends TestCase
         $task = Task::factory()->make();
         //When unauthenticated user submits post request to create task endpoint
         // He should be redirected to login page
-        $this->post('/tasks/create',$task->toArray())
+        $this->post('/tasks',$task->toArray())
             ->assertRedirect('/login');
     }
 
+    /** @test */
+    public function a_task_requires_a_title(){
 
+        $this->actingAs(User::factory()->create());
+
+        $task = Task::factory()->make(['title' => null]);
+
+        $this->post('/tasks',$task->toArray())
+                ->assertSessionHasErrors('title');
+    }
+
+    /** @test */
+    public function a_task_requires_a_description(){
+
+        $this->actingAs(User::factory()->create());
+
+        $task = Task::factory()->make(['description' => null]);
+
+        $this->post('/tasks',$task->toArray())
+            ->assertSessionHasErrors('description');
+    }
     
 }
