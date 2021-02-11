@@ -125,6 +125,31 @@ class TasksTest extends TestCase
         //We should expect a 403 error
         $response->assertStatus(403);
     }
+    /** @test */
+    public function authorized_user_can_delete_the_task(){
+
+        //Given we have a signed in user
+        $this->actingAs(User::factory()->create());
+        //And a task which is created by the user
+        $task = Task::factory()->create(['user_id' => auth()->id()]);
+        //When the user hit's the endpoint to delete the task
+        $this->delete('/tasks/'.$task->id);
+        //The task should be deleted from the database.
+        $this->assertDatabaseMissing('tasks',['id'=> $task->id]);
+
+    }
+
+    /** @test */
+    public function unauthorized_user_cannot_delete_the_task(){
+        //Given we have a signed in user
+        $this->actingAs(User::factory()->create());
+        //And a task which is not created by the user
+        $task = Task::factory()->create();
+        //When the user hit's the endpoint to delete the task
+        $response = $this->delete('/tasks/'.$task->id);
+        //We should expect a 403 error
+        $response->assertStatus(403);
+    }
 
 
     

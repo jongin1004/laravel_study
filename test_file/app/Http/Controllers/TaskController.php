@@ -60,4 +60,13 @@ class TaskController extends Controller
     {
         return view('tasks.edit',compact('task'));
     }
+
+    public function destroy(Task $task)
+    {
+        $this->authorize('update', $task);
+
+        $task->delete();
+
+        return redirect("/tasks");
+    }
 }
