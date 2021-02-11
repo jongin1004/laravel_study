@@ -55,4 +55,9 @@ class TaskController extends Controller
         $task->update($request->all());
         return redirect('/tasks/'.$task->id);
     }
+
+    public function edit(Task $task)
+    {
+        return view('tasks.edit',compact('task'));
+    }
 }

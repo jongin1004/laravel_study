@@ -13,6 +13,13 @@
                         {{$task->description}}
                     </div>
                 </div>
+
+                <div class="card-footer">
+                    {{-- 사용자에게 업데이트 권한이 있는 사람만 버튼이 보이도록 --}}
+                    @can('update', $task)
+                    <a href="/tasks/{{$task->id}}/edit" class="btn btn-warning">Edit Task</a>
+                    @endcan
+                </div>
             </div>
         </div>
     </div>
