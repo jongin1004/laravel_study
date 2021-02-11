@@ -50,6 +50,8 @@ class TaskController extends Controller
 
     public function update(Request $request, Task $task)
     {
+        $this->authorize('update', $task);
+
         $task->update($request->all());
         return redirect('/tasks/'.$task->id);
     }
