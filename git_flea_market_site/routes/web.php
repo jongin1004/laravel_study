@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SellerRegistrationController;
 use App\Http\Controllers\QnaController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProductController;
@@ -27,8 +28,6 @@ Route::view('/', 'home');
 //     return view('welcome');
 // });
 Route::view('show', 'show');
-Route::view('agree', 'agree');
-Route::view('basket', 'basket');
 // old version code
 // Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -40,6 +39,10 @@ Route::view('basket', 'basket');
 // : php artisan ui vue --auth
 
 Auth::routes();
+
+Route::get('/sellerRg', [SellerRegistrationController::class, 'index']);
+
+Route::post('/sellerRg/update', [SellerRegistrationController::class, 'update']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

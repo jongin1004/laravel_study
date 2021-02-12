@@ -12,7 +12,8 @@
                 <div class="text-right">株式会社　神田雑貨店</div>
                 <div class="text-right">体表　白石大</div>
             </div>
-
+            <form action="/sellerRg/update" method="POST">                
+                @csrf
             <div class="grid mt-3 mb-10">
                 <div class="mt-8">
                     <div class="mt-2">
@@ -45,7 +46,10 @@
                             (5) 当該要配慮個人情報が、本人、国の機関、地方公共団体、法第７６条第１項各号に定める者の他、個人情報保護委員会規則で定める者により公開されている場合<br>
                             (6) その他前各号に定める場合の準じるものとして政令の定める場合
                         </div>
-                        <label><input type="checkbox" class="mt-3" name="" value=""> 동의합니다. </label>
+                        <label><input type="checkbox" class="mt-3" name="agree1" value="agree1"> 동의합니다. </label>
+                        @error('agree1')
+                            <small class="text-red-500">{{ $message }}</small><br>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -84,12 +88,16 @@
                             Google アナリティクスでデータが収集、処理される仕組みについては、
                             Google社の「GOOGLE のサービスを使用するサイトやアプリから収集した情報の GOOGLE による使用」新しいウィンドウが開きますをご確認ください。
                         </div>
-                        <label><input type="checkbox" class="mt-3" name="" value=""> 동의합니다. </label>
+                        <label><input type="checkbox" class="mt-3" name="agree2" value="agree2"> 동의합니다. </label>
+                        @error('agree2')
+                            <small class="text-red-500">{{ $message }}</small><br>
+                        @enderror
                     </div>
                 </div>
             </div>
-            <div class="grid justify-items-center">
+            <div class="grid justify-items-center">            
                 <input type="submit" value="販売者登録" class="mb-10 bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900 rounded">
+            </form>                
             </div>
         </div>
     </div>

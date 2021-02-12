@@ -28,7 +28,7 @@
                 <!-- menu -->
                 <ul class="flex flex-col md:flex-row items-cneter py-8 text-gray-700">
                     <li class="md:ml-6 mt-3 md:mt-0">
-                        <a href="agree" class="hover:text-gray-500">item 1</a>
+                        <a href="sellerRg" class="hover:text-gray-500">販売者登録</a>
                     </li>
                     <li class="md:ml-10 mt-3 md:mt-0">
                         <a href="/basket" class="hover:text-gray-500">購入カート</a>
