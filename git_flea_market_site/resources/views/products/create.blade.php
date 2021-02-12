@@ -11,27 +11,36 @@
                 @csrf
                 <div class="카테고리 mb-4">
                     <label for="pro_tag" class="text-xl">カテゴリ</label><br>
-                    <input class="w-full px-3 py-1 border-2 border-gray-500 hover:border-gray-800" type="text" name="pro_tag" id="pro_tag" list="categoriesList"><br>    
+                    <input class="w-full px-3 py-1 border-2 border-gray-500 hover:border-gray-800 @error('pro_tag') border-4 border-blue-500 @enderror" type="text" name="pro_tag" id="pro_tag" list="categoriesList" value="{{ old('pro_tag') }}"><br>    
                     <datalist id="categoriesList">
-                        <option value="옷"></option>
-                        <option value="음식"></option>
-                        <option value="전자제품"></option>                
-                    </datalist>            
+                        @foreach($categories as $category)
+                            <option value="{{ $category -> category }}"></option>                            
+                        @endforeach               
+                    </datalist>  
+                    @error('pro_tag')
+                        <small class="text-red-500">{{ $message }}</small><br>
+                    @enderror      
                 </div>
-                
+                                
                 <div class="상태 mb-4">
                     <label for="pro_state" class="text-xl">商品の品質</label><br>            
-                    <input class="w-full px-3 py-1 border-2 border-gray-500 hover:border-gray-800" type="text" name="pro_state" id="pro_state" list="stateList"><br>    
+                    <input class="w-full px-3 py-1 border-2 border-gray-500 hover:border-gray-800 @error('pro_state') border-4 border-blue-500 @enderror" type="text" name="pro_state" id="pro_state" list="stateList" value="{{ old('pro_state') }}"><br>    
                     <datalist id="stateList">
                         <option value="새거"></option>
                         <option value="중간"></option>
                         <option value="낡음"></option>                
-                    </datalist>     
+                    </datalist>
+                    @error('pro_state')
+                        <small class="text-red-500">{{ $message }}</small><br>
+                    @enderror
                 </div>
 
                 <div class="가격 mb-4">
                     <label for="price" class="text-xl">商品の価格</label><br>
-                    <input class="w-full px-3 py-1 border-2 border-gray-500 hover:border-gray-800" type="text" name="pro_price" id="pro_price"><br>
+                    <input class="w-full px-3 py-1 border-2 border-gray-500 hover:border-gray-800 @error('pro_price') border-4 border-blue-500 @enderror" type="text" name="pro_price" id="pro_price" value="{{ old('pro_price') }}"><br>
+                    @error('pro_price')
+                        <small class="text-red-500">{{ $message }}</small><br>
+                    @enderror
                 </div>
 
                 
@@ -63,7 +72,7 @@
                         </div> 
                         <input type="file" class="h-full w-full opacity-0" name="photo">
                     </div>
-                </div>
+                </div>                
 
                 <div class="grid justify-items-center mt-2 mb-12">
                 <button class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900 rounded mb-3 ">登録</button>
