@@ -14,9 +14,9 @@
                     <label for="pro_tag" class="text-xl">カテゴリ</label><br>
                     <input class="w-full px-3 py-1 border-2 border-gray-500 hover:border-gray-800" type="text" name="pro_tag" id="pro_tag" list="categoriesList" value="{{ $product->pro_tag }}"><br>    
                     <datalist id="categoriesList">
-                        <option value="옷"></option>
-                        <option value="음식"></option>
-                        <option value="전자제품"></option>                
+                        @foreach($categories as $category)
+                            <option value="{{ $category -> category }}"></option>                            
+                        @endforeach                                                           
                     </datalist>            
                 </div>
                 

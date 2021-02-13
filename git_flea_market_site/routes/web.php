@@ -9,6 +9,8 @@ use App\Http\Controllers\UploadFileController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProductCartController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\MypageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,8 @@ Route::view('/', 'home');
 //     return view('welcome');
 // });
 Route::view('show', 'show');
+Route::view('agree', 'agree');
+Route::view('basket', 'basket');
 // old version code
 // Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -39,10 +43,6 @@ Route::view('show', 'show');
 // : php artisan ui vue --auth
 
 Auth::routes();
-
-Route::get('/sellerRg', [SellerRegistrationController::class, 'index']);
-
-Route::post('/sellerRg/update', [SellerRegistrationController::class, 'update']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -56,7 +56,7 @@ Route::post('/upload', [UploadFileController::class, 'store']);
 
 Route::POST('/chats', [ChatController::class, 'send']);
 
-// Route::POST('/chats', [ChatController::class, 'send']);
+Route::POST('/chats', [ChatController::class, 'send']);
 
 Route::get('/basket', [ProductCartController::class, 'index']);
 
@@ -64,5 +64,19 @@ Route::POST('/basket', [ProductCartController::class, 'store']);
 
 Route::DELETE('/basket/{basket}', [ProductCartController::class, 'destroy']);
 
+Route::get('/sellerRg', [SellerRegistrationController::class, 'index']);
+
+Route::post('/sellerRg/update', [SellerRegistrationController::class, 'update']);
+
 // for mail
 Route::get('/mail', 'App\Http\Controllers\MailController@send');
+
+Route::resource('member', UserController::class);
+
+//review
+Route::get('/review', function () {
+    return view('review.index');
+});
+
+//mypage
+Route::resource('mypage', MypageController::class)->middleware('auth');

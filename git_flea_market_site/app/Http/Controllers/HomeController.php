@@ -23,8 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        emotify('success', 'ログイン成功！@^ㅡ^@');
-
         return view('home');
     }
 }

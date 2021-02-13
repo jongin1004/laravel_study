@@ -22,22 +22,21 @@ class SellerRegistrationController extends Controller
                 'agree2' => 'required'
             ],
             [   
-                'agree1.required' => '동의 안해주면 안해줌!! ㅋㅋ',
-                'agree2.required' => '동의 안해주면 안해줌!! ㅋㅋ'
+                'agree1.required' => '同意してください。',
+                'agree2.required' => '同意してください。'
             ]
-        );
-
-        
+        );       
+         
         $user = User::find(auth()->id());
 
-        if($user['level'] != "seller")
+        if($user['grade'] != "seller")
         {
-            $user['level'] = "seller";
+            $user['grade'] = "seller";
             $user -> update();
-            emotify('success', '판매자등록 성공.');
+            emotify('success', '販売者登録を成功しました。');
 
         } else {
-            emotify('error', '이미 판매자입니다.');
+            emotify('error', 'すでに販売者です。');
         }
 
         return redirect()->back();

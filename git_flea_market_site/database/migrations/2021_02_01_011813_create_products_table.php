@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             // $table->string('title_pic');
             $table->timestamps();
 
-            $table->foreign('user_seq')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('user_seq')->references('id')->on('users');
         });
     }
 

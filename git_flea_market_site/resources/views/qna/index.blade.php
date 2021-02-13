@@ -23,7 +23,7 @@ function myFunction(num) {
     </div>
     <ul class="p-3">
         @foreach($qnas as $qna)
-            <a onclick="myFunction({{ $qna -> id }})">
+            <a @if(auth()->user()->grade == 'admin') onclick="myFunction({{ $qna -> id }}) @endif">
                 <li class="border-4 border-gray-500 px-2 py-2 mt-4">タイトル : {{ $qna-> title }} <small class="float-right">created_at {{ $qna -> created_at}}</small><br>
                 内容 : {{ $qna -> body }} </li>
                 

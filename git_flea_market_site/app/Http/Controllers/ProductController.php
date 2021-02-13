@@ -17,7 +17,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::latest()->get();
+        $products = Product::OrderBy('created_at', 'desc') -> paginate(8);
         $photos = Photo::latest()->get();
 
         return view('products.index', [
@@ -80,8 +80,11 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
+        $categories = Categories::all();
+
         return view('products.edit', [
-            'product' => $product
+            'product' => $product,
+            'categories' => $categories
         ]);
     }
 

@@ -22,8 +22,8 @@ class CreatePhotosTable extends Migration
             $table->string('originalname');        
             $table->timestamps();
 
-            $table->foreign('user_seq')->references('id')->on('users')->onDelete('cascade');;
-            $table->foreign('pro_seq')->references('id')->on('products')->onDelete('cascade');;
+            $table->foreign('user_seq')->references('id')->on('users');
+            $table->foreign('pro_seq')->references('id')->on('products');
         });
     }
 

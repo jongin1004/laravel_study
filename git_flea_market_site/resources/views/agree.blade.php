@@ -17,7 +17,7 @@
             <div class="grid mt-3 mb-10">
                 <div class="mt-8">
                     <div class="mt-2">
-                        <a href="#" class="border-b border-gray-800 text-xl mt-2 hover:text-gray:300">A　個人情報保護方針</a>
+                        <div class="border-b border-gray-800 text-xl mt-2 hover:text-gray:300">A　個人情報保護方針</div>
 
                         <div class="overflow-auto h-40 mt-4 border-2 p-2">
                             <div class="text-lg">1．関連法令・ガイドライン等の遵守</div>
@@ -46,7 +46,7 @@
                             (5) 当該要配慮個人情報が、本人、国の機関、地方公共団体、法第７６条第１項各号に定める者の他、個人情報保護委員会規則で定める者により公開されている場合<br>
                             (6) その他前各号に定める場合の準じるものとして政令の定める場合
                         </div>
-                        <label><input type="checkbox" class="mt-3" name="agree1" value="agree1"> 동의합니다. </label>
+                        <label><input type="checkbox" class="mt-3" name="agree1" value="agree1" @if(old('agree1')) checked @endif> 동의합니다. </label>
                         @error('agree1')
                             <small class="text-red-500">{{ $message }}</small><br>
                         @enderror
@@ -57,7 +57,7 @@
             <div class="grid mt-3 mb-10">
                 <div class="mt-8">
                     <div class="mt-2">
-                        <a href="#" class="border-b border-gray-800 text-xl mt-2 hover:text-gray:300">B　Cookie（クッキー）ポリシー</a>
+                        <div class="border-b border-gray-800 text-xl mt-2 hover:text-gray:300">B　Cookie（クッキー）ポリシー</div>
 
                         <div class="overflow-auto h-40 mt-4 border-2 p-2">
                             <div class="text-lg">1．Cookieの利用</div>
@@ -88,7 +88,7 @@
                             Google アナリティクスでデータが収集、処理される仕組みについては、
                             Google社の「GOOGLE のサービスを使用するサイトやアプリから収集した情報の GOOGLE による使用」新しいウィンドウが開きますをご確認ください。
                         </div>
-                        <label><input type="checkbox" class="mt-3" name="agree2" value="agree2"> 동의합니다. </label>
+                        <label><input type="checkbox" class="mt-3" name="agree2" value="agree2" @if(old('agree2')) checked @endif> 동의합니다. </label>
                         @error('agree2')
                             <small class="text-red-500">{{ $message }}</small><br>
                         @enderror
