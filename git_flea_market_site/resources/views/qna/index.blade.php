@@ -32,13 +32,18 @@ function myFunction(num) {
                 @endif             
             </a>
             <div class="p-2 mb-5">
-                @foreach($comments as $comment)
-                    @if($comment -> qna_id == $qna -> id)
-                    <div class="p-1 break-words">
-                        コメント : {{ $comment-> body}}
-                    </div>
-                    <div class="border-b border-gray-500"></div>
-                    @endif
+                @foreach($qna->comments as $comment)
+                    @if ($qna->text_type == 'secret' && auth()->user()->grade != 'admin')
+                        <div class="p-1 break-words">
+                            <span class="text-gray-500">비밀글 입니다.</span>
+                        </div>
+                        <div class="border-b border-gray-500"></div>
+                    @else
+                        <div class="p-1 break-words">
+                            コメント : {{ $comment-> body}}
+                        </div>
+                        <div class="border-b border-gray-500"></div>
+                    @endif                        
                 @endforeach
             </div>
 

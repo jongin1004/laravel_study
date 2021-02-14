@@ -9,7 +9,7 @@
         <form action="/qna" method="POST">
             <input type="radio" id="text_type_secret" name="text_type" value="secret" checked>
             <label for="text_type">비밀글</label>
-            <input type="radio" id="text_type_public" name="text_type" value="public" checked>
+            <input type="radio" id="text_type_public" name="text_type" value="public">
             <label for="text_type">공개글</label>
     </div>
     <div class="p-5">

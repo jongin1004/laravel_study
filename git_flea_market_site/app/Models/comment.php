@@ -10,4 +10,9 @@ class comment extends Model
     use HasFactory;
 
     protected $fillable = ['body','user_id','qna_id'];
+
+    public function Qna()
+    {
+        return $this->belongsTo(Qna::class);
+    }
 }

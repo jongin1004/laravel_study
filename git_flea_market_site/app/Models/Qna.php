@@ -11,7 +11,13 @@ class Qna extends Model
 
     protected $fillable = ['title', 'body', 'user_id'];
 
-    public function user() {
-        return $this->belongsTo(User::class);  // one to many
+    public function user() 
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(comment::class);
     }
 }

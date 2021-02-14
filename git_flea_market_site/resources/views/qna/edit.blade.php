@@ -7,7 +7,7 @@
     </a>
     <form action="/qna/{{$qna->id}}" method="POST">
         @method('PUT')
-        @csrf
+        @csrf        
         <label for="title">Title</label><br>
         <input class="w-full @error('title') border-4 border-blue-500 @enderror" type="text" name="title" id="title" value="{{ old('title') ? old('title') :$qna -> title }}"><br>
         @error('title')

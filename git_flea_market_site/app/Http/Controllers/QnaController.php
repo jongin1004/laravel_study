@@ -12,12 +12,10 @@ class QnaController extends Controller
 {
     public function index()
     {   
-        $qnas = Qna::OrderBy('created_at', 'desc') -> paginate(5);
-        $comments = Comment::get();
+        $qnas = Qna::OrderBy('created_at', 'desc') -> paginate(5);        
 
         return view('qna.index', [
-            'qnas' => $qnas,
-            'comments' => $comments
+            'qnas' => $qnas            
         ]);
     }
 
@@ -76,5 +74,5 @@ class QnaController extends Controller
         return redirect('/qna');
     }
 
-    
+
 }
