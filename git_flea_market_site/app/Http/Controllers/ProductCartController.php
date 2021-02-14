@@ -79,12 +79,11 @@ class ProductCartController extends Controller
 
     public function destroy(Request $request)
     {
-        // for($i=0; $i<count($request->product_id); $i++)
-        // {
-        //     $product = productCart::where('product_id', $request->product_id[$i])->delete();
-        // }
-        
-        dd($request);
-        // return redirect()->back();        
+        for($i=0; $i<count($request->product_id); $i++)
+        {
+            $product = productCart::where('product_id', $request->product_id[$i])->delete();
+        }
+                
+        return redirect()->back();        
     }
 }
