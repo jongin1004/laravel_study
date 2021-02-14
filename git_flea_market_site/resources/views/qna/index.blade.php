@@ -11,7 +11,6 @@ function myFunction(num) {
   }
 }
 </script>
-
 <div class="h-screen px-64 mt-5">
     <div class="float-right">
         <a href="/qna/create">
@@ -24,9 +23,13 @@ function myFunction(num) {
     <ul class="p-3">
         @foreach($qnas as $qna)
             <a @if(auth()->user()->grade == 'admin') onclick="myFunction({{ $qna -> id }}) @endif">
-                <li class="border-4 border-gray-500 px-2 py-2 mt-4">タイトル : {{ $qna-> title }} <small class="float-right">created_at {{ $qna -> created_at}}</small><br>
-                内容 : {{ $qna -> body }} </li>
-                
+                @if ($qna->text_type == 'secret' && auth()->user()->grade != 'admin')
+                    <li class="border-4 border-gray-500 px-2 py-2 mt-4"><img src="/img/secret.png" alt="avatar" class="rounded-full w-8 h-8">
+                        <span class="text-gray-500">비밀글입니다 @^ㅡ^@<span></li>  
+                @else
+                    <li class="border-4 border-gray-500 px-2 py-2 mt-4">タイトル : {{ $qna-> title }} <small class="float-right">created_at {{ $qna -> created_at}}</small><br>
+                    内容 : {{ $qna -> body }} </li>
+                @endif             
             </a>
             <div class="p-2 mb-5">
                 @foreach($comments as $comment)

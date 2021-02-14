@@ -13,9 +13,9 @@ class MypageController extends Controller
   public function index(){
     
     $user = User::find(auth()->id());
-    
+
     return view('mypage.index', [
-      'user' => $user
+      'user' => $user      
     ]);
 }
 

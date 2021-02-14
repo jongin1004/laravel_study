@@ -18,14 +18,12 @@
             </form>
         @endif
     </div>
-
     
     <div class="text-3xl font-momo font-bold ml-8">< {{ $product -> pro_title }} ></div> 
     <small class="float-right">カテゴリー {{ $product -> pro_tag }}</small><br>
     <small class="float-right">created_at {{ $product -> created_at }}</small><br>
     <small class="float-right">updated_at {{ $product -> updated_at }}</small><br>
     <small class="float-right">著者 {{ $user->name }}</small><br>
-
 
     写真
     <div class="border p-3 my-3 w-2/4"><img src="{{ $photos -> url }}"></div>
@@ -47,9 +45,9 @@
                 </form>
             </div>
             <div class="flex-none ml-2">
-                <form action="/#" method="POST">
+                <form action="/order" method="POST">
                     @csrf                
-                    <input type="hidden" name="user_id" value="{{ $user -> id }}">       
+                    {{-- <input type="hidden" name="user_id" value="{{ $user -> id }}">        --}}
                     <input class="bg-blue-300 px-2 py-1" type="submit" value="購入">
                 </form>
             </div>

@@ -5,8 +5,14 @@
     <div class="border-b-4 border-gray-800 mt-12">
         <h1 class="text-3xl font-bold">QnA 登録</h1>
     </div>
-    <div class="p-5">
+    <div>
         <form action="/qna" method="POST">
+            <input type="radio" id="text_type_secret" name="text_type" value="secret" checked>
+            <label for="text_type">비밀글</label>
+            <input type="radio" id="text_type_public" name="text_type" value="public" checked>
+            <label for="text_type">공개글</label>
+    </div>
+    <div class="p-5">
             <div class="mb-4 mt-4">
             @csrf
             <label class="text-xl" for="title">Qna Title</label><br>

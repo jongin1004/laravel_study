@@ -25,7 +25,7 @@
                 </div>
                         <div class="md:ml-4 mt-3 md:mt-0">
                             <button>
-                                <img src="/img/logo.png" alt="avatar" class="rounded-full w-8 h-8">
+                                <img src="/img/search.png" alt="avatar" class="rounded-full w-8 h-8">
                             </button>                    
                         </div>
                     </form>

@@ -40,10 +40,11 @@ class QnaController extends Controller
     {   
         request() -> validate([
             'title' => 'required',
-            'body'  => 'required'            
+            'body'  => 'required',
+            'text_type' => 'required'           
         ]);
 
-        $values = request(['title','body']);
+        $values = request(['title', 'body', 'text_type']);
         $values['user_id'] = auth() -> id();
         $qna = Qna::create($values);
 
@@ -74,4 +75,6 @@ class QnaController extends Controller
 
         return redirect('/qna');
     }
+
+    
 }
