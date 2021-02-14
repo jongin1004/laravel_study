@@ -52,6 +52,10 @@ Route::resource('comment', CommentController::class)->middleware('auth');
 
 Route::resource('products', ProductController::class)->middleware('auth');
 
+Route::get('/products/category/{category}', [ProductController::class, 'filter']);
+
+Route::POST('/products/search', [ProductController::class, 'search']);
+
 Route::post('/upload', [UploadFileController::class, 'store']);
 
 Route::POST('/chats', [ChatController::class, 'send']);

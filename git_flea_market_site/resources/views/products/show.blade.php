@@ -6,7 +6,7 @@
         <a href="/products" class="flex-1">
             <h1 class="font-bold text-3xl">detail Item</h1>
         </a>
-        @if (auth()->id() == $product -> user_seq)
+        @if (auth()->id() == $product -> user_id)
             <a href="/products/{{ $product -> id }}/edit">
                 <button class="flex-initial bg-green-500 px-4 py-2 mx-2 text-white hover:bg-green-300">Edit</button>
             </a>
@@ -36,7 +36,7 @@
     内容
     <div class="border p-3 my-3 " style="white-space:pre;">{{ $product -> pro_explan }}</div>
     
-    @if( $product -> user_seq != auth()->id() )
+    @if( $product -> user_id != auth()->id() )
         <div class="flex">
             <div class="flex-grow"></div>
             <div class="flex-none ml-2">
@@ -56,7 +56,7 @@
             <div class="flex-none ml-2">
                 <form action="/basket" method="POST">
                     @csrf                                
-                    <input type="hidden" name="pro_seq" value="{{ $product -> id }}">                    
+                    <input type="hidden" name="product_id" value="{{ $product -> id }}">                    
                     <input class="bg-blue-300 px-2 py-1" type="submit" value="購入カート">                    
                 </form>            
             </div>            

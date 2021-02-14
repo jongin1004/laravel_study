@@ -4,10 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Photo;
 
 class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['pro_tag', 'pro_state', 'pro_price', 'pro_title', 'pro_explan', 'user_seq'];
+    protected $fillable = ['pro_tag', 'pro_state', 'pro_price', 'pro_title', 'pro_explan', 'user_id'];
+
+    public function photo()
+    {
+        return $this->hasOne(Photo::class);
+    }
 }

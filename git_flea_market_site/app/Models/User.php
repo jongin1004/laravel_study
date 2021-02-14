@@ -47,9 +47,9 @@ class User extends Authenticatable
     ];
 
     
-    public function Qnas(Qna $qna)
+    public function Qnas()
     {
-        return $this->hasMany(Qan::class);
+        return $this->hasMany(Qna::class);
     }
 
 

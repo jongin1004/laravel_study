@@ -15,12 +15,12 @@ class CreateProductCartsTable extends Migration
     {
         Schema::create('product_carts', function (Blueprint $table) {
             $table->bigincrements('id');
-            $table->unsignedBigInteger('user_seq');
-            $table->unsignedBigInteger('pro_seq');       
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('product_id');       
             $table->timestamps();     
    
-            $table->foreign('user_seq')->references('id')->on('users');
-            $table->foreign('pro_seq')->references('id')->on('products');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

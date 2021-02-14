@@ -36,7 +36,7 @@
                         <form action="/basket/{{ $product_info_in_carts[$i] -> id }}" method="POST">
                             @method('delete')
                             @csrf
-                            <input type="checkbox" name="pro_seq[]" value="{{ $product_info_in_carts[$i] -> id }}">                                             
+                            <input type="checkbox" name="product_id[]" value="{{ $product_info_in_carts[$i] -> id }}">                                             
                     </div>
                     <div class="p-4 col-start-2 col-end-4">
                     <a href="/products/{{ $product_info_in_carts[$i] -> id }}">
@@ -59,9 +59,10 @@
                     </div>
                 </div>
                 <div class="invisible">{{ $total_price += $product_info_in_carts[$i] -> pro_price }}</div>                    
-            @endfor            
+            @endfor   
                         <input class="ml-6 mb-10 bg-gray-700 hover:bg-gray-900 text-white font-bold py-1 px-2 border border-gray-900 rounded" type="submit" value="削除">                            
-                    </form>   
+                    </form>          
+                          
                         
             
 

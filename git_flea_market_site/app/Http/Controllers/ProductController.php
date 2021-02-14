@@ -18,11 +18,11 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::OrderBy('created_at', 'desc') -> paginate(8);
-        $photos = Photo::latest()->get();
-
+        $Categories = Categories::get();
+        
         return view('products.index', [
-            'products' => $products,
-            'photos' => $photos        
+            'products' => $products,            
+            'Categories' => $Categories     
         ]);
     }
 
@@ -39,14 +39,14 @@ class ProductController extends Controller
     {        
         request()->validate([            
             'pro_state' => 'required', 
-            'pro_price' => 'required',
+            'pro_price' => 'required|integer',
             'pro_title' => 'required', 
             'pro_explan' => 'required',
             'pro_tag' => 'exists:categories,category'
         ]);
 
         $values = request(['pro_tag', 'pro_state', 'pro_price','pro_title', 'pro_explan']);
-        $values['user_seq'] = auth() -> id();
+        $values['user_id'] = auth() -> id();
         $products = Product::create($values);
 
         if($request->has(['photo']))
@@ -56,8 +56,8 @@ class ProductController extends Controller
                 'url' => Storage::url($path),
                 'hashname' => $request->file('photo')->hashName(),
                 'originalname' => $request->file('photo')->getClientOriginalName(),
-                'user_seq' => auth()->id(),
-                'pro_seq' => $products->id          
+                'user_id' => auth()->id(),
+                'product_id' => $products->id          
                 ]);
             }
 
@@ -68,8 +68,8 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        $user = User::find($product->user_seq);
-        $photos = Photo::where('pro_seq', $product->id)->latest()->first();
+        $user = User::find($product->user_id);
+        $photos = Photo::where('product_id', $product->id)->latest()->first();
 
         return view('products/show' , [
             'product' => $product,
@@ -92,7 +92,7 @@ class ProductController extends Controller
     {
  
         $values = request(['pro_tag', 'pro_state', 'pro_price','pro_title', 'pro_explan']);
-        $values['user_seq'] = auth() -> id();
+        $values['user_id'] = auth() -> id();
         $product -> update($values);
 
         if($request->has(['photo']))
@@ -102,8 +102,8 @@ class ProductController extends Controller
             'url' => Storage::url($path),
             'hashname' => $request->file('photo')->hashName(),
             'originalname' => $request->file('photo')->getClientOriginalName(),
-            'user_seq' => auth()->id(),
-            'pro_seq' => $product->id          
+            'user_id' => auth()->id(),
+            'product_id' => $product->id          
         ]);
         }
 
@@ -111,12 +111,37 @@ class ProductController extends Controller
     }
 
     public function destroy(Product $product)
-    {
-        // $photos = Photo::where('pro_seq', $product->id)->get();
-        // $photos -> delete();
+    {        
         $product -> delete();
         
-        return redirect('/products');
-        // return redirect()->back();
+        return redirect('/products');        
+    }
+
+    public function filter($category)
+    {
+        if($category == "all")
+        {
+            $products = Product::OrderBy('created_at', 'desc') -> paginate(8); 
+        }else{
+            $products = Product::where('pro_tag', $category)->OrderBy('created_at', 'desc') -> paginate(8);            
+        }
+
+        $Categories = Categories::get();
+        
+        return view('products.index', [
+            'products' => $products,            
+            'Categories' => $Categories     
+        ]);
+    }
+
+    public function search(Request $request)
+    {        
+        $products = Product::where('pro_title', 'like', '%' . $request->search . '%')->OrderBy('created_at', 'desc') -> paginate(8);
+        $Categories = Categories::get();        
+        
+        return view('products.index', [
+            'products' => $products,            
+            'Categories' => $Categories            
+        ]);
     }
 }

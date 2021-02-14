@@ -16,13 +16,13 @@ class ProductCartController extends Controller
     {
         $user = User::find(auth()->id());
 
-        $product_info_in_carts = ProductCart::where('product_carts.user_seq', auth()->id())
-            ->Join('products', 'product_carts.pro_seq', '=', 'products.id')
+        $product_info_in_carts = ProductCart::where('product_carts.user_id', auth()->id())
+            ->Join('products', 'product_carts.product_id', '=', 'products.id')
             ->latest('product_carts.created_at')
             ->get();
 
-        $photo_url_in_carts = ProductCart::where('product_carts.user_seq', auth()->id())
-            ->Join('photos', 'product_carts.pro_seq', '=', 'photos.pro_seq')
+        $photo_url_in_carts = ProductCart::where('product_carts.user_id', auth()->id())
+            ->Join('photos', 'product_carts.product_id', '=', 'photos.product_id')
             ->latest('product_carts.created_at')
             ->select('photos.url')
             ->get();
@@ -39,12 +39,12 @@ class ProductCartController extends Controller
     public function store(Request $request)
     {
         // $validated = request()->validate([            
-        //     'pro_seq' => 'required'
+        //     'product_id' => 'required'
         // ]);        
         
-        $carts = productCart::where('user_seq', auth()->id())->get();    
-        $values = request(['pro_seq']);   
-        $values['user_seq'] = auth() -> id();
+        $carts = productCart::where('user_id', auth()->id())->get();    
+        $values = request(['product_id']);   
+        $values['user_id'] = auth() -> id();
 
 
         if(!isset($carts[0]))
@@ -57,14 +57,14 @@ class ProductCartController extends Controller
 
         for($i=0; $i<count($carts); $i++)
         {
-            if($carts[$i] -> pro_seq == $request -> pro_seq)
+            if($carts[$i] -> product_id == $request -> product_id)
             {
                 emotify('error', 'すでにカートに入っています。');
 
                 break;                
             }
             
-            if($carts[$i] -> pro_seq != $request -> pro_seq && $i == count($carts)-1 )
+            if($carts[$i] -> product_id != $request -> product_id && $i == count($carts)-1 )
             {
                 emotify('success', 'カートに入れました！@^ㅡ^@');
 
@@ -79,11 +79,12 @@ class ProductCartController extends Controller
 
     public function destroy(Request $request)
     {
-        for($i=0; $i<count($request->pro_seq); $i++)
-        {
-            $product = productCart::where('pro_seq', $request->pro_seq[$i])->delete();
-        }
+        // for($i=0; $i<count($request->product_id); $i++)
+        // {
+        //     $product = productCart::where('product_id', $request->product_id[$i])->delete();
+        // }
         
-        return redirect()->back();        
+        dd($request);
+        // return redirect()->back();        
     }
 }

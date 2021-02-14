@@ -9,10 +9,10 @@ class productCart extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_seq', 'pro_seq'];
+    protected $fillable = ['user_id', 'product_id'];
 
-    public function pro_seq()
-    {
-        return $this->belongsTo(Product::class, 'pro_seq');
-    }
+    // public function pro_seq()
+    // {
+    //     return $this->belongsTo(Product::class);
+    // }
 }
