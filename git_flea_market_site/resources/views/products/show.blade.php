@@ -26,7 +26,7 @@
     <small class="float-right">著者 {{ $user->name }}</small><br>
 
     写真
-    <div class="border p-3 my-3 w-2/4"><img src="{{ $photos -> url }}"></div>
+    <div class="border p-3 my-3 w-2/4"><img src="{{ $photos -> thumbnail_url }}"></div>
     状態
     <div class="border p-3 my-3">{{ $product -> pro_state }}</div>
     価格

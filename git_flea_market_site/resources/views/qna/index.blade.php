@@ -23,9 +23,14 @@ function myFunction(num) {
     <ul class="p-3">
         @foreach($qnas as $qna)
             <a @if(auth()->user()->grade == 'admin') onclick="myFunction({{ $qna -> id }}) @endif">
-                @if ($qna->text_type == 'secret' && auth()->user()->grade != 'admin')
-                    <li class="border-4 border-gray-500 px-2 py-2 mt-4"><img src="/img/secret.png" alt="avatar" class="rounded-full w-8 h-8">
-                        <span class="text-gray-500">비밀글입니다 @^ㅡ^@<span></li>  
+                @if ($qna->text_type == 'secret')
+                    @if (auth()->user()->grade != 'admin' && $qna->user_id != auth()->id())
+                        <li class="border-4 border-gray-500 px-2 py-2 mt-4"><img src="/img/secret.png" alt="avatar" class="rounded-full w-8 h-8">
+                        <span class="text-gray-500">비밀글입니다 @^ㅡ^@<span></li>    
+                    @else
+                        <li class="border-4 border-gray-500 px-2 py-2 mt-4">タイトル : {{ $qna-> title }} <small class="float-right">created_at {{ $qna -> created_at}}</small><br>
+                        内容 : {{ $qna -> body }} </li>
+                    @endif                    
                 @else
                     <li class="border-4 border-gray-500 px-2 py-2 mt-4">タイトル : {{ $qna-> title }} <small class="float-right">created_at {{ $qna -> created_at}}</small><br>
                     内容 : {{ $qna -> body }} </li>
@@ -33,11 +38,18 @@ function myFunction(num) {
             </a>
             <div class="p-2 mb-5">
                 @foreach($qna->comments as $comment)
-                    @if ($qna->text_type == 'secret' && auth()->user()->grade != 'admin')
-                        <div class="p-1 break-words">
-                            <span class="text-gray-500">비밀글 입니다.</span>
-                        </div>
-                        <div class="border-b border-gray-500"></div>
+                    @if ($qna->text_type == 'secret')
+                        @if (auth()->user()->grade != 'admin' && $qna->user_id != auth()->id())
+                            <div class="p-1 break-words">
+                                <span class="text-gray-500">비밀글 입니다.</span>
+                            </div>
+                            <div class="border-b border-gray-500"></div>
+                        @else
+                            <div class="p-1 break-words">
+                                コメント : {{ $comment-> body}}
+                            </div>
+                            <div class="border-b border-gray-500"></div>
+                        @endif
                     @else
                         <div class="p-1 break-words">
                             コメント : {{ $comment-> body}}

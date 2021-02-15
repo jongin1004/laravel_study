@@ -8,10 +8,12 @@
                     <a href="/products/category/{{ $category -> category }}">
                         <h2 class="uppercase tracking-wider text-orange-500 text-lg font-semibold">{{ $category->category }}</h2>    
                     </a>
-                @endforeach                            
-                <a href="/products/create">
-                    <button class= "bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900">製品登録</button>
-                </a>
+                @endforeach
+                <div class="col-start-12">                         
+                    <a href="/products/create">
+                        <button class= "bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900">製品登録</button>
+                    </a>
+                </div>
             </div>
             
             <div class="flex flex-col md:flex-row items-center">

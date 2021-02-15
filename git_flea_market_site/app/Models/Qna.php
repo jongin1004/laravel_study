@@ -9,7 +9,7 @@ class Qna extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'body', 'user_id'];
+    protected $fillable = ['title', 'body', 'user_id', 'text_type'];
 
     public function user() 
     {

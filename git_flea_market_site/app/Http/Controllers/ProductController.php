@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Categories;
 use Illuminate\Support\Facades\DB;
-
+use App\Jobs\CreateThumbnail;
 
 
 class ProductController extends Controller
@@ -60,6 +60,8 @@ class ProductController extends Controller
                 'product_id' => $products->id          
                 ]);
             }
+        
+        CreateThumbnail::dispatch($photo);        
 
         return redirect('products/'.$products -> id);
         
