@@ -15,6 +15,11 @@ use App\Jobs\CreateThumbnail;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
     public function index()
     {
         $products = Product::OrderBy('created_at', 'desc') -> paginate(8);
@@ -28,6 +33,8 @@ class ProductController extends Controller
 
     public function create()
     {
+        abort_unless(auth()->user()->grade == 'seller', 403);
+
         $categories = Categories::all();
 
         return view('products.create', [
@@ -36,7 +43,7 @@ class ProductController extends Controller
     }
 
     public function store(Request $request)
-    {        
+    {
         request()->validate([            
             'pro_state' => 'required', 
             'pro_price' => 'required|integer',
@@ -82,6 +89,8 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
+        abort_unless(auth()->user()->Productowns($product), 403);
+
         $categories = Categories::all();
 
         return view('products.edit', [
@@ -92,6 +101,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        abort_unless(auth()->user()->Productowns($product), 403);
  
         $values = request(['pro_tag', 'pro_state', 'pro_price','pro_title', 'pro_explan']);
         $values['user_id'] = auth() -> id();
@@ -114,6 +124,8 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {        
+        abort_unless(auth()->user()->Productowns($product), 403);
+
         $product -> delete();
         
         return redirect('/products');        

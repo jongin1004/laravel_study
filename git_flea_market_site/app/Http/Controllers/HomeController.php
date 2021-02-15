@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Categories;
 
 class HomeController extends Controller
 {
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index');
     }
 
     /**
@@ -23,6 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $products = Product::OrderBy('created_at', 'desc') -> paginate(8);
+        $Categories = Categories::get();
+        
+        return view('home', [
+            'products' => $products,            
+            'Categories' => $Categories     
+        ]);
     }
 }

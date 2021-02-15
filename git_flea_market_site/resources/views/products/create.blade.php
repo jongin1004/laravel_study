@@ -14,7 +14,9 @@
                     <input class="w-full px-3 py-1 border-2 border-gray-500 hover:border-gray-800 @error('pro_tag') border-4 border-blue-500 @enderror" type="text" name="pro_tag" id="pro_tag" list="categoriesList" value="{{ old('pro_tag') }}"><br>    
                     <datalist id="categoriesList">
                         @foreach($categories as $category)
-                            <option value="{{ $category -> category }}"></option>                            
+                            @if ($category -> category != "all")
+                                <option value="{{ $category -> category }}"></option>                          
+                            @endif                            
                         @endforeach               
                     </datalist>  
                     @error('pro_tag')

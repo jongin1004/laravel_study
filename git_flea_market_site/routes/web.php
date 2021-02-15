@@ -11,6 +11,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProductCartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ use App\Http\Controllers\MypageController;
 
 // TODO i use 'home.blade.php'. but, I want use 'index.blade.php'
 // TODO so i must be understand laraval's structre!!
-Route::view('/', 'home');
+Route::get('/', [HomeController::class, 'index']);
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -50,7 +51,7 @@ Route::resource('qna', QnaController::class)->middleware('auth');
 
 Route::resource('comment', CommentController::class)->middleware('auth');
 
-Route::resource('products', ProductController::class)->middleware('auth');
+Route::resource('products', ProductController::class);
 
 Route::get('/products/category/{category}', [ProductController::class, 'filter']);
 

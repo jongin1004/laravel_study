@@ -39,7 +39,7 @@ class CreateThumbnail implements ShouldQueue
 
         $thumbnail = Image::make($photoFile);
 
-        $thumbnail->resize(200, null, function ($constraint) {
+        $thumbnail->resize(256, null, function ($constraint) {
             $constraint->aspectRatio();
         });
 

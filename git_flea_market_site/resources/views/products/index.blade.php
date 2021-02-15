@@ -9,10 +9,12 @@
                         <h2 class="uppercase tracking-wider text-orange-500 text-lg font-semibold">{{ $category->category }}</h2>    
                     </a>
                 @endforeach
-                <div class="col-start-12">                         
-                    <a href="/products/create">
-                        <button class= "bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900">製品登録</button>
-                    </a>
+                <div class="col-start-12">
+                    @if ( auth()->user()->grade != 'common')
+                        <a href="/products/create">
+                            <button class= "bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900">製品登録</button>
+                        </a>
+                    @endif                                        
                 </div>
             </div>
             

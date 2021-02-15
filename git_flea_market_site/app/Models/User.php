@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Qna;
+use App\Models\Product;
 
 class User extends Authenticatable
 {
@@ -56,5 +57,10 @@ class User extends Authenticatable
     public function Qnaowns(Qna $qna)
     {
         return auth()->id() == $qna->id;
+    }
+
+    public function Productowns(Product $product)
+    {
+        return auth()->id() == $product->user_id;
     }
 }
