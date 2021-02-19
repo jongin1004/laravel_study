@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Photo;
 
 class Product extends Model
 {
@@ -16,4 +15,15 @@ class Product extends Model
     {
         return $this->hasOne(Photo::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function productCart()
+    {
+        return $this->hasMany(productCart::class);
+    }
+
 }

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container mx-auto px-4 pt-16">
+<div class="container mx-auto px-4 pt-3">
     <div class="popular-movies">
         <div class="border-b-4 border-gray-600">
             <h2 class="text-3xl text-gray-800 font-mono">商品の登録</h2>
@@ -28,9 +28,10 @@
                     <label for="pro_state" class="text-xl">商品の品質</label><br>            
                     <input class="w-full px-3 py-1 border-2 border-gray-500 hover:border-gray-800 @error('pro_state') border-4 border-blue-500 @enderror" type="text" name="pro_state" id="pro_state" list="stateList" value="{{ old('pro_state') }}"><br>    
                     <datalist id="stateList">
-                        <option value="새거"></option>
-                        <option value="중간"></option>
-                        <option value="낡음"></option>                
+                        <option value="新品未使用"></option>
+                        <option value="未使用に近い"></option>
+                        <option value="目立った傷や汚れなし"></option>                
+                        <option value="目立った傷や汚れある"></option> 
                     </datalist>
                     @error('pro_state')
                         <small class="text-red-500">{{ $message }}</small><br>
@@ -39,14 +40,13 @@
 
                 <div class="가격 mb-4">
                     <label for="price" class="text-xl">商品の価格</label><br>
-                    <input class="w-full px-3 py-1 border-2 border-gray-500 hover:border-gray-800 @error('pro_price') border-4 border-blue-500 @enderror" type="text" name="pro_price" id="pro_price" value="{{ old('pro_price') }}"><br>
+                    <input class="w-full px-3 border-2 border-gray-500 hover:border-gray-800 @error('pro_price') border-4 border-blue-500 @enderror" type="text" name="pro_price" id="pro_price" value="{{ old('pro_price') }}"><br>
                     @error('pro_price')
                         <small class="text-red-500">{{ $message }}</small><br>
                     @enderror
                 </div>
 
-                
-                
+                                
                 <div class="타이틀 mb-4">
                     <label for="pro_title" class="text-xl">投稿の名前</label><br>
                     <input class="w-full px-3 py-1 border-2 border-gray-500 hover:border-gray-800 @error('pro_title') border-4 border-blue-500 @enderror" type="text" name="pro_title" id="pro_title" value="{{ old('pro_title') }}"><br>

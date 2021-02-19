@@ -12,25 +12,20 @@ use Illuminate\Support\Facades\DB;
 
 class ProductCartController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
         $user = User::find(auth()->id());
-
-        $product_info_in_carts = ProductCart::where('product_carts.user_id', auth()->id())
-            ->Join('products', 'product_carts.product_id', '=', 'products.id')
-            ->latest('product_carts.created_at')
-            ->get();
-
-        $photo_url_in_carts = ProductCart::where('product_carts.user_id', auth()->id())
-            ->Join('photos', 'product_carts.product_id', '=', 'photos.product_id')
-            ->latest('product_carts.created_at')
-            ->select('photos.url')
-            ->get();
+        $productCarts = productCart::where('user_id', auth()->id())->get();
 
         return view('basket', [
-            'product_info_in_carts' => $product_info_in_carts,
-            'photo_url_in_carts' => $photo_url_in_carts,
-            "user" => $user,
+            'productCarts' => $productCarts,
+            'user' => $user,
             'total_price' => 0
         ]);
     }

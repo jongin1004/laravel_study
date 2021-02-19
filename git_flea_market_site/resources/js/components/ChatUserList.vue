@@ -7,7 +7,7 @@
             class="p-2 border border-gray-600 hover:bg-gray-300 cursor-pointer"            
             @click="updateChatWith(users.id)"
         >
-            {{ users.name }} (지난 메세지 확인)
+            {{ users.name }} (前のメッセージ確認)
         </div>
     </div>
 </template>

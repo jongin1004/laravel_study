@@ -12,6 +12,8 @@ use App\Http\Controllers\ProductCartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,9 +49,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('qna', QnaController::class)->middleware('auth');
+Route::resource('qna', QnaController::class);
 
-Route::resource('comment', CommentController::class)->middleware('auth');
+Route::resource('comment', CommentController::class);
 
 Route::resource('products', ProductController::class);
 
@@ -67,7 +69,7 @@ Route::get('/basket', [ProductCartController::class, 'index']);
 
 Route::POST('/basket', [ProductCartController::class, 'store']);
 
-Route::DELETE('/basket/{basket}', [ProductCartController::class, 'destroy']);
+Route::DELETE('/basket/delete', [ProductCartController::class, 'destroy']);
 
 Route::get('/sellerRg', [SellerRegistrationController::class, 'index']);
 
@@ -78,10 +80,18 @@ Route::get('/mail', 'App\Http\Controllers\MailController@send');
 
 Route::resource('member', UserController::class);
 
-//review
-Route::get('/review', function () {
-    return view('review.index');
-});
 
 //mypage
 Route::resource('mypage', MypageController::class)->middleware('auth');
+
+// Route::resource('review', ReviewController::class);
+
+Route::get('/review/{user_id}', [ReviewController::class, 'index']);
+
+Route::post('/review/create/{user_id}', [ReviewController::class, 'create']);
+
+Route::post('/review/{user_id}', [ReviewController::class, 'store']); 
+
+Route::post('/order', [OrderController::class, 'store'])->middleware('auth');
+
+Route::delete('/basket/buy', [OrderController::class, 'cartstore'])->middleware('auth');

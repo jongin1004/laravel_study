@@ -26,7 +26,7 @@ function myFunction(num) {
                 @if ($qna->text_type == 'secret')
                     @if (auth()->user()->grade != 'admin' && $qna->user_id != auth()->id())
                         <li class="border-4 border-gray-500 px-2 py-2 mt-4"><img src="/img/secret.png" alt="avatar" class="rounded-full w-8 h-8">
-                        <span class="text-gray-500">비밀글입니다 @^ㅡ^@<span></li>    
+                        <span class="text-gray-500">秘密ですよ。 @^ㅡ^@<span></li>    
                     @else
                         <li class="border-4 border-gray-500 px-2 py-2 mt-4">タイトル : {{ $qna-> title }} <small class="float-right">created_at {{ $qna -> created_at}}</small><br>
                         内容 : {{ $qna -> body }} </li>
@@ -41,7 +41,7 @@ function myFunction(num) {
                     @if ($qna->text_type == 'secret')
                         @if (auth()->user()->grade != 'admin' && $qna->user_id != auth()->id())
                             <div class="p-1 break-words">
-                                <span class="text-gray-500">비밀글 입니다.</span>
+                                <span class="text-gray-500">秘密ですよ。 @^ㅡ^@</span>
                             </div>
                             <div class="border-b border-gray-500"></div>
                         @else

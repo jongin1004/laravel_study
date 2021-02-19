@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class QnaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+    
     public function index()
     {   
         $qnas = Qna::OrderBy('created_at', 'desc') -> paginate(5);        

@@ -20,14 +20,26 @@
             </div>
         </div>
     </div>
-    <form action="/member/{{ $user -> id }}" method="POST">
+
+    <div>
+        <form action="/member/{{ $user -> id }}" method="POST">
             @method('delete')
             @csrf
             <div class="grid justify-items-center mt-3">
                 <div class="text-2xl">※ユーザーを削除したいなら、下の＜会員削除＞ボタンを押してください。</div>
                 <button class="bg-gray-700 hover:bg-gray-900 text-white text-2xl font-bold py-2 px-4 border border-gray-900 rounded mb-3 mt-3">会員削除</button>
             </div>
-    </form>
+        </form>
+    </div>
+    <div>
+        <form action="/review/index" method="POST">            
+            @csrf
+            <div class="grid justify-items-center mt-3">
+                <input type="hidden" name="user_id" value="{{$user -> id}}">      
+                <button class="bg-gray-700 hover:bg-gray-900 text-white text-2xl font-bold py-2 px-4 border border-gray-900 rounded mb-3 mt-3">Review</button>
+            </div>
+        </form>
+    </div>            
 </div>
 
 @endsection

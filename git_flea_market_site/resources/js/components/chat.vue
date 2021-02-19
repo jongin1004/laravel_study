@@ -18,7 +18,7 @@
                 <input
                     class="border-2 rounded border-gray-500 w-full p-3"
                     type="text"
-                    placeholder="메세지를 입력해주세요"
+                    placeholder="メッセージを入力してください"
                     v-model="text"
                     @keyup.enter="submit"                    
                 />                

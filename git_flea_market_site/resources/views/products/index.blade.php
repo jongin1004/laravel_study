@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container mx-auto px-4 pt-16 h-screen">
+    <div class="container mx-auto px-4 pt-6 h-screen">
         <div class="popular-movies">
             <div class="grid grid-cols-12">                
                 @foreach ($Categories as $category)
@@ -10,11 +10,13 @@
                     </a>
                 @endforeach
                 <div class="col-start-12">
-                    @if ( auth()->user()->grade != 'common')
-                        <a href="/products/create">
-                            <button class= "bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900">製品登録</button>
-                        </a>
-                    @endif                                        
+                    @if(auth()->user())
+                        @if ( auth()->user()->grade != 'common')
+                            <a href="/products/create">
+                                <button class= "bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900">製品登録</button>
+                            </a>
+                        @endif
+                    @endif                                    
                 </div>
             </div>
             
@@ -39,7 +41,7 @@
                 @foreach($products as $product)
                     <div class="mt-8">
                         <a href="/products/{{ $product -> id }}">                            
-                            <img src="{{ $product ->photo->url }}" alt="parasite" class="hover:opacity-75 transition ease-in-out duration-150">
+                            <img src="{{ $product ->photo->thumbnail_url }}" alt="parasite" class="hover:opacity-75 transition ease-in-out duration-150">
                         </a>
                         <div class="mt-2">
                             <p class="text-lg mt-2 text-gray:800 hover:text-gray:300">{{ $product -> pro_title }}</p>

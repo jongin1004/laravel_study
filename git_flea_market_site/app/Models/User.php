@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Qna;
 use App\Models\Product;
+use App\Models\Order;
+use App\Models\User;
 
 class User extends Authenticatable
 {
@@ -51,6 +53,16 @@ class User extends Authenticatable
     public function Qnas()
     {
         return $this->hasMany(Qna::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function productCart()
+    {
+        return $this->hasMany(productCart::class);
     }
 
 

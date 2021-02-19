@@ -6,16 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Order;
 class MypageController extends Controller
 {
 
   public function index(){
     
     $user = User::find(auth()->id());
-
+    $orders = Order::where('user_id', auth()->id())->get();
     return view('mypage.index', [
-      'user' => $user      
+      'user' => $user,
+      'orders' => $orders
     ]);
 }
 

@@ -10,10 +10,12 @@
                     </a>
                 @endforeach
                 <div class="col-start-12">                         
-                    @if ( auth()->user()->grade != 'common')
-                        <a href="/products/create">
-                            <button class= "bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900">製品登録</button>
-                        </a>
+                    @if (auth()->user())
+                        @if (auth()->user()->grade != "common")
+                            <a href="/products/create">
+                                <button class= "bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900">製品登録</button>
+                            </a>
+                        @endif                        
                     @endif  
                 </div>
             </div>
