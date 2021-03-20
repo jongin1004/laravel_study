@@ -17,6 +17,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
+        //현제 로그인이 되어있는 사람들만 사용가능하도록 지정했지만, except를 통해서 예외 메소드를 지정했다. 
         $this->middleware('auth')->except('index', 'search', 'filter');
     }
 
@@ -33,6 +34,7 @@ class ProductController extends Controller
 
     public function create()
     {
+        //판매자가 아닌데, create 페이지에 접근할려고 할경우에 403에러가 발생하도록 했다. 
         abort_unless(auth()->user()->grade == 'seller', 403);
 
         $categories = Categories::all();
@@ -78,12 +80,10 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $user = User::find($product->user_id);
-        $photos = Photo::where('product_id', $product->id)->latest()->first();
 
         return view('products/show' , [
             'product' => $product,
-            'user' => $user,
-            'photos' => $photos
+            'user' => $user
         ]);
     }
 
@@ -124,6 +124,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {        
+        //현재 선택된 글이 현제 로그인된 사람이 쓴 글인지 확인하고 아니면, 403에러
         abort_unless(auth()->user()->Productowns($product), 403);
 
         $product -> delete();

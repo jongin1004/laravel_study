@@ -1,0 +1,1 @@
+C:37:"PHPUnit\Runner\DefaultTestResultCache":206:{a:2:{s:7:"defects";a:1:{s:67:"Tests\Feature\SellerRegisterTest::get_response_seller_Register_site";i:3;}s:5:"times";a:1:{s:67:"Tests\Feature\SellerRegisterTest::get_response_seller_Register_site";d:0.341;}}}

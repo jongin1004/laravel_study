@@ -27,7 +27,7 @@
 
     <div class="flex">
         <div class="flex-initial">
-            <div class="p-3 my-3 w-max"><img src="{{ $photos -> url }}"></div>
+            <div class="p-3 my-3 w-max"><img src="{{ $product->photo->url }}"></div>
         </div>
         <div class="flex-1 mt-3">
             <div class="flex flex-col">

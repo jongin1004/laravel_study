@@ -25,7 +25,7 @@
                 </div>
                                 
                 <div class="상태 mb-4">
-                    <label for="pro_state" class="text-xl">商品の品質</label><br>            
+                    <label for="pro_state" clashs="text-xl">商品の品質</label><br>            
                     <input class="w-full px-3 py-1 border-2 border-gray-500 hover:border-gray-800 @error('pro_state') border-4 border-blue-500 @enderror" type="text" name="pro_state" id="pro_state" list="stateList" value="{{ old('pro_state') }}"><br>    
                     <datalist id="stateList">
                         <option value="新品未使用"></option>
