@@ -20,7 +20,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'verification_code'
+        'verification_code',
+        'propensity',
+        'experience_point',
+        'rank'
     ];
 
     /**
@@ -41,4 +44,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function Forums()
+    {
+        return $this->hasMany(Forum::class);
+    }
 }

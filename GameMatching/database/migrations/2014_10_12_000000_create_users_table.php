@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('verification_code')->nullable();
             $table->integer('is_verified')->default(0);
-            $table->string('propensity');
+            $table->string('propensity')->default('');
             $table->integer('experience_point')->default(0);            
             $table->enum('rank', array('common','admin'))->default('common');
             $table->rememberToken();

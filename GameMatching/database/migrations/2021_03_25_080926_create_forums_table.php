@@ -18,7 +18,7 @@ class CreateForumsTable extends Migration
             $table->foreignId('user_id');
             $table->string('title');
             $table->longText('body');
-            $table->string('number_of_recommend');
+            $table->integer('number_of_recommend')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

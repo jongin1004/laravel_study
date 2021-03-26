@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\Auth\RegisterController;
 
 
@@ -24,3 +25,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/verify', [RegisterController::class, 'verifyUser'])->name('verify.user');
+
+Route::resource('forum', ForumController::class);
+
+Route::POST('/forum/recommend', [ForumController::class, 'recommend']);
