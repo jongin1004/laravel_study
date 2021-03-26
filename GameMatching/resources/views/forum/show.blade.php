@@ -29,6 +29,7 @@
         <form action="/forum/recommend" method="POST">
             @csrf            
             <input type="hidden" id="forum_id" name="forum_id" value="{{ $forum->id }}">
+            <input type="hidden" id="user_id" name="user_id" value="{{ $forum->user->id }}">
             <button class="flex-initial bg-blue-500 px-4 py-2 text-white hover:bg-red-300" type="submit" name="recommend" value="good">추천</button>
             <button class="flex-initial bg-red-500 px-4 py-2 text-white hover:bg-red-300" type="submit" name="recommend" value="bad">비추천</button>            
         </form>

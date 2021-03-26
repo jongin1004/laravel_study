@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Forum;
 use Illuminate\Http\Request;
+use App\Models\Check_to_recommend;
 use Illuminate\Support\Facades\DB;
 
 class ForumController extends Controller
@@ -75,19 +76,33 @@ class ForumController extends Controller
 
     public function recommend(Request $request)
     {
-        $forum = Forum::where('id', $request['forum_id'])->get();
-            
-        if($request['recommend'] == 'good'){
-            $forum[0]->number_of_recommend += 1;    
+        $forum = Forum::where('id', $request['forum_id'])->first();
+        $check_to_recommend = Check_to_recommend::where('user_id', $request['user_id'])->where('forum_id', $request['forum_id'])->first();
+
+        if($check_to_recommend == null){
+            if($request['recommend'] == 'good'){
+                $forum->number_of_recommend += 1;
+
+            } else {
+                $forum->number_of_recommend -= 1;    
+            }
         } else {
-            $forum[0]->number_of_recommend -= 1;    
+            emotify('error', '이미 추천한 글이라 못해@^ㅡ^@');
+            return redirect()->back();
         }
+            
+        
+        request() -> validate([
+            'user_id' => 'required',
+            'forum_id'  => 'required'                     
+        ]);
 
-        // $value['number_of_recommend'] = $forum[0]->number_of_recommend;
+        $values = request(['user_id', 'forum_id']);        
+        Check_to_recommend::create($values);
 
-        // $forum -> update(request($value));
+        $forum->save();
 
-        $forum[0]->save();
+        emotify('success', '추천했어@^ㅡ^@');
 
         return redirect()->back();
     }
