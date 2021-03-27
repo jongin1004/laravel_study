@@ -24,10 +24,10 @@
     <section class="popup_user">
         <dl>
             <dt>
-                <small class="float-right">著者 {{ $forum->user->name }}</small><br>
+                <small class="float-right hover:underline">著者 {{ $forum->user->name }}</small><br>
             </dt>
             <dd style="display:none;" class="float-right bg-yellow-400 border-4 border-blue-400 rounded-md px-2"> 
-                <a href="#">친구추가</a><br>
+                <a href="/friend/{{ $forum->user->id }}">친구추가</a><br>
                 <a href="#">쪽지보내기</a><br>
                 asdasd<br>
                 asdasd

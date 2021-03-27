@@ -79,7 +79,7 @@ class ForumController extends Controller
         $forum = Forum::where('id', $request['forum_id'])->first();
         $check_to_recommend = Check_to_recommend::where('user_id', $request['user_id'])->where('forum_id', $request['forum_id'])->first();
 
-        if($check_to_recommend == null){
+        if($check_to_recommend == null && $request['user_id'] != auth()->id()){
             if($request['recommend'] == 'good'){
                 $forum->number_of_recommend += 1;
 
@@ -87,7 +87,7 @@ class ForumController extends Controller
                 $forum->number_of_recommend -= 1;    
             }
         } else {
-            emotify('error', '이미 추천한 글이라 못해@^ㅡ^@');
+            emotify('error', '이미 추천한 글이라 못해@^ㅡ^@ or 자기자신 글');
             return redirect()->back();
         }
             

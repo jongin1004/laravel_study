@@ -8,7 +8,12 @@
             <div class="flash-message">
                 @foreach (['danger', 'warning', 'success', 'info'] as $msg)
                     @if (Session::has('alert-' . $msg))
-                        <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}<a href="#" class="close" data-dismiss="alert" aria-label="close">times;</a></p>
+                        <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}
+                        <span class=float-right>
+                            Go to
+                            <a href="https://mail.google.com" class="text-xl text-blue-400">Google</a> Or 
+                            <a href="https://mail.naver.com" class="text-xl text-blue-400">Naver</a></p>
+                        </span>                            
                     @endif
                 @endforeach
             </div>
