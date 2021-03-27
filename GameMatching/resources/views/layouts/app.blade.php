@@ -18,6 +18,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- jquery -->
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @notifyCss
@@ -84,4 +86,23 @@
         </main>
     </div>
 </body>
+
+    <script type="text/javascript">
+        $(function(){ 
+
+            // $("dd").hide();
+            
+            $(".popup_user dt").click(function(){
+                
+                if($(this).next().css("display") == "none"){
+                    $(this).next().slideDown(200);
+                    // $(this).css({background:"url(images/close_img.png) no-repeat 750px center"})
+                }else{
+                    $(this).next().slideUp(200);
+                    // $(this).css({background:"url(images/open_img.png) no-repeat 750px center"})
+                }
+                
+            });
+        });
+    </script>
 </html>

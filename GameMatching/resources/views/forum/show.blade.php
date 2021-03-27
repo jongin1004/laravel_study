@@ -21,7 +21,19 @@
 
     タイトル : {{ $forum -> title }} <small class="float-right">created_at {{ $forum -> created_at }}</small><br>
     <small class="float-right">updated_at {{ $forum -> updated_at }}</small><br>
-    <small class="float-right">著者 {{ $forum->user->name }}</small><br>    
+    <section class="popup_user">
+        <dl>
+            <dt>
+                <small class="float-right">著者 {{ $forum->user->name }}</small><br>
+            </dt>
+            <dd style="display:none;" class="float-right bg-yellow-400 border-4 border-blue-400 rounded-md px-2"> 
+                <a href="#">친구추가</a><br>
+                <a href="#">쪽지보내기</a><br>
+                asdasd<br>
+                asdasd
+            </dd>
+        </dl>
+    </section>   
     内容
     <div class="border p-3 my-3">{{ $forum -> body }}</div>
     

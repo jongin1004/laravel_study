@@ -29,3 +29,4 @@ Route::get('/verify', [RegisterController::class, 'verifyUser'])->name('verify.u
 Route::resource('forum', ForumController::class);
 
 Route::POST('/forum/recommend', [ForumController::class, 'recommend']);
+

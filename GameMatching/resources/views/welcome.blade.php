@@ -45,7 +45,7 @@
                 <p>해당 구역을 클릭 시 아래로 펼쳐지는 제이쿼리 동작입니다</p>
                 <dl>
                     <dt>프로젝트이름</dt>
-                    <dd style="display:none;">겜칭</dd>
+                    <dd style="display:none;">겜칭<br>아아앙</dd>
                     <dt>지금은 뭐하는거임?</dt>
                     <dd style="display:none;">Jquery 아코디언패널</dd>
                     <dt>왜 할려고??</dt>
@@ -71,15 +71,6 @@
             }
             
         });
-        
-        
-        //--------------top_btn효과--------------
-        
-        $("#container>p").hide();
-        $("#container>p").click(function(){
-            $("html,body").animate({ scrollTop:0});
-        });
-
     });
     </script>
 </html>
