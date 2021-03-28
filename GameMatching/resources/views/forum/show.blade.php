@@ -23,13 +23,14 @@
     <small class="float-right">updated_at {{ $forum -> updated_at }}</small><br>
     <section class="popup_user">
         <dl>
-            <dt>
-                <small class="float-right hover:underline">著者 {{ $forum->user->name }}</small><br>
+            <dt>                
+                <small class="float-right hover:underline" id="setTimeout_xp">著者 {{ $forum->user->name }}</small>
+                <span id="show_xp" style="display:none;" class="float-right bg-gray-400">XP:{{ $forum->user->experience_point }}, Lv:{{ floor($forum->user->experience_point/10) }}/40</span><br>
             </dt>
             <dd style="display:none;" class="float-right bg-yellow-400 border-4 border-blue-400 rounded-md px-2"> 
                 <a href="/friend/{{ $forum->user->id }}">친구추가</a><br>
                 <a href="#">쪽지보내기</a><br>
-                asdasd<br>
+                <a href="#">프로필 보기</a><br>
                 asdasd
             </dd>
         </dl>

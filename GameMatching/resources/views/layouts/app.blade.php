@@ -89,19 +89,32 @@
 
     <script type="text/javascript">
         $(function(){ 
-
-            // $("dd").hide();
-            
             $(".popup_user dt").click(function(){
                 
                 if($(this).next().css("display") == "none"){
                     $(this).next().slideDown(200);
-                    // $(this).css({background:"url(images/close_img.png) no-repeat 750px center"})
                 }else{
-                    $(this).next().slideUp(200);
-                    // $(this).css({background:"url(images/open_img.png) no-repeat 750px center"})
+                    $(this).next().slideUp(200);                    
                 }
                 
+            });
+        });
+
+        $(document).ready(function() {
+
+            var test = $('#setTimeout_xp');
+            var moveTimer;
+
+            test.on("mouseout",function(){
+                $('#show_xp').css("display", 'none');
+                clearTimeout(moveTimer);
+            });
+
+            test.on("mousemove",function(){        
+                clearTimeout(moveTimer);
+                moveTimer = setTimeout(function(){
+                $('#show_xp').css("display", 'inline-block');
+                },700)
             });
         });
     </script>

@@ -21,6 +21,14 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+
+            #test{
+                margin:50px;
+                border:2px solid black;
+                height:200px;
+                width:200px;
+                cursor:pointer;
+            }
         </style>
 
     </head>
@@ -52,7 +60,25 @@
                     <dd style="display:none;">유저 프로필 눌렀을 때 메뉴목록 보여주게</dd>
                 </dl>
             </section>
+
+            <div id="test">
+                안녕하세요
+            </div>
         </div>
+
+        <?php  
+        $timeData = Auth::user()->created_at;
+        $timeZone = new DateTime($timeData, new DateTimeZone('KST'));
+        $dt = $timeZone->format('Y-m-d H:i:s');
+
+        echo "$dt<br>"; 
+
+        $timeData = $dt;
+        $addTime = strtotime("+9 hours", strtotime($timeData));
+        $dt = date('Y-m-d H:i:s', $addTime);
+
+        echo $dt;
+        ?>
     </body>
 
     <script type="text/javascript">
@@ -72,5 +98,32 @@
             
         });
     });
+
+    $(document).ready(function() {
+
+        var test = $('#test');
+        var moveTimer;
+
+        test.on("mouseout",function(){
+            $(this).css({
+            'background-color' : 'white',
+            }).text("");
+            clearTimeout(moveTimer);
+        });
+
+        test.on("mousemove",function(){        
+            clearTimeout(moveTimer);
+            moveTimer = setTimeout(function(){
+            test.css({
+                'background-color' : 'red',
+            }).text("The mouse is not moving.");
+            },700)
+
+            $(this).css({
+            'background-color' : 'blue',
+            }).text("Movement detected...");
+        });
+    });
+
     </script>
 </html>
