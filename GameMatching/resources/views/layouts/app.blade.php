@@ -117,5 +117,25 @@
                 },700)
             });
         });
+
+        /* 단축키 추가하기 */
+        var shortcut = new Array();
+        shortcut['w'] = "/forum/"; /* 새 글 쓰기 */
+        shortcut['h'] = "/"; /* 새 글 쓰기 */
+
+        $(document).keypress(function(e){
+            var key = e.key;
+            var tagName = e.target.tagName;
+
+            if(tagName!='INPUT' && tagName!='TEXTAREA'){
+                key = key.toLowerCase();
+
+                for (var i in shortcut){
+                    if (key == i){
+                        window.location = shortcut[i];
+                    }
+                }
+            }
+        });
     </script>
 </html>

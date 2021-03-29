@@ -67,17 +67,17 @@
         </div>
 
         <?php  
-        $timeData = Auth::user()->created_at;
-        $timeZone = new DateTime($timeData, new DateTimeZone('KST'));
-        $dt = $timeZone->format('Y-m-d H:i:s');
+        // $timeData = Auth::user()->created_at;
+        // $timeZone = new DateTime($timeData, new DateTimeZone('KST'));
+        // $dt = $timeZone->format('Y-m-d H:i:s');
 
-        echo "$dt<br>"; 
+        // echo "$dt<br>"; 
 
-        $timeData = $dt;
-        $addTime = strtotime("+9 hours", strtotime($timeData));
-        $dt = date('Y-m-d H:i:s', $addTime);
+        // $timeData = $dt;
+        // $addTime = strtotime("+9 hours", strtotime($timeData));
+        // $dt = date('Y-m-d H:i:s', $addTime);
 
-        echo $dt;
+        // echo $dt;
         ?>
     </body>
 
@@ -123,6 +123,26 @@
             'background-color' : 'blue',
             }).text("Movement detected...");
         });
+    });
+
+    /* 단축키 추가하기 */
+    var shortcut = new Array();
+    shortcut['w'] = "/forum/"; /* 새 글 쓰기 */
+    shortcut['h'] = "/"; /* 새 글 쓰기 */
+
+    $(document).keypress(function(e){
+        var key = e.key;
+        var tagName = e.target.tagName;
+
+        if(tagName!='INPUT' && tagName!='TEXTAREA'){
+            key = key.toLowerCase();
+
+            for (var i in shortcut){
+                if (key == i){
+                    window.location = shortcut[i];
+                }
+            }
+        }
     });
 
     </script>
