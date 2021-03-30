@@ -1858,8 +1858,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+// components를 가져다 쓴다
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    ChatUserList: _ChatUserList__WEBPACK_IMPORTED_MODULE_0__.default
+  },
   mounted: function mounted() {
     console.log('Component mounted.');
   }
@@ -1871,14 +1876,49 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ChatUserList.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  //date() 리퀘스트를 통해서 받아온 데이터(User list)값을 위의 vue 컴포넌트에서 사용하기 위해서 설정 
+  data: function data() {
+    return {
+      //이 안에 설정된 값들은 위의 template 태그 안에서 사용가능하다.
+      users: [],
+      message: '안녕하세요 Vue!'
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    //axios는 아작스 리퀘스트를 쉽게 보낼 수 있도록 만들어진 패키지
+    //api.php에 만들어둔 Route
+    axios.get('/api/users').then(function (res) {
+      //this.users -> date() 안에 있는 users에 접근
+      //res.data.user -> 가져온 값 res의 data안에 users안에 있는 값을 가르킴
+      _this.users = res.data.users;
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  }
+});
 
 /***/ }),
 
@@ -37412,9 +37452,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _ChatUserList_vue_vue_type_template_id_080ac428___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ChatUserList.vue?vue&type=template&id=080ac428& */ "./resources/js/components/ChatUserList.vue?vue&type=template&id=080ac428&");
 /* harmony import */ var _ChatUserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ChatUserList.vue?vue&type=script&lang=js& */ "./resources/js/components/ChatUserList.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _ChatUserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _ChatUserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -37469,11 +37506,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatUserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ChatUserList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ChatUserList.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatUserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatUserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatUserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatUserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatUserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default())); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatUserList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -37527,24 +37560,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "flex h-full" },
+    [_c("ChatUserList"), _vm._v(" "), _vm._m(0)],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex h-full" }, [
-      _c("div", { staticClass: "w-4/5 flex flex-col" }, [
-        _c("div", { staticClass: "flex-1" }, [_vm._v("Chat Area")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex-initial p-2" }, [
-          _c("input", {
-            staticClass:
-              "border-2 border-solid rounded border-gray-600 w-full p-2",
-            attrs: { type: "text" }
-          })
-        ])
+    return _c("div", { staticClass: "w-4/5 flex flex-col" }, [
+      _c("div", { staticClass: "flex-1" }, [_vm._v("Chat Area")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex-initial p-2" }, [
+        _c("input", {
+          staticClass:
+            "border-2 border-solid rounded border-gray-600 w-full p-2",
+          attrs: { type: "text" }
+        })
       ])
     ])
   }
@@ -37574,7 +37610,12 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "w-1/5 border-r-2 border-solid border-gray-600" },
-    [_vm._v("\n    User list\n")]
+    _vm._l(_vm.users, function(user) {
+      return _c("div", { key: user.id }, [
+        _vm._v("\n        " + _vm._s(user.name) + "\n    ")
+      ])
+    }),
+    0
   )
 }
 var staticRenderFns = []
@@ -49753,18 +49794,6 @@ Vue.compile = compileToFunctions;
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	

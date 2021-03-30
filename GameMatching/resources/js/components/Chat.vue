@@ -1,6 +1,7 @@
 <template>
     <div class="flex h-full">
-        <!-- components를 가져다 쓴다 -->
+        <ChatUserList />
+
         <div class="w-4/5 flex flex-col">
             <div class="flex-1">Chat Area</div>
             <div class="flex-initial p-2">
@@ -11,9 +12,14 @@
 </template>
 
 <script>
+    // components를 가져다 쓴다
     import ChatUserList from './ChatUserList';
-    
+
     export default {
+        components: {
+            ChatUserList
+        },
+        
         mounted() {
             console.log('Component mounted.')
         }
