@@ -1846,6 +1846,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _ChatUserList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ChatUserList */ "./resources/js/components/ChatUserList.vue");
+/* harmony import */ var _ChatArea__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ChatArea */ "./resources/js/components/ChatArea.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1861,12 +1871,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 // components를 가져다 쓴다
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    currentUser: {
+      //다른 타입은 에러
+      type: Number,
+      //null이 되면 안된다. 항상 값이 들어와야한다.
+      required: true
+    }
+  },
   components: {
-    ChatUserList: _ChatUserList__WEBPACK_IMPORTED_MODULE_0__.default
+    ChatUserList: _ChatUserList__WEBPACK_IMPORTED_MODULE_0__.default,
+    ChatArea: _ChatArea__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  data: function data() {
+    return {
+      chatWith: null
+    };
   },
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  //자식 컴포넌트에서 보내온 value값 
+  methods: {
+    updateChatWith: function updateChatWith(value) {
+      this.chatWith = value;
+    }
   }
 });
 
@@ -1896,27 +1927,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    currentUser: {
+      //다른 타입은 에러
+      type: Number,
+      //null이 되면 안된다. 항상 값이 들어와야한다.
+      required: true
+    }
+  },
+  //데이터가 변경되면, 변경된 값으로 계산해주는 (데이터가 바뀔때마다)
+  computed: {
+    //현재 로그인한 유저의 id는 유저목록에 나오면 안되니까 그것을 제외해주기 위해 filtering한 것 
+    usersWithoutSignedInUser: function usersWithoutSignedInUser() {
+      var _this = this;
+
+      //this를 사용해서 props의 값이나 data의 값에 접근이 가능해진다.
+      return this.users.filter(function (user) {
+        return user.id !== _this.currentUser;
+      });
+    }
+  },
   //date() 리퀘스트를 통해서 받아온 데이터(User list)값을 위의 vue 컴포넌트에서 사용하기 위해서 설정 
   data: function data() {
     return {
       //이 안에 설정된 값들은 위의 template 태그 안에서 사용가능하다.
-      users: [],
-      message: '안녕하세요 Vue!'
+      users: []
     };
   },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     //axios는 아작스 리퀘스트를 쉽게 보낼 수 있도록 만들어진 패키지
     //api.php에 만들어둔 Route
     axios.get('/api/users').then(function (res) {
-      //this.users -> date() 안에 있는 users에 접근
+      console.log(res); //this.users -> date() 안에 있는 users에 접근
       //res.data.user -> 가져온 값 res의 data안에 users안에 있는 값을 가르킴
-      _this.users = res.data.users;
+
+      _this2.users = res.data.users;
     })["catch"](function (error) {
       console.log(error);
     });
+  },
+  methods: {
+    updateChatWith: function updateChatWith(userId) {
+      //$emit() 부모 컴포넌트에 값을 보낼때
+      this.$emit('updatedChatWith', userId);
+    }
   }
 });
 
@@ -1946,7 +2006,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', __webpack_require__(/*! ./components/Chat.vue */ "./resources/js/components/Chat.vue").default);
+Vue.component('the-chat', __webpack_require__(/*! ./components/Chat.vue */ "./resources/js/components/Chat.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -37439,6 +37499,43 @@ component.options.__file = "resources/js/components/Chat.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/ChatArea.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/components/ChatArea.vue ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ChatArea_vue_vue_type_template_id_1fa81220___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ChatArea.vue?vue&type=template&id=1fa81220& */ "./resources/js/components/ChatArea.vue?vue&type=template&id=1fa81220&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__.default)(
+  script,
+  _ChatArea_vue_vue_type_template_id_1fa81220___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ChatArea_vue_vue_type_template_id_1fa81220___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ChatArea.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ChatUserList.vue":
 /*!**************************************************!*\
   !*** ./resources/js/components/ChatUserList.vue ***!
@@ -37527,6 +37624,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/ChatArea.vue?vue&type=template&id=1fa81220&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/ChatArea.vue?vue&type=template&id=1fa81220& ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatArea_vue_vue_type_template_id_1fa81220___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatArea_vue_vue_type_template_id_1fa81220___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatArea_vue_vue_type_template_id_1fa81220___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ChatArea.vue?vue&type=template&id=1fa81220& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ChatArea.vue?vue&type=template&id=1fa81220&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/ChatUserList.vue?vue&type=template&id=080ac428&":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/ChatUserList.vue?vue&type=template&id=080ac428& ***!
@@ -37563,7 +37677,23 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "flex h-full" },
-    [_c("ChatUserList"), _vm._v(" "), _vm._m(0)],
+    [
+      _c("ChatUserList", {
+        attrs: { "current-user": _vm.currentUser },
+        on: { updatedChatWith: _vm.updateChatWith }
+      }),
+      _vm._v(" "),
+      _vm.chatWith
+        ? _c(
+            "div",
+            { staticClass: "w-4/5 flex flex-col" },
+            [_c("ChatArea"), _vm._v(" "), _vm._m(0)],
+            1
+          )
+        : _c("div", { staticClass: "p-3" }, [
+            _vm._v("\n        채팅 상대를 선택해주세요.\n    ")
+          ])
+    ],
     1
   )
 }
@@ -37572,16 +37702,49 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-4/5 flex flex-col" }, [
-      _c("div", { staticClass: "flex-1" }, [_vm._v("Chat Area")]),
+    return _c("div", { staticClass: "flex-initial p-2" }, [
+      _c("input", {
+        staticClass: "border-2 border-solid rounded border-gray-600 w-full p-2",
+        attrs: { type: "text" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ChatArea.vue?vue&type=template&id=1fa81220&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ChatArea.vue?vue&type=template&id=1fa81220& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex-1" }, [
+      _c("div", [_vm._v("message")]),
       _vm._v(" "),
-      _c("div", { staticClass: "flex-initial p-2" }, [
-        _c("input", {
-          staticClass:
-            "border-2 border-solid rounded border-gray-600 w-full p-2",
-          attrs: { type: "text" }
-        })
-      ])
+      _c("div", [_vm._v("message")]),
+      _vm._v(" "),
+      _c("div", [_vm._v("message")])
     ])
   }
 ]
@@ -37610,10 +37773,21 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "w-1/5 border-r-2 border-solid border-gray-600" },
-    _vm._l(_vm.users, function(user) {
-      return _c("div", { key: user.id }, [
-        _vm._v("\n        " + _vm._s(user.name) + "\n    ")
-      ])
+    _vm._l(_vm.usersWithoutSignedInUser, function(user) {
+      return _c(
+        "div",
+        {
+          key: user.id,
+          staticClass:
+            "p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer",
+          on: {
+            click: function($event) {
+              return _vm.updateChatWith(user.id)
+            }
+          }
+        },
+        [_vm._v("\n        " + _vm._s(user.name) + "\n    ")]
+      )
     }),
     0
   )

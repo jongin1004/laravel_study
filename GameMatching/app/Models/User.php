@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Forum::class);
     }
+
+    public function List_of_friends()
+    {
+        return $this->hasMany(List_of_friend::class);
+    }
 }

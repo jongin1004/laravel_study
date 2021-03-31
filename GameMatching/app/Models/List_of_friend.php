@@ -10,4 +10,9 @@ class List_of_friend extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'friend_id'];
+
+    public function user() 
+    {
+        return $this->belongsTo(User::class);
+    }
 }
