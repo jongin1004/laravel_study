@@ -8,10 +8,19 @@
         />
 
         <div v-if="chatWith" class="w-4/5 flex flex-col">
-            <ChatArea />
+            <ChatArea 
+                :chat-id="chatWith"
+            />
 
             <div class="flex-initial p-2">
-                <input class="border-2 border-solid rounded border-gray-600 w-full p-2" type="text">
+                <!-- v-model은 data에 있는 text와 현재 input의 text를 연동시켜주는 것이다. input에서 값이 입력되었을 때, data에 text의 값도 실시간으로 바인딩된다. -->
+                <!-- @keyup.enter="submit" 키보드의 enter가 눌렀다가 올라왔을 때, submit 이벤트를 실행시켜라  -->
+                <input 
+                    class="border-2 border-solid rounded border-gray-600 w-full p-2" 
+                    type="text"
+                    v-model="text"
+                    @keyup.enter="submit"
+                >
             </div>
         </div>
         <div v-else class="p-3">
@@ -42,7 +51,8 @@
 
         data() {
             return {
-                chatWith: null
+                chatWith: null,
+                text: ''
             }
         },
         
@@ -54,6 +64,16 @@
         methods:{
             updateChatWith(value){
                 this.chatWith = value;
+            },
+
+            submit() {
+                if(this.text){
+                    axios.post('/api/messages', {
+                        text: this.text,
+                        to :this.chatWith,
+                        from: this.currentUser
+                    });
+                }                
             }
         }
     }
