@@ -30,7 +30,7 @@
             //현재 로그인한 유저의 id는 유저목록에 나오면 안되니까 그것을 제외해주기 위해 filtering한 것 
             usersWithoutSignedInUser(){
                 //this를 사용해서 props의 값이나 data의 값에 접근이 가능해진다.
-                return this.users.filter(user => user.id !== this.currentUser);
+                return this.users.filter(user => user.id != this.currentUser);
             }
         },
 

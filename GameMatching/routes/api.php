@@ -26,6 +26,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // prefix('messages') 고정 url 지정
 //input text에서 메세지를 보내게되면  도메인/api/messages/ 주소로 이동 -> MessageController의 store함수사용
 Route::prefix('messages')->group(function(){
+    Route::get('/', [MessageController::class, 'index']);
     Route::post('/', [MessageController::class, 'store']);
 });
 

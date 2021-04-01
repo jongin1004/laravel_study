@@ -10,6 +10,7 @@
         <div v-if="chatWith" class="w-4/5 flex flex-col">
             <ChatArea 
                 :chat-id="chatWith"
+                :messages="messages"
             />
 
             <div class="flex-initial p-2">
@@ -52,7 +53,8 @@
         data() {
             return {
                 chatWith: null,
-                text: ''
+                text: '',
+                messages: []
             }
         },
         
@@ -64,6 +66,19 @@
         methods:{
             updateChatWith(value){
                 this.chatWith = value;
+                this.getMessages();
+            },
+
+            getMessages() {
+                axios.get('/api/messages', {
+                    params:{
+                        to:this.chatWith,
+                        from:this.currentUser
+                    }
+                }).then(res => {
+                    console.log(res);
+                    this.messages = res.data.messages;
+                })
             },
 
             submit() {
@@ -72,8 +87,13 @@
                         text: this.text,
                         to :this.chatWith,
                         from: this.currentUser
+                    }).then(res => {
+                        //submit을 하고 난 뒤에, 자동적으로 messages에 추가됨으로 써 refresh가 된다. 
+                        this.messages.push(res.data.message); 
                     });
-                }                
+                }
+                //메세지 보낸 다음에 iunput창 초기화
+                this.text= '';
             }
         }
     }
