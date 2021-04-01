@@ -62,6 +62,14 @@
             console.log('Component mounted.')
         },
 
+        created() {
+            //Echo - Laravel에서 제공하는 쉽게 채널에서 리슨하도록 도와주는 것
+            window.Echo.private('chats').listen('MessageSent', e => {
+                console.log(e);
+                this.messages.push(e.message);
+            });
+        },
+
         //자식 컴포넌트에서 보내온 value값 
         methods:{
             updateChatWith(value){
