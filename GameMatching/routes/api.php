@@ -30,6 +30,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     Route::post('/', [MessageController::class, 'store']);
 // });
 
+//위의 코딩을 간소화
 Route::resource('messages', MessageController::class);
 
 Route::get('/users', [UserController::class, 'index']);
