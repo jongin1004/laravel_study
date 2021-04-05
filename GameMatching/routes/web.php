@@ -25,6 +25,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//이메일에서 링크를 클릭했을 때
 Route::get('/verify', [RegisterController::class, 'verifyUser'])->name('verify.user');
 
 Route::resource('forum', ForumController::class);
