@@ -4,7 +4,6 @@
         <!-- @updatedChatWith="updateChatWith" 자식 컴포넌트에서 $emit()를 통해서 보낸 값을 받아오는 작업  -->
         <ChatUserList 
             :current-user="currentUser"            
-            :chat-with="chatWith"
             @updatedChatWith="updateChatWith"
         />
 
@@ -66,9 +65,8 @@
         created() {
             //Echo - Laravel에서 제공하는 쉽게 채널에서 리슨하도록 도와주는 것
             window.Echo.private('chats').listen('MessageSent', e => {
-                if(e.message.to === this.currentUser && e.message.from === this.chatWith){
-                    this.messages.push(e.message);
-                }                
+                console.log(e);
+                this.messages.push(e.message);
             });
         },
 

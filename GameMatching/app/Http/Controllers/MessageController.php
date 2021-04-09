@@ -42,7 +42,7 @@ class MessageController extends Controller
         $message = Message::create($validated);
         
         //message를 생성했을 때, messageSent 이벤트를 실행시켜라
-        // MessageSent::dispatch($message);
+        MessageSent::dispatch($message);
 
         return response()->json([
             'message' =>$message->load('from')

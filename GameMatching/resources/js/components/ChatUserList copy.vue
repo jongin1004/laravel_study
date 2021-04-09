@@ -7,7 +7,6 @@
             v-for="user in usersWithoutSignedInUser"
             :key="user.id"
             class="p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer"
-            :class="{ 'text-pink-500': chatWith === user.id }"
             @click="updateChatWith(user.id)"
         >
             {{ user.name }}
@@ -23,13 +22,6 @@
                 type: Number,
                 //null이 되면 안된다. 항상 값이 들어와야한다.
                 required: true
-            },
-
-            chatWith: {
-               //다른 타입은 에러
-                type: Number,
-                //null이 되면 안된다. 항상 값이 들어와야한다.
-                required: false
             }
         },
 

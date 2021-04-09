@@ -1879,6 +1879,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 // components를 가져다 쓴다
 
 
@@ -1910,9 +1911,9 @@ __webpack_require__.r(__webpack_exports__);
 
     //Echo - Laravel에서 제공하는 쉽게 채널에서 리슨하도록 도와주는 것
     window.Echo["private"]('chats').listen('MessageSent', function (e) {
-      console.log(e);
-
-      _this.messages.push(e.message);
+      if (e.message.to === _this.currentUser && e.message.from === _this.chatWith) {
+        _this.messages.push(e.message);
+      }
     });
   },
   //자식 컴포넌트에서 보내온 value값 
@@ -2057,6 +2058,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     currentUser: {
@@ -2064,6 +2066,12 @@ __webpack_require__.r(__webpack_exports__);
       type: Number,
       //null이 되면 안된다. 항상 값이 들어와야한다.
       required: true
+    },
+    chatWith: {
+      //다른 타입은 에러
+      type: Number,
+      //null이 되면 안된다. 항상 값이 들어와야한다.
+      required: false
     }
   },
   //데이터가 변경되면, 변경된 값으로 계산해주는 (데이터가 바뀔때마다)
@@ -44018,7 +44026,7 @@ var render = function() {
     { staticClass: "flex h-full" },
     [
       _c("ChatUserList", {
-        attrs: { "current-user": _vm.currentUser },
+        attrs: { "current-user": _vm.currentUser, "chat-with": _vm.chatWith },
         on: { updatedChatWith: _vm.updateChatWith }
       }),
       _vm._v(" "),
@@ -44174,6 +44182,7 @@ var render = function() {
           key: user.id,
           staticClass:
             "p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer",
+          class: { "text-pink-500": _vm.chatWith === user.id },
           on: {
             click: function($event) {
               return _vm.updateChatWith(user.id)
