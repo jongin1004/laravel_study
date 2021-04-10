@@ -11,8 +11,8 @@ class List_of_friend extends Model
 
     protected $fillable = ['user_id', 'friend_id'];
 
-    public function user() 
+    public function friend() 
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'friend_id');
     }
 }

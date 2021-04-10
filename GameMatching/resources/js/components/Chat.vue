@@ -3,7 +3,8 @@
         <!-- :current-user="currentUser" 자식 컴포넨트 ChatUserList에 currentUser값을 보냄 -->
         <!-- @updatedChatWith="updateChatWith" 자식 컴포넌트에서 $emit()를 통해서 보낸 값을 받아오는 작업  -->
         <ChatUserList 
-            :current-user="currentUser"            
+            :current-user="currentUser"
+            :friend-list="friendList"            
             :chat-with="chatWith"
             @updatedChatWith="updateChatWith"
         />
@@ -43,6 +44,11 @@
                 type: Number,
                 //null이 되면 안된다. 항상 값이 들어와야한다.
                 required: true
+            },
+
+            friendList: {
+                type:Array,
+                required: false
             }
         },
 
@@ -86,8 +92,7 @@
                     to: this.chatWith,
                     from: this.currentUser
                 }            
-            }).then(res => {
-                console.log(res);
+            }).then(res => {                
                 this.messages = res.data.messages;
             })
         },

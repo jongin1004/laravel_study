@@ -1880,6 +1880,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 // components를 가져다 쓴다
 
 
@@ -1890,6 +1891,10 @@ __webpack_require__.r(__webpack_exports__);
       type: Number,
       //null이 되면 안된다. 항상 값이 들어와야한다.
       required: true
+    },
+    friendList: {
+      type: Array,
+      required: false
     }
   },
   components: {
@@ -1933,7 +1938,6 @@ __webpack_require__.r(__webpack_exports__);
           from: this.currentUser
         }
       }).then(function (res) {
-        console.log(res);
         _this2.messages = res.data.messages;
       });
     },
@@ -2077,6 +2081,10 @@ __webpack_require__.r(__webpack_exports__);
       type: Number,
       //null이 되면 안된다. 항상 값이 들어와야한다.
       required: false
+    },
+    friendList: {
+      type: Array,
+      required: false
     }
   },
   //데이터가 변경되면, 변경된 값으로 계산해주는 (데이터가 바뀔때마다)
@@ -2103,11 +2111,14 @@ __webpack_require__.r(__webpack_exports__);
 
     //axios는 아작스 리퀘스트를 쉽게 보낼 수 있도록 만들어진 패키지
     //api.php에 만들어둔 Route
-    axios.get('/api/users').then(function (res) {
-      console.log(res); //this.users -> date() 안에 있는 users에 접근
+    axios.get('/api/users', {
+      params: {
+        currentUser: this.currentUser
+      }
+    }).then(function (res) {
+      //this.users -> date() 안에 있는 users에 접근
       //res.data.user -> 가져온 값 res의 data안에 users안에 있는 값을 가르킴
-
-      _this2.users = res.data.users;
+      _this2.users = res.data.friends;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -44130,7 +44141,11 @@ var render = function() {
     { staticClass: "flex h-full" },
     [
       _c("ChatUserList", {
-        attrs: { "current-user": _vm.currentUser, "chat-with": _vm.chatWith },
+        attrs: {
+          "current-user": _vm.currentUser,
+          "friend-list": _vm.friendList,
+          "chat-with": _vm.chatWith
+        },
         on: { updatedChatWith: _vm.updateChatWith }
       }),
       _vm._v(" "),
@@ -44294,21 +44309,21 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "w-1/5 border-r-2 border-solid border-gray-600" },
-    _vm._l(_vm.usersWithoutSignedInUser, function(user) {
+    _vm._l(_vm.users, function(user) {
       return _c(
         "div",
         {
-          key: user.id,
+          key: user.friend.id,
           staticClass:
             "p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer",
-          class: { "text-pink-500": _vm.chatWith === user.id },
+          class: { "text-pink-500": _vm.chatWith === user.friend.id },
           on: {
             click: function($event) {
-              return _vm.updateChatWith(user.id)
+              return _vm.updateChatWith(user.friend.id)
             }
           }
         },
-        [_vm._v("\n        " + _vm._s(user.name) + "\n    ")]
+        [_vm._v("\n        " + _vm._s(user.friend.name) + "\n    ")]
       )
     }),
     0

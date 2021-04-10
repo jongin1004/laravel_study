@@ -4,13 +4,13 @@
         <!-- key 유니크한 값을 등록 (유니크한 값이 없을 경우에는  v-for="(user, index) 이런식으로 사용하면 된다.-->
         <!-- @click 현재 div를 클릭했을 때에 어떠한 이벤트를 발생시킨다. -->
         <div
-            v-for="user in usersWithoutSignedInUser"
-            :key="user.id"
+            v-for="user in users"
+            :key="user.friend.id"
             class="p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer"
-            :class="{ 'text-pink-500': chatWith === user.id }"
-            @click="updateChatWith(user.id)"
+            :class="{ 'text-pink-500': chatWith === user.friend.id }"
+            @click="updateChatWith(user.friend.id)"
         >
-            {{ user.name }}
+            {{ user.friend.name }}
         </div>
     </div>
 </template>
@@ -29,6 +29,11 @@
                //다른 타입은 에러
                 type: Number,
                 //null이 되면 안된다. 항상 값이 들어와야한다.
+                required: false
+            },
+
+            friendList: {
+                type: Array,
                 required: false
             }
         },
@@ -53,11 +58,14 @@
         created() {
             //axios는 아작스 리퀘스트를 쉽게 보낼 수 있도록 만들어진 패키지
             //api.php에 만들어둔 Route
-            axios.get('/api/users').then(res => {                                              
-                console.log(res);
+            axios.get('/api/users', {
+                params: {                
+                    currentUser: this.currentUser
+                } 
+            }).then(res => {                                                              
                 //this.users -> date() 안에 있는 users에 접근
                 //res.data.user -> 가져온 값 res의 data안에 users안에 있는 값을 가르킴
-                this.users = res.data.users;
+                this.users = res.data.friends;
             }).catch(error => {
                 console.log(error);
             });

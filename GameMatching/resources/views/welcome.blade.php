@@ -64,6 +64,13 @@
             <div id="test">
                 안녕하세요
             </div>
+
+            <div>
+                <a href="/chating">
+                    <button>채팅하기</button>
+                </a>
+                
+            </div>
         </div>
 
         <?php  

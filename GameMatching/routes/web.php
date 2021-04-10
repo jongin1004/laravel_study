@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\FriendController;
+use App\Http\Controllers\MoveChatingController;
 use App\Http\Controllers\Auth\RegisterController;
 
 
@@ -33,3 +34,4 @@ Route::POST('/forum/recommend', [ForumController::class, 'recommend']);
 
 Route::get('/friend/{id}', [FriendController::class, 'friend']);
 
+Route::get('/chating', [MoveChatingController::class, 'index']);
