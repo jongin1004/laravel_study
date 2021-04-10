@@ -66,6 +66,7 @@
         created() {
             //Echo - Laravel에서 제공하는 쉽게 채널에서 리슨하도록 도와주는 것
             window.Echo.private('chats').listen('MessageSent', e => {
+                console.log(e);
                 if(e.message.to === this.currentUser && e.message.from === this.chatWith){
                     this.messages.push(e.message);
                 }                
@@ -80,16 +81,16 @@
             },
 
             getMessages() {
-                axios.get('/api/messages', {
-                    params:{
-                        to:this.chatWith,
-                        from:this.currentUser
-                    }
-                }).then(res => {
-                    console.log(res);
-                    this.messages = res.data.messages;
-                })
-            },
+            axios.get('/api/messages', {
+                params: {
+                    to: this.chatWith,
+                    from: this.currentUser
+                }            
+            }).then(res => {
+                console.log(res);
+                this.messages = res.data.messages;
+            })
+        },
 
             submit() {
                 if(this.text){

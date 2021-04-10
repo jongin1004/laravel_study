@@ -1911,6 +1911,8 @@ __webpack_require__.r(__webpack_exports__);
 
     //Echo - Laravel에서 제공하는 쉽게 채널에서 리슨하도록 도와주는 것
     window.Echo["private"]('chats').listen('MessageSent', function (e) {
+      console.log(e);
+
       if (e.message.to === _this.currentUser && e.message.from === _this.chatWith) {
         _this.messages.push(e.message);
       }
@@ -2009,6 +2011,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
 //
 //
 //
@@ -44240,13 +44245,25 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", [
-      _c("strong", [
-        _vm._v(
-          _vm._s(_vm.message.from.name) + " " + _vm._s(_vm.message.created_at)
-        )
-      ])
-    ]),
+    _vm.message.from.name
+      ? _c("div", [
+          _c("strong", [
+            _vm._v(
+              _vm._s(_vm.message.from.name) +
+                " " +
+                _vm._s(_vm.message.created_at)
+            )
+          ])
+        ])
+      : _c("div", [
+          _c("strong", [
+            _vm._v(
+              _vm._s(_vm.message.user.name) +
+                " " +
+                _vm._s(_vm.message.created_at)
+            )
+          ])
+        ]),
     _vm._v(" "),
     _c("div", [_vm._v("\n        " + _vm._s(_vm.message.text) + "\n    ")])
   ])

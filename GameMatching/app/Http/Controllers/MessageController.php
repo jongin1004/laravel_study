@@ -40,7 +40,7 @@ class MessageController extends Controller
 
         //MessageSent 이벤트를 발생시켜라
         $message = Message::create($validated);
-        
+            
         //message를 생성했을 때, messageSent 이벤트를 실행시켜라
         MessageSent::dispatch($message);
 

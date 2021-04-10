@@ -25,6 +25,7 @@ class MessageSent implements ShouldBroadcast
     public function __construct(Message $message)
     {
         $this->message = $message;
+        $this->message['name'] = $message ->user->name;
         //현제 로그인중인 유저에게는 보내지 말라->안그러면 자신한테 두개씩 메세지 보임
         $this->dontBroadcastToCurrentUser();
     }

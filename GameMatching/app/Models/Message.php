@@ -17,9 +17,14 @@ class Message extends Model
     {
         return $this->belongsTo(User::class, 'from');
     }
-
+ 
     public function to()
     {
         return $this->belongsTo(User::class, 'to');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'from');
     }
 }

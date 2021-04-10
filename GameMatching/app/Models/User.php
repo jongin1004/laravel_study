@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Message;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -53,6 +54,11 @@ class User extends Authenticatable
     public function List_of_friends()
     {
         return $this->hasMany(List_of_friend::class);
+    }
+
+    public function Messages()
+    {
+        return $this->hasMany(Message::class);
     }
 
 }
