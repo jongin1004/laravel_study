@@ -74,17 +74,18 @@
         </div>
 
         <?php  
-        // $timeData = Auth::user()->created_at;
+        $timeData = '2021-04-11T21:40:15.000000Z';
         // $timeZone = new DateTime($timeData, new DateTimeZone('KST'));
-        // $dt = $timeZone->format('Y-m-d H:i:s');
+        // // $dt = $timeZone->format('Y-m-d H:i:s');
 
-        // echo "$dt<br>"; 
+        // echo "$timeData<br>";
+        echo "$timeData<br>"; 
 
         // $timeData = $dt;
-        // $addTime = strtotime("+9 hours", strtotime($timeData));
-        // $dt = date('Y-m-d H:i:s', $addTime);
+        $addTime = strtotime("+9 hours", strtotime($timeData));
+        $dt = date('Y-m-d H:i:s', $addTime);
 
-        // echo $dt;
+        echo $dt;
         ?>
     </body>
 

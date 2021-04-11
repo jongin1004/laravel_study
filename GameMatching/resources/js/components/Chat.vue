@@ -87,15 +87,16 @@
             },
 
             getMessages() {
-            axios.get('/api/messages', {
-                params: {
-                    to: this.chatWith,
-                    from: this.currentUser
-                }            
-            }).then(res => {                
-                this.messages = res.data.messages;
-            })
-        },
+                axios.get('/api/messages', {
+                    params: {
+                        to: this.chatWith,
+                        from: this.currentUser
+                    }            
+                }).then(res => {
+                    console.log(res);            
+                    this.messages = res.data.messages;
+                })
+            },
 
             submit() {
                 if(this.text){

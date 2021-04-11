@@ -28,7 +28,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "moment-timezone": "^0.5.33",
         "tailwindcss": "^2.0.4",
-        "vue-chat-scroll": "^1.4.0"
+        "vue-chat-scroll": "^1.4.0",
+        "vue-moment": "^4.1.0"
     }
 }

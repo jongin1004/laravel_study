@@ -18,15 +18,7 @@ class MessageController extends Controller
             $query->where('from', request('to'));
             $query->where('to', request('from'));
         })->get();
-                
-        for($i=0; $i<count($messages); $i++){
-            $addTime = strtotime("+9 hours", strtotime($messages[$i]['created_at']));
-            // $messages[$i]['created_at'] = date('Y-m-d H:i:s', $addTime);
-            $messages[$i]['created_at'] = $addTime;
-        };
-
-
-
+        
         //json형식으로 return을 한다. 
         return response()->json([
             //load를 통해서 from과 to의 이름을 가져올 수 있다.
@@ -48,9 +40,6 @@ class MessageController extends Controller
 
         //MessageSent 이벤트를 발생시켜라
         $message = Message::create($validated);
-
-        $addTime = strtotime("+9 hours", strtotime($message['created_at']));
-        $message['created_at'] = $addTime;
             
         //message를 생성했을 때, messageSent 이벤트를 실행시켜라
         MessageSent::dispatch($message);

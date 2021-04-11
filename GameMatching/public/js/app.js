@@ -1938,6 +1938,7 @@ __webpack_require__.r(__webpack_exports__);
           from: this.currentUser
         }
       }).then(function (res) {
+        console.log(res);
         _this2.messages = res.data.messages;
       });
     },
@@ -2034,6 +2035,11 @@ __webpack_require__.r(__webpack_exports__);
     message: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    convertFormatter: function convertFormatter() {
+      return this.message.created_at.slice(0, -8);
     }
   }
 });
@@ -44266,7 +44272,7 @@ var render = function() {
             _vm._v(
               _vm._s(_vm.message.from.name) +
                 " " +
-                _vm._s(_vm.message.created_at)
+                _vm._s(_vm.convertFormatter())
             )
           ])
         ])
