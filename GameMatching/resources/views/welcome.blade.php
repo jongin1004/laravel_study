@@ -129,7 +129,7 @@
 
             $(this).css({
             'background-color' : 'blue',
-            }).text("Movement detected...");
+            }).text("Mdfdf...");
         });
     });
 

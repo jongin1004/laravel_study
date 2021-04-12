@@ -115,6 +115,8 @@
                 moveTimer = setTimeout(function(){
                 $('#show_xp').css("display", 'inline-block');
                 },700)
+
+                $('#show_xp').css("display", 'none');
             });
         });
 
