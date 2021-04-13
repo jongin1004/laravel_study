@@ -31,7 +31,7 @@
                 <a href="/friend/{{ $forum->user->id }}">친구추가</a><br>
                 <a href="#">쪽지보내기</a><br>
                 <a href="#">프로필 보기</a><br>
-                asdasd
+                <a href="#">미정</a>
             </dd>
         </dl>
     </section>   

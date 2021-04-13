@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Message;
+use App\Models\Request_friend;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -59,6 +60,11 @@ class User extends Authenticatable
     public function Messages()
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function request()
+    {
+        return $this->hasMany(Request_friend::class);
     }
 
 }
