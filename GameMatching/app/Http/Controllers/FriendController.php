@@ -43,4 +43,18 @@ class FriendController extends Controller
 
         return redirect()->back();
     }
+
+    public function accept(Request $request)
+    {
+        dd($request);
+
+        return redirect()->back();
+    }
+
+    public function refusal(Request $request)
+    {
+        Request_friend::where('from', $request->request_id)->delete();
+
+        return redirect()->back();
+    }
 }

@@ -15,13 +15,18 @@ class Request_friend extends Model
 
     protected $fillable = ['from', 'to'];
 
-    public function from()
-    {
-        return $this->belongsTo(User::class, 'from');
-    }
+    // public function from()
+    // {
+    //     return $this->belongsTo(User::class, 'from');
+    // }
+
+    // public function to()
+    // {
+    //     return $this->belongsTo(User::class, 'id');
+    // }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'from');
     }
 }
