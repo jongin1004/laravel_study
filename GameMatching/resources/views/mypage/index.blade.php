@@ -19,7 +19,8 @@
                         {{-- 버튼을 두개만들어서, 버튼에 따라서 action을 다르게 주기위함 --}}
                         <form method="POST" name="form">
                             @csrf
-                            <input type="hidden" value="{{ $request->from }}" name="request_id">                            
+                            <input type="hidden" value="{{ $request->from }}" name="request_from">
+                            <input type="hidden" value="{{ $request->id }}" name="request_id">
                             <input class="mb-10 bg-blue-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900 rounded" 
                             type="submit" value="수락" onclick="javascript: form.action='/friend/accept';"/>
                             <input class="mb-10 bg-red-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900 rounded" 
