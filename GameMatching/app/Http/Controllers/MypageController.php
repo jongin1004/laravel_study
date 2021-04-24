@@ -10,9 +10,19 @@ class MypageController extends Controller
 {
     public function index()
     {
+        $user = User::where('id', auth()->id())->first();
+
+        return view('mypage.index', [
+            'user' => $user
+        ]);
+    }
+
+
+    public function request()
+    {
         $request_list = Request_friend::where('to', auth()->id())->get();    
         
-        return view('mypage.index', [
+        return view('mypage.request_friend', [
             'request_list' => $request_list
         ]);
     }

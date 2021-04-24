@@ -34,7 +34,8 @@ class FriendController extends Controller
     public function accept(Request $request)
     {
         request()->validate([
-            'request_from' => 'required'
+            'request_from' => 'required',
+            'request_id' => 'required'
         ]);
 
         //접속유저의 친구목록에 요청온 상대방이 친추되어있는지 확인

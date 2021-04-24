@@ -42,3 +42,5 @@ Route::POST('/friend/refusal', [FriendController::class, 'refusal']);
 Route::get('/chating', [MoveChatingController::class, 'index']);
 
 Route::get('/mypage', [MypageController::class, 'index']);
+
+Route::get('/mypage/request', [MypageController::class, 'request']);
