@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Forum;
 use Illuminate\Http\Request;
 use App\Models\Request_friend;
 
@@ -26,4 +27,14 @@ class MypageController extends Controller
             'request_list' => $request_list
         ]);
     }
+
+    public function myforum()
+    {
+        $forums = Forum::where('user_id', auth()->id())->orderBy('id', 'DESC')->get();
+
+        return view('mypage.myforum', [
+            'forums' => $forums
+        ]);
+    }
+
 }

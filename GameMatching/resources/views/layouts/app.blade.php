@@ -21,6 +21,7 @@
     <!-- jquery -->
     <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
     <!-- Styles -->
+    <link rel="stylesheet" href="/css/main.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @notifyCss
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">

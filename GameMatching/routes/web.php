@@ -44,3 +44,5 @@ Route::get('/chating', [MoveChatingController::class, 'index']);
 Route::get('/mypage', [MypageController::class, 'index']);
 
 Route::get('/mypage/request', [MypageController::class, 'request']);
+
+Route::get('/mypage/myforum', [MypageController::class, 'myforum']);

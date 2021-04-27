@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="flex h-full">
         <div class="w-1/5 border-r-2 border-solid border-gray-600">
             <a href="/mypage/request">
@@ -9,7 +8,7 @@
                     친구요청 
                 </div>   
             </a>       
-            <a href="/mypage/#">
+            <a href="/mypage/myforum">
                 <div class="p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer">
                     내 글
                 </div>   
@@ -20,8 +19,8 @@
                 </div>   
             </a>  
         </div>
-        <div class="w-4/5 flex flex-col">
-            @if (substr(url()->previous(), -6, ) == "mypage")
+        <div class="w-4/5 flex flex-col">            
+            @if(substr(url()->full(), -6, ) == "mypage")
                 <table class="table">                
                     <tbody>
                         <tr>
@@ -30,36 +29,38 @@
                             </th>
                         </tr>
                         <tr>
-                            <th scope="row" class="w-48 text-center">
+                            <th scope="row" class="w-48 text-center border-r-2">
                                 <div>아이디</div>
                             </th>
-                            <td>
-                                {{ $user->name }}
+                            <td >
+                                <span class="ml-2">{{ $user->name }}</span>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">
+                            <th scope="row" class="text-center border-r-2">
                                 <div>메일주소</div>
                             </th>
                             <td>
-                                {{ $user->email }}
+                                <span class="ml-2">{{ $user->email }}</span>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">
+                            <th scope="row" class="text-center border-r-2">
                                 <div>가입일</div>
                             </th>
                             <td>
-                                {{ $user->created_at }}
+                                <span class="ml-2">{{ $user->created_at }}</span>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">
+                            <th scope="row" class="text-center border-r-2">
                                 <div>경험치 / 레벨</div>
                             </th>
                             <td>
-                                경험치 : {{ $user->experience_point }} / 
-                                레벨 : {{ floor($user->experience_point/10) }}
+                                <span class="ml-2">
+                                    경험치 : {{ $user->experience_point }} / 
+                                    레벨 : {{ floor($user->experience_point/10) }}
+                                </span>
                             </td>
                         </tr>
                     </tbody>
@@ -67,6 +68,7 @@
             @endif
                        
             @yield('request_friend')
+            @yield('myforum')
         </div>        
     </div>
 @endsection
