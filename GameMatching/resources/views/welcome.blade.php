@@ -29,6 +29,42 @@
                 width:200px;
                 cursor:pointer;
             }
+
+            #modal {
+            display: none;
+            position:relative;
+            width:100%;
+            height:100%;
+            z-index:1;
+            }
+
+            #modal h2 {
+            margin:0;   
+            }
+
+            #modal button {
+            display:inline-block;
+            width:100px;
+            margin-left:calc(100% - 100px - 10px);
+            }
+
+            #modal .modal_content {
+            width:300px;
+            margin:100px auto;
+            padding:20px 10px;
+            background:#fff;
+            border:2px solid #666;
+            }
+
+            #modal .modal_layer {
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0, 0, 0, 0.5);
+            z-index:-1;
+            }
         </style>
 
     </head>
@@ -71,6 +107,31 @@
                 </a>
                 
             </div>
+
+            <div>
+                <a href="URL" onclick="window.open(this.href, '_blank', 'width=가로사이즈px,height=세로사이즈px,toolbars=no,scrollbars=no'); return false;">완전 간단하게 팝업 띄우기!!</a>
+            </div>
+
+            <div id="root">
+   
+                <button type="button" id="modal_opne_btn">모달 창 열기</button>
+            
+            </div>
+
+            <div id="modal">
+            
+                <div class="modal_content">
+                    <h2>모달 창</h2>
+                
+                    <p>모달 창 입니다.</p>
+                
+                    <button type="button" id="modal_close_btn">모달 창 닫기</button>
+                
+                </div>
+            
+                <div class="modal_layer"></div>
+            </div>
+            
         </div>
 
         <?php  
@@ -151,6 +212,15 @@
                 }
             }
         }
+    });
+
+    //모달창 관련 script
+    $("#modal_opne_btn").click(function(){
+        $("#modal").attr("style", "display:block");
+    });
+   
+     $("#modal_close_btn").click(function(){
+        $("#modal").attr("style", "display:none");
     });
 
     </script>

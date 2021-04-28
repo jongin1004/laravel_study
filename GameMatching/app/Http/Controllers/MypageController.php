@@ -30,11 +30,16 @@ class MypageController extends Controller
 
     public function myforum()
     {
-        $forums = Forum::where('user_id', auth()->id())->orderBy('id', 'DESC')->get();
+        $forums = Forum::where('user_id', auth()->id())->orderBy('id', 'DESC')-> paginate(5);
 
         return view('mypage.myforum', [
             'forums' => $forums
         ]);
+    }
+
+    public function letter()
+    {
+        return view('mypage.box_of_letter');
     }
 
 }

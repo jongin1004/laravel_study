@@ -17,7 +17,12 @@
                 <div class="p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer">
                     내 댓글 
                 </div>   
-            </a>  
+            </a>
+            <a href="{{ route('letter') }}">
+                <div class="p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer">
+                    쪽지함
+                </div>   
+            </a> 
         </div>
         <div class="w-4/5 flex flex-col">            
             @if(substr(url()->full(), -6, ) == "mypage")
@@ -69,6 +74,7 @@
                        
             @yield('request_friend')
             @yield('myforum')
+            @yield('box_of_letter')
         </div>        
     </div>
 @endsection

@@ -23,6 +23,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -46,3 +50,5 @@ Route::get('/mypage', [MypageController::class, 'index']);
 Route::get('/mypage/request', [MypageController::class, 'request']);
 
 Route::get('/mypage/myforum', [MypageController::class, 'myforum']);
+
+Route::get('/mypage/letter', [MypageController::class, 'letter'])->name('letter');
