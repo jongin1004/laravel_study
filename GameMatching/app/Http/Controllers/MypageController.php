@@ -9,6 +9,11 @@ use App\Models\Request_friend;
 
 class MypageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $user = User::where('id', auth()->id())->first();
@@ -37,7 +42,7 @@ class MypageController extends Controller
         ]);
     }
 
-    public function letter()
+    public function box_of_letter()
     {
         return view('mypage.box_of_letter');
     }

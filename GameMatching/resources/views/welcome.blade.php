@@ -109,7 +109,7 @@
             </div>
 
             <div>
-                <a href="URL" onclick="window.open(this.href, '_blank', 'width=가로사이즈px,height=세로사이즈px,toolbars=no,scrollbars=no'); return false;">완전 간단하게 팝업 띄우기!!</a>
+                <a href="/letter" onclick="window.open(this.href, '_blank', 'width=600px,height=480px,toolbars=no,scrollbars=no'); return false;">완전 간단하게 팝업 띄우기!!</a>
             </div>
 
             <div id="root">

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\FriendController;
+use App\Http\Controllers\LetterController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\MoveChatingController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -51,4 +52,6 @@ Route::get('/mypage/request', [MypageController::class, 'request']);
 
 Route::get('/mypage/myforum', [MypageController::class, 'myforum']);
 
-Route::get('/mypage/letter', [MypageController::class, 'letter'])->name('letter');
+Route::get('/mypage/box_of_letter', [MypageController::class, 'box_of_letter'])->name('box_of_letter');
+
+Route::get('/letter', [LetterController::class, 'index'])->name('letter');

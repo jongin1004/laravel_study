@@ -18,7 +18,7 @@
                     내 댓글 
                 </div>   
             </a>
-            <a href="{{ route('letter') }}">
+            <a href="{{ route('box_of_letter') }}">
                 <div class="p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer">
                     쪽지함
                 </div>   
