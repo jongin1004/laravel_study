@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Letter;
 use App\Models\Message;
 use App\Models\Request_friend;
 use Illuminate\Notifications\Notifiable;
@@ -67,4 +68,8 @@ class User extends Authenticatable
         return $this->hasMany(Request_friend::class, 'to');
     }
 
+    public function Letters()
+    {
+        return $this->hasMany(Letter::class);
+    }
 }

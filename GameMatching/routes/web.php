@@ -54,6 +54,8 @@ Route::get('/mypage/myforum', [MypageController::class, 'myforum']);
 
 Route::get('/mypage/box_of_letter', [MypageController::class, 'box_of_letter'])->name('box_of_letter');
 
+Route::get('/mypage/letter/filter/{num}', [MypageController::class, 'letter_filter'])->name('letter_filter');
+
 Route::get('/letter/{id}', [LetterController::class, 'index'])->name('letter');
 
 Route::POST('/letter/create', [LetterController::class, 'create'])->name('create_letter');

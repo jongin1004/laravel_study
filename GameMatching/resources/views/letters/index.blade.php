@@ -41,12 +41,12 @@
                 </div>
 
                 <div class="mt-4 text-center">
-                    <span class="bt">
-                        <input type="hidden" value="{{ $to->id }}" name="to">                    
-                        <input class="bg-gray-500" type="submit" value="쪽지 보내기">                    
+                    <span class="bg-green-500 px-2 py-1 text-white hover:bg-green-400 transition ease-in-out duration-150">
+                        <input type="hidden" value="{{ $to->id }}" name="to">     
+                        <input class="bg-green-500 hover:bg-green-300" type="submit" value="쪽지 보내기">                    
                     </span>
                     <span class="ml-2">                    
-                        <a href="#" onclick="javascript:self.close();">닫기</a>                        
+                        <a class="bg-green-500 px-2 py-1 h-2 text-white hover:bg-green-300" href="#" onclick="javascript:self.close();">닫기</a>                        
                     </span>
                 </div>
             </form>
