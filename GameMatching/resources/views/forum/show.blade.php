@@ -29,7 +29,7 @@
             </dt>
             <dd style="display:none;" class="float-right bg-yellow-400 border-4 border-blue-400 rounded-md px-2"> 
                 <a href="/friend/{{ $forum->user->id }}">친구추가</a><br>
-                <a href="#">쪽지보내기</a><br>
+                <a href="/letter/{{ $forum->user->id }}" onclick="window.open(this.href, '_blank', 'width=600px,height=480px,toolbars=no,scrollbars=no'); return false;">쪽지 보내기</a><br>
                 <a href="#">프로필 보기</a><br>
                 <a href="#">미정</a>
             </dd>
