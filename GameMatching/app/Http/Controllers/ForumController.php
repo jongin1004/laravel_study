@@ -26,6 +26,8 @@ class ForumController extends Controller
 
     public function show(Forum $forum)
     {   
+        abort_unless(auth()->user()->is_blind($forum), 403, '당신은 글쓴이에게 블라인드 당했습니다.');
+
         return view('forum.show', [
             'forum' => $forum
         ]);
@@ -106,12 +108,5 @@ class ForumController extends Controller
 
         return redirect()->back();
     }
-
-    // public function blind()
-    // {
-
-
-    //     abort_unless(auth()->user()->Qnaowns($forum), 403);
-    // }
     
 }

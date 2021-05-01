@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Forum;
 use App\Models\Letter;
+use App\Models\Blind_user;
 use Illuminate\Http\Request;
 use App\Models\Request_friend;
 
@@ -65,5 +66,14 @@ class MypageController extends Controller
         return view('mypage.box_of_letter', [
             'letters' => $letters
         ]);    
+    }
+
+    public function blind_list()
+    {
+        $blind_list = Blind_user::where('user_id', auth()->id())->paginate(5);
+
+        return view('mypage.blind_list', [
+            'blind_list' => $blind_list
+        ]);
     }
 }

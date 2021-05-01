@@ -22,6 +22,11 @@
                 <div class="p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer">
                     쪽지함
                 </div>   
+            </a>
+            <a href="{{ route('blind_list') }}">
+                <div class="p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer">
+                    블라인드 유저 관리
+                </div>   
             </a> 
         </div>
         <div class="w-4/5 flex flex-col">            
@@ -75,6 +80,7 @@
             @yield('request_friend')
             @yield('myforum')
             @yield('box_of_letter')
+            @yield('blind_list')
         </div>        
     </div>
 @endsection

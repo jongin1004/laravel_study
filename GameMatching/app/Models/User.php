@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Forum;
 use App\Models\Letter;
 use App\Models\Message;
+use App\Models\Blind_user;
 use App\Models\Request_friend;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -74,10 +75,15 @@ class User extends Authenticatable
         return $this->hasMany(Letter::class);
     }
 
-    // public function is_blind(Forum $forum)
-    // {
-        
+    public function blind_users()
+    {
+        return $this->hasMany(Blind_user::class);
+    }
 
-    //     return auth()->id() == $qna->id;
-    // }
+    public function is_blind(Forum $forum)
+    {
+        $is_blind = Blind_user::where('user_id', $forum->user->id)->where('target_id', auth()->id())->first();
+
+        return $is_blind == null;
+    }
 }
