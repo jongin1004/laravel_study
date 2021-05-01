@@ -23,8 +23,8 @@
     <ul class="p-3">
         @foreach($forums as $forum)
             <a href="/forum/{{ $forum->id }}">
-                <li class="border-4 border-gray-500 px-2 py-2 mt-4">タイトル : {{ $forum-> title }} <small class="float-right">created_at {{ $forum -> created_at}}</small><br>
-                内容 : {{ $forum -> body }} </li>
+                <li class="border-4 border-gray-500 px-2 py-2 mt-4" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">タイトル : {{ $forum-> title }} <small class="float-right">created_at {{ $forum -> created_at}}</small><br>
+                内容 : {{ $forum -> body }}</li>
             </a>             
         @endforeach
     </ul>    

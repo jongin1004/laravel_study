@@ -64,3 +64,5 @@ Route::POST('/letter/create', [LetterController::class, 'create'])->name('create
 Route::get('/blind/{id}', [BlindController::class, 'add_blind'])->name('blind');
 
 Route::get('/mypage/blind', [MypageController::class, 'blind_list'])->name('blind_list');
+
+Route::DELETE('/blind/{id}', [BlindController::class, 'delete'])->name('delete_blind');

@@ -24,4 +24,13 @@ class BlindController extends Controller
 
         return redirect()->back();
     }
+
+    public function delete($id)
+    {
+        $blind_user = Blind_user::where('user_id', auth()->id())->where('target_id', $id)->first();
+
+        $blind_user -> delete();
+
+        return redirect()->back();
+    }
 }
