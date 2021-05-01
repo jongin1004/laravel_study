@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlindController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\LetterController;
@@ -59,3 +60,7 @@ Route::get('/mypage/letter/filter/{num}', [MypageController::class, 'letter_filt
 Route::get('/letter/{id}', [LetterController::class, 'index'])->name('letter');
 
 Route::POST('/letter/create', [LetterController::class, 'create'])->name('create_letter');
+
+Route::get('/blind/{id}', [BlindController::class, 'add_blind'])->name('blind');
+
+

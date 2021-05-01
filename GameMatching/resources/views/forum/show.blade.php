@@ -31,7 +31,7 @@
                 <a href="/friend/{{ $forum->user->id }}">친구추가</a><br>
                 <a href="/letter/{{ $forum->user->id }}" onclick="window.open(this.href, '_blank', 'width=600px,height=480px,toolbars=no,scrollbars=no'); return false;">쪽지 보내기</a><br>
                 <a href="#">프로필 보기</a><br>
-                <a href="#">미정</a>
+                <a href="{{ route('blind', $forum->user->id ) }}">블라인드 추가</a>
             </dd>
         </dl>
     </section>   

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Forum;
 use App\Models\Letter;
 use App\Models\Message;
 use App\Models\Request_friend;
@@ -72,4 +73,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Letter::class);
     }
+
+    // public function is_blind(Forum $forum)
+    // {
+        
+
+    //     return auth()->id() == $qna->id;
+    // }
 }

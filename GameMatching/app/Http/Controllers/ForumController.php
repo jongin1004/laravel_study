@@ -106,4 +106,12 @@ class ForumController extends Controller
 
         return redirect()->back();
     }
+
+    // public function blind()
+    // {
+
+
+    //     abort_unless(auth()->user()->Qnaowns($forum), 403);
+    // }
+    
 }
