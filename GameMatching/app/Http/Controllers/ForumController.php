@@ -111,7 +111,18 @@ class ForumController extends Controller
 
     public function search_forum(Request $request)
     {
-        $forums = Forum::where('title', 'LIKE', "%{$request['search_forum']}%")->paginate(5);
+        if($request['search_object'] == 'nickname'){
+            $user_id = User::where('name', 'LIKE', "%{$request['search_forum']}%")->get();
+            
+            $forums = [];
+
+            for($i=0; $i<count($user_id); $i++){
+                $input = Forum::where('user_id', $user_id[$i]->id)->orderBy('id', 'DESC')->paginate(5);
+                array_push($forums, $input);
+            }            
+        } else {
+            $forums = Forum::where($request['search_object'] , 'LIKE', "%{$request['search_forum']}%")->paginate(5);
+        }
 
         return view('forum.index', [
             'forums' => $forums
