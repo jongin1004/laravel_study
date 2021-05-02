@@ -108,5 +108,14 @@ class ForumController extends Controller
 
         return redirect()->back();
     }
+
+    public function search_forum(Request $request)
+    {
+        $forums = Forum::where('title', 'LIKE', "%{$request['search_forum']}%")->paginate(5);
+
+        return view('forum.index', [
+            'forums' => $forums
+        ]);
+    }
     
 }

@@ -26,7 +26,7 @@
     @notifyCss
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-900 text-white">
     <div id="app" class="h-screen">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

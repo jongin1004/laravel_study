@@ -39,6 +39,8 @@ Route::resource('forum', ForumController::class);
 
 Route::POST('/forum/recommend', [ForumController::class, 'recommend']);
 
+Route::POST('/forum/search', [ForumController::class, 'search_forum'])->name('search_forum');
+
 Route::get('/friend/{id}', [FriendController::class, 'request']);
 
 Route::POST('/friend/accept', [FriendController::class, 'accept']);
