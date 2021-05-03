@@ -6,6 +6,7 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\LetterController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\MoveChatingController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -68,3 +69,5 @@ Route::get('/blind/{id}', [BlindController::class, 'add_blind'])->name('blind');
 Route::get('/mypage/blind', [MypageController::class, 'blind_list'])->name('blind_list');
 
 Route::DELETE('/blind/{id}', [BlindController::class, 'delete'])->name('delete_blind');
+
+Route::post('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');

@@ -33,10 +33,33 @@
                 <option value="title">제목</option>
                 <option value="body">내용</option>
                 {{-- <option value="comment">댓글</option> --}}
-                <option value="nickname">닉네임</option>
+                {{-- <option value="nickname">닉네임</option> --}}
             </select>
         </form>
     </div>
+
+
+    {{-- @if ($forums['nick'] == 1)        
+        <ul>
+            @foreach($forums as $forum_arr)
+                @foreach ($forum_arr as $forum)
+                    <a href="/forum/{{ $forum->id }}">
+                        <li class="border-4 border-gray-500 px-2 py-2 mt-4" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">제목 : {{ $forum-> title }} <small class="float-right">created_at {{ $forum -> created_at}}</small><br>
+                        내용 : {{ $forum -> body }}</li>
+                    </a>      
+                @endforeach  
+            @endforeach
+        </ul>
+    @else
+        <ul>
+            @foreach($forums as $forum)
+                <a href="/forum/{{ $forum->id }}">
+                    <li class="border-4 border-gray-500 px-2 py-2 mt-4" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">제목 : {{ $forum-> title }} <small class="float-right">created_at {{ $forum -> created_at}}</small><br>
+                    내용 : {{ $forum -> body }}</li>
+                </a>             
+            @endforeach
+        </ul>   
+    @endif --}}
 
     <ul>
         @foreach($forums as $forum)
@@ -44,9 +67,9 @@
                 <li class="border-4 border-gray-500 px-2 py-2 mt-4" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">제목 : {{ $forum-> title }} <small class="float-right">created_at {{ $forum -> created_at}}</small><br>
                 내용 : {{ $forum -> body }}</li>
             </a>             
-        @endforeach
-    </ul>
-
+         @endforeach
+    </ul>   
+    
     <div class="mt-4">
         {!! $forums->render() !!}
     </div> 
