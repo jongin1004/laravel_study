@@ -7,6 +7,7 @@ use App\Models\Forum;
 use Illuminate\Http\Request;
 use App\Models\Check_to_recommend;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\Input;
 
 class ForumController extends Controller
 {
@@ -111,26 +112,19 @@ class ForumController extends Controller
 
     public function search_forum(Request $request)
     {
-        // if($request['search_object'] == 'nickname'){
-        //     $user_id = User::where('name', 'LIKE', "%{$request['search_forum']}%")->get();
-            
-        //     $forums = [];
+        if($request['search_object'] == 'nickname'){
+            $search_forums = DB::table('forums')
+                ->join('users', 'users.id', '=', 'forums.user_id')
+                ->where('users.name', 'LIKE', "%{$request['search_forum']}%")        
+                ->select('users.name', 'forums.*')
+                ->paginate(2);  
 
-        //     for($i=0; $i<count($user_id); $i++){
-        //         $input = Forum::where('user_id', $user_id[$i]->id)->orderBy('id', 'DESC')->paginate(5);                
-        //         array_push($forums, $input);       
-        //     }           
-        //     $forums['nick'] = 1;        
+        } else {
+            $search_forums = Forum::where($request['search_object'] , 'LIKE', "%{$request['search_forum']}%")->paginate(5);
+        }        
 
-        // } else {
-        //     $forums = Forum::where($request['search_object'] , 'LIKE', "%{$request['search_forum']}%")->paginate(5);
-        // }
-
-        $forums = Forum::where($request['search_object'] , 'LIKE', "%{$request['search_forum']}%")->paginate(5);
-
-
-        return view('forum.index', [
-            'forums' => $forums
+        return view('forum.search', [
+            'search_forums' => $search_forums
         ]);
     }
     

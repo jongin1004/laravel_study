@@ -71,7 +71,7 @@ class MypageController extends Controller
 
     public function blind_list()
     {
-        $blind_list = Blind_user::where('user_id', auth()->id())->paginate(2);
+        $blind_list = Blind_user::where('user_id', auth()->id())->paginate(1);
 
         return view('mypage.blind_list', [
             'blind_list' => $blind_list

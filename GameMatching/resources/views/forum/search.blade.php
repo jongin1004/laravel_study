@@ -1,16 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<script>
-// function myFunction(num) {
-//   var x = document.getElementById("textarea"+num);
-//   if (x.style.display === "block") {
-//     x.style.display = "none";
-//   } else {
-//     x.style.display = "block";
-//   }
-// }
-</script>
 <div class="h-screen px-64 mt-5">
     <div class="float-right">
         <a href="/forum/create">
@@ -39,16 +29,16 @@
     </div>
 
     <ul>
-        @foreach($forums as $forum)
-            <a href="/forum/{{ $forum->id }}">
-                <li class="border-4 border-gray-500 px-2 py-2 mt-4" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">제목 : {{ $forum-> title }} <small class="float-right">created_at {{ $forum -> created_at}}</small><br>
-                내용 : {{ $forum -> body }}</li>
+        @foreach($search_forums as $search_forum)
+            <a href="/forum/{{ $search_forum->id }}">
+                <li class="border-4 border-gray-500 px-2 py-2 mt-4" style="text-overflow:ellipsis;white-space:nowrap;overflow:hidden;">제목 : {{ $search_forum-> title }} <small class="float-right">created_at {{ $search_forum -> created_at}}</small><br>
+                내용 : {{ $search_forum -> body }}</li>
             </a>             
          @endforeach
     </ul>   
     
     <div class="mt-4">
-        {!! $forums->render() !!}
+        {{-- {!! $search_forums->appends(Request::all())->links() !!} --}}
     </div> 
     
 </div>
