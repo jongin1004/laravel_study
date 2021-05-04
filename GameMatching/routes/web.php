@@ -58,6 +58,8 @@ Route::get('/mypage/myforum', [MypageController::class, 'myforum']);
 
 Route::get('/mypage/box_of_letter', [MypageController::class, 'box_of_letter'])->name('box_of_letter');
 
+Route::get('/mypage/bookmark_list', [MypageController::class, 'bookmark_list'])->name('bookmark_list');
+
 Route::get('/mypage/letter/filter/{num}', [MypageController::class, 'letter_filter'])->name('letter_filter');
 
 Route::get('/letter/{id}', [LetterController::class, 'index'])->name('letter');
@@ -71,3 +73,6 @@ Route::get('/mypage/blind', [MypageController::class, 'blind_list'])->name('blin
 Route::DELETE('/blind/{id}', [BlindController::class, 'delete'])->name('delete_blind');
 
 Route::post('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');
+
+Route::DELETE('/bookmark/{List_of_bookmark}', [BookmarkController::class, 'delete'])->name('delete_bookmark');
+

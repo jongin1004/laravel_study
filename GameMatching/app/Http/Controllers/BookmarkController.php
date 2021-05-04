@@ -27,4 +27,11 @@ class BookmarkController extends Controller
 
         return redirect()->back();
     }
+
+    public function delete(List_of_bookmark $List_of_bookmark)
+    {        
+        $List_of_bookmark->delete();
+
+        return redirect()->back();
+    }
 }

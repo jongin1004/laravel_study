@@ -23,6 +23,11 @@
                     쪽지함
                 </div>   
             </a>
+            <a href="{{ route('bookmark_list') }}">
+                <div class="p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer">
+                    스크랩 목록
+                </div>   
+            </a> 
             <a href="{{ route('blind_list') }}">
                 <div class="p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer">
                     블라인드 유저 관리
@@ -32,7 +37,7 @@
         <div class="w-4/5 flex flex-col">            
             @if(substr(url()->full(), -6, ) == "mypage")
                 <table class="table">                
-                    <tbody>
+                    <tbody class="text-white">
                         <tr>
                             <th scope="col" colspan="2" class="text-center">
                                 기본정보
@@ -81,6 +86,7 @@
             @yield('myforum')
             @yield('box_of_letter')
             @yield('blind_list')
+            @yield('bookmark_list')
         </div>        
     </div>
 @endsection

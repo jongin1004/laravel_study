@@ -27,6 +27,8 @@ class BlindController extends Controller
 
     public function delete($id)
     {
+        // abort_unless(auth()->user()->blindowns($blind), 403);
+
         $blind_user = Blind_user::where('user_id', auth()->id())->where('target_id', $id)->first();
 
         $blind_user -> delete();

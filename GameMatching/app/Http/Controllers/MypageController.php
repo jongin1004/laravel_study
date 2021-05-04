@@ -8,6 +8,7 @@ use App\Models\Letter;
 use App\Models\Blind_user;
 use Illuminate\Http\Request;
 use App\Models\Request_friend;
+use App\Models\List_of_bookmark;
 
 class MypageController extends Controller
 {
@@ -74,6 +75,15 @@ class MypageController extends Controller
 
         return view('mypage.blind_list', [
             'blind_list' => $blind_list
+        ]);
+    }
+
+    public function bookmark_list()
+    {
+        $bookmark_list = List_of_bookmark::where('user_id', auth()->id())->paginate(5);
+        
+        return view('mypage.bookmark_list', [
+            'bookmark_list' => $bookmark_list
         ]);
     }
 }

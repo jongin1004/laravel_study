@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\List_of_bookmark;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Forum extends Model
 {    
@@ -14,5 +15,10 @@ class Forum extends Model
     public function user() 
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function List_of_bookmark()
+    {
+        return $this->hasMany(List_of_bookmark::class);
     }
 }
