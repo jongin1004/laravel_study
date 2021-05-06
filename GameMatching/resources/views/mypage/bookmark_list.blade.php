@@ -5,7 +5,7 @@
         <?php $i=1 ?>
         @foreach ($bookmark_list as $bookmark)
             <a href="/forum/{{ $bookmark->Forum->id }}">
-                <div class="border-b-2 mt-2 mx-8 px-4 flex flex-col">
+                <div class="border-b-2 px-4 py-2 mt-2 flex flex-col">
                     <ul class="flex flex-col md:flex-row items-center">
                         <li class="md:ml-4 mb-2 md:mt-0 w-8">                    
                             {{ $i }}            

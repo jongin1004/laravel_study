@@ -1,10 +1,10 @@
 @extends('mypage.index')
 
 @section('blind_list')
-    <div class="mx-4">
+    <div>
         <?php $no=1 ?>
         @foreach ($blind_list as $blind_user)
-            <div class="border-b-2 px-4 py-2 flex flex-col">
+            <div class="border-b-2 px-4 py-2 mt-2 flex flex-col">
                 <ul class="flex flex-col md:flex-row items-center">
                     <li class="md:ml-4 mb-2 md:mt-0 w-8">                    
                         {{ $no }}            

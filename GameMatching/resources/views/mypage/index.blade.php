@@ -34,7 +34,7 @@
                 </div>   
             </a> 
         </div>
-        <div class="w-4/5 flex flex-col">            
+        <div class="w-4/5 flex flex-col mx-4 mt-4">            
             @if(substr(url()->full(), -6, ) == "mypage")
                 <table class="table">                
                     <tbody class="text-white">
@@ -49,14 +49,6 @@
                             </th>
                             <td >
                                 <span class="ml-2">{{ $user->name }}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-center border-r-2">
-                                <div>메일주소</div>
-                            </th>
-                            <td>
-                                <span class="ml-2">{{ $user->email }}</span>
                             </td>
                         </tr>
                         <tr>

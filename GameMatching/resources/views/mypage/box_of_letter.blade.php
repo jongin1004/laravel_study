@@ -1,7 +1,7 @@
 @extends('mypage.index')
 
 @section('box_of_letter')
-    <div class="mt-2 mx-8">
+    <div>
         <div class="flex flex-col mb-4">
             <ul class="flex flex-col md:flex-row items-center">
                 <li>
@@ -17,7 +17,7 @@
         </div>
         <?php $no=1 ?>
         @foreach ($letters as $letter)
-            <div class="border-b-2 px-4 py-2 flex flex-col">
+            <div class="border-b-2 px-4 py-2 mt-2 flex flex-col">
                 <ul class="flex flex-col md:flex-row items-center">
                     <li class="md:ml-4 mb-2 md:mt-0 w-8">                    
                         {{ $no }}            

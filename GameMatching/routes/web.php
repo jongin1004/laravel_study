@@ -50,7 +50,7 @@ Route::POST('/friend/refusal', [FriendController::class, 'refusal']);
 
 Route::get('/chating', [MoveChatingController::class, 'index']);
 
-Route::get('/mypage', [MypageController::class, 'index']);
+Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
 
 Route::get('/mypage/request', [MypageController::class, 'request']);
 
@@ -75,4 +75,6 @@ Route::DELETE('/blind/{id}', [BlindController::class, 'delete'])->name('delete_b
 Route::post('/bookmark', [BookmarkController::class, 'bookmark'])->name('bookmark');
 
 Route::DELETE('/bookmark/{List_of_bookmark}', [BookmarkController::class, 'delete'])->name('delete_bookmark');
+
+Route::get('/user_info/{id}', [MypageController::class, 'user_info'])->name('user_info');
 
