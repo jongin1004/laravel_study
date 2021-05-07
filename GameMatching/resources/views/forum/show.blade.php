@@ -38,7 +38,7 @@
     내용
     <div class="border p-3 my-3">{{ $forum -> body }}</div>
     
-    <div class="mt-4 text-center">
+    <div class="my-2 pb-4 text-center border-b-2">
         <form action="/forum/recommend" method="POST">
             @csrf            
             <input type="hidden" id="forum_id" name="forum_id" value="{{ $forum->id }}">
@@ -49,12 +49,27 @@
         </form>
     </div>
     
-    <div class="float-right">
+    <div class="text-right border-b-2 pb-2 mt-2">
         <form action="{{ route('bookmark') }}" method="POST">
             @csrf
             <input type="hidden" name="forum_id" value="{{ $forum->id }}">
             <button class="flex-initial bg-gray-500 px-4 py-2 text-white hover:bg-red-300">스크랩</button>
         </form>            
+    </div>
+
+    <div class="flex flex-col mt-2 border-2 p-4">        
+        <form action="{{ route('create_comment') }}" method="POST">
+            @csrf
+            <ul class="flex flex-col md:flex-row items-end">
+                <li class="w-full">
+                    <input type="hidden" name="forum_id" value="{{ $forum->id }}">
+                    <textarea class="w-full h-32 bg-gray-600 text-white" name="body" placeholder="상대방에게 상처가 되는 댓글은 삼가해주세요!"></textarea>
+                </li>
+                <li>
+                    <input class="p-2 ml-2 mb-1 bg-gray-500" type="submit" value="작성">
+                </li>
+            </ul>            
+        </form>
     </div>
 </div>
 @endsection

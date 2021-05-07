@@ -6,6 +6,7 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\LetterController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\MoveChatingController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -37,6 +38,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/verify', [RegisterController::class, 'verifyUser'])->name('verify.user');
 
 Route::resource('forum', ForumController::class);
+
+Route::post('/forum/comment', [CommentController::class, 'create'])->name('create_comment');
 
 Route::POST('/forum/recommend', [ForumController::class, 'recommend']);
 
