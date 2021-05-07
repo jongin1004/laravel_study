@@ -36,7 +36,7 @@
         </dl>
     </section>   
     내용
-    <div class="border p-3 my-3">{{ $forum -> body }}</div>
+    <div class="border-2 rounded-lg p-3 my-3">{{ $forum -> body }}</div>
     
     <div class="my-2 pb-4 text-center border-b-2">
         <form action="/forum/recommend" method="POST">
@@ -49,7 +49,7 @@
         </form>
     </div>
     
-    <div class="text-right border-b-2 pb-2 mt-2">
+    <div class="text-right pb-2 mt-2">
         <form action="{{ route('bookmark') }}" method="POST">
             @csrf
             <input type="hidden" name="forum_id" value="{{ $forum->id }}">
@@ -57,7 +57,39 @@
         </form>            
     </div>
 
-    <div class="flex flex-col mt-2 border-2 p-4">        
+    @if ($comments != null)
+        <div>
+            <div class="border-2 rounded-lg py-2 mt-1 text-center">
+                댓글
+            </div>
+            <ul>
+                @foreach ($comments as $comment)
+                    <li class="py-4 border-b-2">
+                        <div class="float-right">
+                            <span>
+                                <a href="#">추천</a>
+                                <a href="#">비추천</a>
+                            </span>
+                            <a href="#">댓글</a>
+                        </div>
+                        <div class="mb-4">
+                            <span>{{ $comment->user->name }}</span>
+                            <span class="text-xs ml-4"> {{ $comment->created_at }}</span>
+                        </div>
+                        
+                        <div>
+                            {{ $comment -> body }}
+                        </div>
+                    </li>               
+                @endforeach
+            </ul>   
+            <div class="py-2">
+                {!! $comments->render() !!}
+            </div>
+        </div>
+    @endif
+
+    <div class="flex flex-col mt-2 border-2 rounded-lg p-4">        
         <form action="{{ route('create_comment') }}" method="POST">
             @csrf
             <ul class="flex flex-col md:flex-row items-end">

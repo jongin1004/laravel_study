@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Forum;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Check_to_recommend;
 use Illuminate\Support\Facades\DB;
@@ -29,8 +30,11 @@ class ForumController extends Controller
     {   
         abort_unless(auth()->user()->is_blind($forum), 403, '당신은 글쓴이에게 블라인드 당했습니다.');
 
+        $comments = Comment::where('forum_id', $forum->id)->paginate(5);
+
         return view('forum.show', [
-            'forum' => $forum
+            'forum' => $forum,
+            'comments' => $comments
         ]);
     }
 

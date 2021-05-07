@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Forum;
 use App\Models\Letter;
+use App\Models\Comment;
 use App\Models\Message;
 use App\Models\Blind_user;
 use App\Models\Request_friend;
@@ -65,6 +66,11 @@ class User extends Authenticatable
         return $this->hasMany(Message::class);
     }
 
+    public function Comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function Request()
     {
         return $this->hasMany(Request_friend::class, 'to');
@@ -86,4 +92,6 @@ class User extends Authenticatable
 
         return $is_blind == null;
     }
+
+
 }

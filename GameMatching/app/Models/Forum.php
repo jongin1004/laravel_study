@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Comment;
 use App\Models\List_of_bookmark;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,5 +21,10 @@ class Forum extends Model
     public function List_of_bookmark()
     {
         return $this->hasMany(List_of_bookmark::class);
+    }
+
+    public function Comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
