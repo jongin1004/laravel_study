@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+<script>
+    function myFunction(num) {
+    var x = document.getElementById("textarea"+num);
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+    }
+</script>
+
 <div class="px-64 mt-4">
     <div class="flex mb-4">
         <a href="/forum" class="flex-1">
@@ -21,6 +32,8 @@
 
     제목 : {{ $forum -> title }} <small class="float-right">created_at {{ $forum -> created_at }}</small><br>
     <small class="float-right">updated_at {{ $forum -> updated_at }}</small><br>
+
+    {{-- 아코디언패널 --}}
     <section class="popup_user">
         <dl>
             <dt>                
@@ -34,10 +47,13 @@
                 <a href="{{ route('blind', $forum->user->id ) }}">블라인드 추가</a>
             </dd>
         </dl>
-    </section>   
+    </section>
+
+    {{-- 게시글 내용 --}}
     내용
     <div class="border-2 rounded-lg p-3 my-3">{{ $forum -> body }}</div>
     
+    {{-- 게시글 추천/비추천 --}}
     <div class="my-2 pb-4 text-center border-b-2">
         <form action="/forum/recommend" method="POST">
             @csrf            
@@ -49,6 +65,7 @@
         </form>
     </div>
     
+    {{-- 게시글 스크랩 --}}
     <div class="text-right pb-2 mt-2">
         <form action="{{ route('bookmark') }}" method="POST">
             @csrf
@@ -57,6 +74,7 @@
         </form>            
     </div>
 
+    {{-- 댓글 --}}
     @if ($comments != null)
         <div>
             <div class="border-2 rounded-lg py-2 mt-1 text-center">
@@ -70,7 +88,7 @@
                                 <a href="#">추천</a>
                                 <a href="#">비추천</a>
                             </span>
-                            <a href="#">댓글</a>
+                            <a onclick="myFunction({{ $comment->id }})">댓글</a>
                         </div>
                         <div class="mb-4">
                             <span>{{ $comment->user->name }}</span>
@@ -80,7 +98,23 @@
                         <div>
                             {{ $comment -> body }}
                         </div>
-                    </li>               
+                    </li>
+                    
+                    <div class="p-4" id="textarea{{ $comment->id }}" style="display:none">
+                        <h1 class="text-xl mb-3">대댓글 작성</h1>
+                        <form action="/comment" method="POST">
+                            @csrf
+                            <ul class="flex flex-col md:flex-row items-end">
+                                <li class="w-full">
+                                    <input type="hidden" id="qna_id" name="qna_id" value="{{ $comment->id }}">
+                                    <textarea class="w-full h-32 px-3 py-1 border rounded-lg bg-gray-600" name="body" placeholder="상대방에게 상처가 되는 댓글은 삼가해주세요!"></textarea>
+                                </li>
+                                <li>
+                                    <button class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900 float-right w-32 ml-2 mb-1">작성</button>
+                                </li>
+                            </ul>                                                                                                    
+                        </form>
+                    </div>
                 @endforeach
             </ul>   
             <div class="py-2">
@@ -97,8 +131,8 @@
                     <input type="hidden" name="forum_id" value="{{ $forum->id }}">
                     <textarea class="w-full h-32 bg-gray-600 text-white" name="body" placeholder="상대방에게 상처가 되는 댓글은 삼가해주세요!"></textarea>
                 </li>
-                <li>
-                    <input class="p-2 ml-2 mb-1 bg-gray-500" type="submit" value="작성">
+                <li>                    
+                    <button class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900 float-right w-32 ml-2 mb-1">작성</button>
                 </li>
             </ul>            
         </form>
