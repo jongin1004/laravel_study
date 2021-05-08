@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Forum;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Models\Additional_comment;
 use App\Models\Check_to_recommend;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
@@ -31,10 +32,18 @@ class ForumController extends Controller
         abort_unless(auth()->user()->is_blind($forum), 403, '당신은 글쓴이에게 블라인드 당했습니다.');
 
         $comments = Comment::where('forum_id', $forum->id)->paginate(5);
+        $additional_comments = Additional_comment::where('forum_id', $forum->id)->get();
+
+        // $comments = DB::table('comments')
+        //         ->join('additional_comments', 'comments.id', '=', 'additional_comments.comment_id')
+        //         ->where('comments.forum_id', $forum->id)
+        //         ->select('comments.*', 'additional_comments.comment_id')
+        //         ->get(); 
 
         return view('forum.show', [
             'forum' => $forum,
-            'comments' => $comments
+            'comments' => $comments,
+            'additional_comments' => $additional_comments
         ]);
     }
 

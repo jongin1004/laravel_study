@@ -99,6 +99,34 @@
                             {{ $comment -> body }}
                         </div>
                     </li>
+                
+                    <div class="ml-4">
+                        <ul>
+                            @foreach ($additional_comments as $additional_comment)
+                                @if ($additional_comment->comment_id == $comment->id)
+                                    <li class="py-4 border-b-2">
+                                        <div class="float-right">
+                                            <span>
+                                                <a href="#">추천</a>
+                                                <a href="#">비추천</a>
+                                            </span>
+                                            <a onclick="myFunction({{ $additional_comment->id }})">댓글</a>
+                                        </div>
+                                        <div class="mb-4">
+                                            <span>{{ $additional_comment->user->name }}</span>
+                                            <span class="text-xs ml-4"> {{ $additional_comment->created_at }}</span>
+                                        </div>
+                                        
+                                        <div>
+                                            <span class="text-gray-400 text-opacity-25">{{ $comment->user->name }}</span>
+                                            <span>{{ $additional_comment -> body }}</span>                                        
+                                        </div>
+                                    </li>
+                                @endif                                
+                            @endforeach
+                        </ul>
+                    </div>                    
+
                     
                     {{-- 추가댓글 form 태그  --}}
                     <div class="p-4" id="textarea{{ $comment->id }}" style="display:none">
@@ -108,6 +136,7 @@
                             <ul class="flex flex-col md:flex-row items-end">
                                 <li class="w-full">
                                     <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                    <input type="hidden" name="forum_id" value="{{ $forum->id }}">
                                     <textarea class="w-full h-32 px-3 py-1 border rounded-lg bg-gray-600" name="body" placeholder="상대방에게 상처가 되는 댓글은 삼가해주세요!"></textarea>
                                 </li>
                                 <li>

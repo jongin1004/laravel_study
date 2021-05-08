@@ -17,10 +17,12 @@ class CreateAdditionalCommentsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('comment_id');
+            $table->foreignId('forum_id');
             $table->longText('body');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('forum_id')->references('id')->on('forums')->onDelete('cascade');
             $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
         });
     }
@@ -35,3 +37,4 @@ class CreateAdditionalCommentsTable extends Migration
         Schema::dropIfExists('additional_comments');
     }
 }
+

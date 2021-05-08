@@ -27,10 +27,11 @@ class CommentController extends Controller
     {
         request()->validate([
             'body' => 'required',
-            'comment_id' => 'required'
+            'comment_id' => 'required',
+            'forum_id' => 'required'
         ]);
 
-        $values = request(['body', 'comment_id']);
+        $values = request(['body', 'comment_id', 'forum_id']);
         $values['user_id'] = auth()->id();
 
         Additional_comment::create($values);
