@@ -39,7 +39,9 @@ Route::get('/verify', [RegisterController::class, 'verifyUser'])->name('verify.u
 
 Route::resource('forum', ForumController::class);
 
-Route::post('/forum/comment', [CommentController::class, 'create'])->name('create_comment');
+Route::post('/forum/comment', [CommentController::class, 'create_comment'])->name('create_comment');
+
+Route::post('/forum/additional_comment', [CommentController::class, 'create_additional_comment'])->name('create_additional_comment');
 
 Route::POST('/forum/recommend', [ForumController::class, 'recommend']);
 

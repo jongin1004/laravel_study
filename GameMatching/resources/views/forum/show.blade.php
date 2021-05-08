@@ -74,7 +74,7 @@
         </form>            
     </div>
 
-    {{-- 댓글 --}}
+    {{-- 댓글 index --}}
     @if ($comments != null)
         <div>
             <div class="border-2 rounded-lg py-2 mt-1 text-center">
@@ -100,13 +100,14 @@
                         </div>
                     </li>
                     
+                    {{-- 추가댓글 form 태그  --}}
                     <div class="p-4" id="textarea{{ $comment->id }}" style="display:none">
                         <h1 class="text-xl mb-3">대댓글 작성</h1>
-                        <form action="/comment" method="POST">
+                        <form action="{{ route('create_additional_comment') }}" method="POST">
                             @csrf
                             <ul class="flex flex-col md:flex-row items-end">
                                 <li class="w-full">
-                                    <input type="hidden" id="qna_id" name="qna_id" value="{{ $comment->id }}">
+                                    <input type="hidden" name="comment_id" value="{{ $comment->id }}">
                                     <textarea class="w-full h-32 px-3 py-1 border rounded-lg bg-gray-600" name="body" placeholder="상대방에게 상처가 되는 댓글은 삼가해주세요!"></textarea>
                                 </li>
                                 <li>
@@ -123,6 +124,7 @@
         </div>
     @endif
 
+    {{-- 댓글 작성 form태그  --}}
     <div class="flex flex-col mt-2 border-2 rounded-lg p-4">        
         <form action="{{ route('create_comment') }}" method="POST">
             @csrf
