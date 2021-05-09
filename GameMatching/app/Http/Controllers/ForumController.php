@@ -31,7 +31,7 @@ class ForumController extends Controller
     {   
         abort_unless(auth()->user()->is_blind($forum), 403, '당신은 글쓴이에게 블라인드 당했습니다.');
 
-        $comments = Comment::where('forum_id', $forum->id)->paginate(5);
+        $comments = Comment::where('forum_id', $forum->id)->get();
         $additional_comments = Additional_comment::where('forum_id', $forum->id)->get();
 
         // $comments = DB::table('comments')

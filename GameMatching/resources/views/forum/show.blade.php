@@ -122,6 +122,24 @@
                                             <span>{{ $additional_comment -> body }}</span>                                        
                                         </div>
                                     </li>
+
+                                    {{-- 추가댓글 form 태그  --}}
+                                    <div class="p-4" id="textarea{{ $additional_comment->id }}" style="display:none">
+                                        <h1 class="text-xl mb-3">대댓글 작성</h1>
+                                        <form action="{{ route('create_additional_comment') }}" method="POST">
+                                            @csrf
+                                            <ul class="flex flex-col md:flex-row items-end">
+                                                <li class="w-full">
+                                                    <input type="hidden" name="comment_id" value="{{ $additional_comment->id }}">
+                                                    <input type="hidden" name="forum_id" value="{{ $forum->id }}">
+                                                    <textarea class="w-full h-32 px-3 py-1 border rounded-lg bg-gray-600" name="body" placeholder="상대방에게 상처가 되는 댓글은 삼가해주세요!"></textarea>
+                                                </li>
+                                                <li>
+                                                    <button class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-gray-900 float-right w-32 ml-2 mb-1">작성</button>
+                                                </li>
+                                            </ul>                                                                                                    
+                                        </form>
+                                    </div>
                                 @endif                                
                             @endforeach
                         </ul>
@@ -148,7 +166,7 @@
                 @endforeach
             </ul>   
             <div class="py-2">
-                {!! $comments->render() !!}
+                {{-- {!! $comments->render() !!} --}}
             </div>
         </div>
     @endif
