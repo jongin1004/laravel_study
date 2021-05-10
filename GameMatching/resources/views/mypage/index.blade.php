@@ -13,7 +13,7 @@
                     내 글
                 </div>   
             </a>
-            <a href="/mypage/#">
+            <a href="{{ route('myComment') }}">
                 <div class="p-2 border-b-2 border-gray-600 hover:bg-gray-300 cursor-pointer">
                     내 댓글 
                 </div>   
@@ -76,9 +76,10 @@
                        
             @yield('request_friend')
             @yield('myforum')
+            @yield('myComment')
             @yield('box_of_letter')
             @yield('blind_list')
-            @yield('bookmark_list')
+            @yield('bookmark_list')            
         </div>        
     </div>
 @endsection

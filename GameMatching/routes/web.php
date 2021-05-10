@@ -61,6 +61,8 @@ Route::get('/mypage/request', [MypageController::class, 'request']);
 
 Route::get('/mypage/myforum', [MypageController::class, 'myforum']);
 
+Route::get('/mypage/myforum', [MypageController::class, 'myComment'])->name('myComment');
+
 Route::get('/mypage/box_of_letter', [MypageController::class, 'box_of_letter'])->name('box_of_letter');
 
 Route::get('/mypage/bookmark_list', [MypageController::class, 'bookmark_list'])->name('bookmark_list');

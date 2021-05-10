@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Forum;
 use App\Models\Letter;
+use App\Models\Comment;
 use App\Models\Blind_user;
 use Illuminate\Http\Request;
 use App\Models\Request_friend;
 use App\Models\List_of_bookmark;
+use App\Models\Additional_comment;
 
 class MypageController extends Controller
 {
@@ -42,6 +44,17 @@ class MypageController extends Controller
 
         return view('mypage.myforum', [
             'forums' => $forums
+        ]);
+    }
+
+    public function myComment()
+    {
+        $comments = Comment::where('user_id', auth()->id())->orderBy('id', 'DESC')->get();
+        $Additional_comment = Additional_comment::where('user_id', auth()->id())->orderBy('id', 'DESC')->get();
+
+        return view('mypage.my_comment', [
+            'comments' => $comments,
+            'Additional_comment' => $Additional_comment
         ]);
     }
 
