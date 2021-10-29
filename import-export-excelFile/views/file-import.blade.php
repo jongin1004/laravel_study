@@ -19,11 +19,11 @@
 
 <body class="h-screen ">
     <div class="flex flex-col justify-center items-center text-center h-full">
-        <div class="flex-auto flex items-center">
+        <div class="p-8">
             <span>選考の機会を頂きまして誠にありがとうございます。</span> 
         </div>
-
-        <div class="flex-auto">
+        
+        <div class="">
             <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group mb-4" style="max-width: 500px; margin: 0 auto;">
@@ -37,15 +37,20 @@
                 <a class="btn btn-success mb-2" href="{{ route('file-export') }}">ダウンロード</a>
                 <a class="btn btn-success mb-2" href="{{ route('file-reset') }}">データリセット</a>
             </form>
+
+            @if ($message = Session::get('error'))
+                <div class="alert alert-success alert-block">
+                    <p><strong>注意</strong></p>
+                    <small>{{ $message }}</small>
+                </div>
+            @elseif ( $message = Session::get('success') )
+                <div class="alert alert-success alert-block">
+                    <p><strong>成功</strong></p>
+                    <small>{{ $message }}</small>
+                </div>
+            @endif
         </div>
     </div>
-
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>    
-            <strong>{{ $message }}</strong>
-        </div>
-    @endif
 </body>
 
 </html>

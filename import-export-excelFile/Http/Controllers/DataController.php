@@ -24,8 +24,12 @@ class DataController extends Controller
     */
     public function fileImport(Request $request) 
     {
+        if ($request->file('file') === null ) {
+            return back()->with('error','まず、ファイルを選択してください。');
+        }
+
         Excel::import(new DatasImport, $request->file('file')->store('temp'));
-        return back();
+        return back()->with('success','成功的にアップロードいたしました。');
     }
 
     /**
@@ -39,14 +43,23 @@ class DataController extends Controller
         if ( count($datas) > 0 ) {
             return Excel::download(new DatasExport, 'fee-calculate.xlsx');
         } else {
-            return back()->with('success','Item created successfully!');
+            return back()->with('error','まず、アップロードをしてください。');
         }
         
     } 
 
     public function fileReset() 
     {
-        DB::table('data')->delete();
-        return back();
+        $datas = Data::all();
+        if ( count($datas) > 0 ) {
+            DB::table('data')->delete();
+            return back()->with('success','成功的にデータをリセットいたしました。');
+        } else {
+            return back()->with('error','既に空いております。');
+        }
+        
+
+        
+        
     }
 }
