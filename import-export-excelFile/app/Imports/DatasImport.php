@@ -14,11 +14,17 @@ class DatasImport implements ToModel
     * @return \Illuminate\Database\Eloquent\Model|null
     */
     public function model(array $row)
-    {
+    {        
         $name = strval($row[0]);
         $address = strval($row[1]);
         $price = 115;
 
+        if ( strpos($row[0], ',') !== false) {
+            $row = explode( ',', $row[0]);
+            $name = $row[0];
+            $address = $row[1];
+        }            
+        
         if($name === "会社名" && $address === "住所") {
             return;
         }        
