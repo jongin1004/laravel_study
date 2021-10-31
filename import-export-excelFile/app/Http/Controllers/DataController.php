@@ -52,14 +52,19 @@ class DataController extends Controller
     {
         $datas = Data::all();
         if ( count($datas) > 0 ) {
-            DB::table('data')->delete();
+            DB::table('data')->truncate();
             return back()->with('success','成功的にデータをリセットいたしました。');
         } else {
             return back()->with('error','既に空いております。');
-        }
-        
+        }                    
+    }
 
-        
-        
+    public function showData() 
+    {
+        $datas = Data::paginate(8)->onEachSide(1);
+
+        return view('show-data', [
+            'datas' => $datas
+        ]);
     }
 }
