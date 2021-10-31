@@ -1,11 +1,11 @@
 @extends('layout.main')
 
 @section('content')
-    <div class="">
+    <div class="flex flex-grow items-center">
         <span>選考の機会を頂きまして誠にありがとうございます。</span> 
     </div>
     
-    <div class="p-4">
+    <div class="flex-grow">
         <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group mb-4" style="max-width: 500px; margin: 0 auto;">
@@ -15,9 +15,10 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary mb-2">アップロード</button>
-            <a class="btn btn-success mb-2" href="{{ route('file-export') }}">ダウンロード</a>
-            <a class="btn btn-success mb-2" href="{{ route('file-reset') }}">データリセット</a>
+            <button class="btn btn-primary mb-2 text-xs">アップロード</button>
+            <a class="btn btn-success mb-2 text-xs" href="{{ route('file-export') }}">ダウンロード</a>
+            <a class="btn btn-success mb-2 text-xs" href="{{ route('data-show') }}">データページ</a>
+            <a class="btn btn-success mb-2 text-xs" href="{{ route('file-reset') }}">データリセット</a>            
         </form>
 
         @if ($message = Session::get('error'))

@@ -1,7 +1,11 @@
 @extends('layout.main')
 
-@section('content')       
-    <div class="w-5/6">        
+@section('content')    
+    <div class="flex flex-grow items-center">
+        データページ
+    </div>    
+    <div class="flex-grow w-5/6">  
+        
         <table class="table w-full">
             <thead>
                 <tr>
