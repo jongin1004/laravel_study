@@ -1,12 +1,12 @@
 @extends('layout.main')
 
-@section('content')    
-    <div class="flex flex-grow items-center">
-        <strong>データページ</strong>
-    </div>    
-    <div class="flex-grow w-5/6">  
-        
-        <table class="table w-full">
+@section('content')        
+    <div class="justify-center w-5/6">  
+        <div>
+            <strong>データページ</strong>
+        </div>    
+
+        <table class="table w-full mt-4">
             <thead>
                 <tr>
                     <th scope="col">#</th>
