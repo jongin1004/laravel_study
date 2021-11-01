@@ -2,7 +2,7 @@
 
 @section('content')    
     <div class="flex flex-grow items-center">
-        データページ
+        <strong>データページ</strong>
     </div>    
     <div class="flex-grow w-5/6">  
         
@@ -18,7 +18,7 @@
             <tbody>
                 @foreach ($datas as $data)
                     <tr class="text-xs">
-                        <th scope="row">{{ $data -> id }}</th>
+                        <th scope="row" style="width: 50px;">{{ $data -> id }}</th>
                         <td style="width: 300px;">
                             <span class="ellipsis">{{ $data -> name }}</span>
                         </td>
